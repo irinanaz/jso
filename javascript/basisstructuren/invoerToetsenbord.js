@@ -7,12 +7,13 @@
 
 'use strict';
 
-var toetsenbord = require('readline-sync');
+var toetsenbord = require('readline-sync'); // roept de readline-sync module op - toe laat de invoer van de toetsenboord
 
-var voornaam = toetsenbord.question('Tik je voornaam in:  ');
+var voornaam = toetsenbord.question('Tik je voornaam in:  '); //geeft een string terug aan variabele voornaam
 var naam = toetsenbord.question('Tik je familienaam in:  ');
 
-console.log('Welkom, %s %s!' , voornaam, naam);
+console.log('Welkom, %s %s!' , voornaam, naam); //%s dat is een plaatshouder voor de variabele die achter komt
+console.log('Welkom ,' + voornaam + ' '+ naam +'!');
 // opm:  console.log:  eerste param = formatstring met plaatshouders, 
 // params waarvoor geen plaatshouder voorzien is, worden geconcateneerd met formatstring;
 // console.log voegt achteraan \n toe
