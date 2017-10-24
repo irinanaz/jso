@@ -15,4 +15,3 @@ while (getalA < 0 || getalB<0 || getalA==getalB){
         ggd=getalB-getalA;
     } else { ggd=getalA-getalB;}
     console.log("Het ggd is %d", ggd);
--4
