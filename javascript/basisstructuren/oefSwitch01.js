@@ -2,7 +2,7 @@
 
 var toetsenbord = require('readline-sync');
 
-var getal1 = parseInt(toetsenbord.question("Geef eerste getal: "), 10);
+var getal1 = parseInt(toetsenbord.question("Geef eerste getal: "), 10); //gevraagt getal, geparsed naar integer, 10 betekent dicimale getalstelsel.
 var getal2 = parseInt(toetsenbord.question("Geef tweede getal: "), 10);
 var operator = toetsenbord.question("Geef bewerking (+,-,* of /): ");
 switch (operator) {
