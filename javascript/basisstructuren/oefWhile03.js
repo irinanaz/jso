@@ -1,6 +1,6 @@
 'use strict';
 var toetsenbord = require('readline-sync');
-var result, geslacht, leeftijd, jongeVrouwen = 0, oudeVrouwen = 0, jongeMannen = 0, oudeMannen = 0;
+var result, geslacht, leeftijd, jongeVrouwen = 0, VrouwenPlus25 = 0, jongeMannen = 0, MannenPlus25 = 0;
 geslacht = toetsenbord.question("Geef geslacht (m/v): ");
 while ((geslacht == "m") || (geslacht == "v")) {
     leeftijd = toetsenbord.question("Geef leeftijd: ");
@@ -10,7 +10,7 @@ while ((geslacht == "m") || (geslacht == "v")) {
             jongeMannen = jongeMannen + 1;
         }
         else {
-            oudeMannen = oudeMannen + 1;
+            MannenPlus25 = MannenPlus25 + 1;
         }
     }
     else {
@@ -18,10 +18,15 @@ while ((geslacht == "m") || (geslacht == "v")) {
             jongeVrouwen = jongeVrouwen + 1;
         }
         else {
-            oudeVrouwen = oudeVrouwen + 1;
+            VrouwenPlus25 = VrouwenPlus25 + 1;
         }
     }
     geslacht = toetsenbord.question("Geef geslacht (m/v): ");
 }
-result = "\t<25\t>=25\nmannen\t"+jongeMannen+"\t"+oudeMannen+"\nvrouwen\t"+jongeVrouwen+"\t"+oudeVrouwen;
+result = "\t<25\t>=25\nmannen\t"+jongeMannen+"\t"+MannenPlus25+"\nvrouwen\t"+jongeVrouwen+"\t"+VrouwenPlus25;
 console.log(result);
+
+/*
+\t geeft tab-ruimte
+\n geeft new line
+*/
