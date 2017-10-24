@@ -12,7 +12,7 @@ som += x;        //5
 console.log(som);
 som++; //6
 console.log(som);
-console.log(som++);
+console.log(som++); // voor of achter ++ moet een variabele staan
 console.log(som);
 console.log(++som);// postfix-doe de rest van de instructies en dan +1 -> 6 komt op het scherm en som wordt 7
 /*console.log(som++);// prefix - doet +1 en dan de rest van instructies  -> 8 komt op het scherm*/
