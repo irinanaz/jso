@@ -1,6 +1,6 @@
 'use strict';
 
-var smurf // = undefined, geen waarde gekregen;
+var smurf // undefined, geen waarde gekregen;
 
 console.log(1+1);  // 2
 console.log("1"+1); // 11
