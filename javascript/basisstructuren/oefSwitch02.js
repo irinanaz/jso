@@ -2,8 +2,8 @@
 
 var toetsenbord = require('readline-sync');
 var punten = toetsenbord.question("punten: ");
-var graad = "";
-if (punten >= 0 && punten <= 20) {
+var graad = "";  
+if (punten >= 0 && punten <= 20) { // test voor de geldige invoer
     switch (parseInt(punten)) {
         case 10:
         case 11:
