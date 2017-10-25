@@ -37,14 +37,9 @@ console.log("Het getal %d vermenigvuldigd met zichzelf is %d", getal1, macht);
 getal2 = toetsenbord.question("Geef tweede getal: ");
 macht = berekenTweedeMacht(getal2);
 console.log("Het getal %d vermenigvuldigd met zichzelf is %d", getal2, macht);
-<<<<<<< HEAD
 macht = berekenTweedeMacht(getal1,getal2);
 console.log("%d tot de %de macht is%d ", getal1, getal2, macht);
 /*macht = berekenMacht(getal1+1,2*getal2+8);
 console.log(macht);*/
 
 // in Javascript kan je functies op roepen voor dat je die defineerd
-=======
-macht = berekenMacht(getal1-1, getal2);   // als argument mag een berekening doorgegeven worden
-console.log("%d tot de %de macht is %d", getal1, getal2, macht); 
->>>>>>> 2b7e56baaa74898c895a8a7fd2cba044451847c7
