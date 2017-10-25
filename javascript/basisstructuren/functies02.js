@@ -10,6 +10,15 @@ function berekenTweedeMacht(getal) {
     resultaat = getal * getal;
     return resultaat;
 }
+function berekenMacht (grondtal, exponent){
+    var resultaat=1;
+
+    for(var i=1; i<=exponent; i++){
+        resultaat*=grondtal;
+    }
+    return resultaat;
+}
+
 
 // functies oproepen ("gebruiken")
 getal1 = toetsenbord.question("Geef eerste getal: ");
@@ -18,3 +27,9 @@ console.log("Het getal %d vermenigvuldigd met zichzelf is %d", getal1, macht);
 getal2 = toetsenbord.question("Geef tweede getal: ");
 macht = berekenTweedeMacht(getal2);
 console.log("Het getal %d vermenigvuldigd met zichzelf is %d", getal2, macht);
+macht = berekenTweedeMacht(getal1,getal2);
+console.log("%d tot de %de macht is%d ", getal1, getal2, macht);
+/*macht = berekenMacht(getal1+1,2*getal2+8);
+console.log(macht);*/
+
+// in Javascript kan je functies op roepen voor dat je die defineerd
