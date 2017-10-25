@@ -14,13 +14,13 @@ for (var aantal = startAantal; aantal > 0; aantal--) {
 	}
 	*/
 	// met de vraagtekenoperator:
-	tmp = aantal > 1 ? "s" : "";
+	tmp = aantal > 1 ? "s" : ""; // ipv volle if esle structuur, als de voorwaarde waar is dan krijgt de var (tmp) een waarde("s"), anders (""). 
 	console.log("%s %s%s of %s on the wall,", aantal, recipient, tmp, inhoud);
 	console.log("%s %s%s of %s.", aantal, recipient, tmp, inhoud);
 	console.log("Take one down, pass it around,");
 	if (aantal > 1) {
 		tmp = aantal - 1 > 1 ? "s" : "";
-		console.log("%s %s%s of %s on the wall.", (aantal - 1), recipient, tmp, inhoud);
+		console.log("%s %s%s of %s on the wall.", (aantal - 1), recipient, tmp, inhoud);//moet nog niet verminderd worden 
 	}
 	else {
 		console.log("No more %ss of %s on the wall.", recipient, inhoud);
