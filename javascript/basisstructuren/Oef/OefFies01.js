@@ -16,7 +16,6 @@ function max( a,b){
 
 console.log("Grootste van %d en %d is:", getal1, getal2, max(getal1,getal2));
 
-var toetsenbord = require('readline-sync');
 
 // var getal1 = toetsenbord.question('Tik een getal in: ');
 //var getal2 = toetsenbord.question('Tik nog een getal in: ');
