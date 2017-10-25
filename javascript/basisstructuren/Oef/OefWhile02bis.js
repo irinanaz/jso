@@ -6,15 +6,15 @@ var aantal = 0;
 var getal;
 
 console.log('Geef 5 getallen in:');
-//getal = parseInt(toetsenbord.question("Geef getal in:"), 10);
+
 for (var aantal=1; aantal <= 5; aantal++){
-    getal = parseInt(toetsenbord.question("Geef getal in:"), 10);
+    getal = toetsenbord.question("Geef een getal in:");// geen parseInt hier, want nog niet zeker dat er een gatal W ingetikt
     while (isNaN(getal)) {
-        getal = parseInt(toetsenbord.question("Dat moet een getal zijn. Geef ee getal in:"), 10);
+        getal = parseInt(toetsenbord.question("Dat moet een getal zijn. Geef een getal in:"), 10);
         
     }
-    som+=getal;
-    console.log('%d',som);
+    som+=parseInt(getal);
+    //console.log('%d',som); tussen resultaat te tonen
 
 }
 console.log('tataal :%d',som);
