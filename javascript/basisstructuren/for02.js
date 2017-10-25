@@ -9,4 +9,3 @@ for (var i = 0; i < tekst.length; i++) {
 console.log("De letter \"i\" komt " + teller + " maal voor");
 
 // \" zorgt voor " op scherm
-// bo eeb oplossing gebruik van enkele en dubbele streepjes "  '  '  "
