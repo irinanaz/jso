@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="nl"> <!--Alle moet binnen html tag staan-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+ 
+    
+    <style>
+  
+   #belgie div::before , #belgie div::after {content:" ";}
+      #belgie {
+		  	width:600px;
+            height:300px;
+			margin: 100px auto 0px auto;
+			}
+			
+     #duitsland{
+		  	overflow:hidden;
+            /*display:block;*/
+            width:600px;
+            margin:100px auto 0px auto;
+            
+            }
+			
+    .streep1 { 
+        background:#000; 
+        }
+    .streep2 {
+        background:#FF0; 
+        }
+    .streep3 {		
+        background:#C00; 
+        }
+		
+	.vert { float:left;
+			
+			/*padding:150px 100px;*/
+			height: 300px;
+			width:200px;
+			
+			}
+			
+	.hor { 
+			
+			/*display:block;*/
+			width: 600px;
+			height:100px;}
+</style>
+</head>
+<body>
+   
+<div id="belgie">
+	<div class="streep1 vert"  ></div><div class="streep2 vert"></div><div class="streep3 vert"></div>
+</div>
+
+<div id="duitsland">
+	<div class="streep1 hor"></div><div class="streep3 hor"></div><div class="streep2 hor"></div>
+</div>
+</body>
+</html>
+
+       <!-- <base href="/cascade" target=""> vertrekt van gedefineerde map voor alle relatieve links, even goed voor href en src. Maar kan enkel een base in een html document zijn.-->
+
+    <!--<style>
+    p {background: aquamarine;}
+    </style>-->
+    <!--<style>
+    div.belg{
+            display:inline;
+            width:600px;
+            height:400px;
+            margin-top:100px;
+            margin: auto;
+        }
+            #belg div{padding:50px;}
+     div.duitsland{
+            
+            width:600px;
+            height:400px;
+            margin-top:100px;
+            margin: auto;}
+    div#streep1 {width:200px;
+                background:black; 
+            line-height: 5em;
+        }
+            div#streep1 {width:200px;
+                background:yellow; 
+            line-height: 5em;}
+            div#streep1 {width:200px;
+                background:red; 
+            line-height: 5em;}
+</head>
+<body>
+   
+<div id="belg"><div class="streep1"> </div><div class="streep2"></div><div class="streep3"></div>
+            </div>
+<div id="duitsland"><div class="streep1"> <p></p></div><div class="streep3"></div><div class="streep2"></div>
+            </div></body>
+</html>
+        <!--
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>-->

@@ -1,0 +1,21 @@
+p {
+    background: aquamarine;
+}
+#eerste {background: burlywood;}
+
+.tweede > em{text-decoration: underline;} /*
+.tweede em{text-decoration: underline;} eerste child is efficienter, dan brouwser controllert enkel tot de eerste ouder. en stopt. Zonder > alle diepte van de classe eerste woordt gecontroleerd voor een em. */
+/*a::before {/* zet een icon VOOR de link
+    content: url(http://upload.wikimedia.org/wikipedia/commons/6/64/Icon_External_Link.png);
+    margin: 0 0 0 5px;
+    }a {text-decoration: none;}*/
+a:link{color: greenyellow; /*nog niet bezocht*/}
+a:visited{color:aqua;}
+a:hover{background-color: black;}
+a:active {font-weight:bold;}
+a::after {/* zet een icon NA de link*/
+    content: url(http://upload.wikimedia.org/wikipedia/commons/6/64/Icon_External_Link.png);
+    margin: 0 0 0 5px;
+    position: relative;
+    top: 2px;
+    }
