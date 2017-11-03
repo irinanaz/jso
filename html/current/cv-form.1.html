@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CV</title>
+</head>
+<body>  
+    <form action="sollicitatie.php" method="POST">
+        <p></div><label for="txtNaam">Naam en voornaam:</label><input type="text" placeholder="Naam en voornaam" name="txtNaam" required/></p>
+        <p><label for="datum">Datum: </label><input name="datum" type="date"/></p>
+        <p><label for="rijbB" ><input type="checkbox" name="rijbB" value="rijB"/>Rijbewijs B</label></p>
+        <p><label for="taal">Hoe goed is je Nederlands?</label>
+                
+            <label><input type ="radio" name="taal" value="goed" checked >Goed</label></p>
+                <p><label><input type ="radio" name="taal" value="middelmatig">Middelmatig</label></p>
+                    <p><label><input type ="radio" name="taal" value="slecht">Slecht</label></p>
+            
+        
+        <p> <label for="omschrijving">Omschrijving:</label> <textarea name="omschrijving" placeholder="geef een korte beschrijving van jezelf, niet verplicht." rows="3" cols="50"></textarea></p>
+        <p><label for ="txtPostnr">Postnummer: </label><input type="text" pattern="\d{4}" name="txtPostnr"/></p>
+        <p><input type="submit" name="btn" value="Verzenden"/></p>
+    </form>
+</body>
+</html>
