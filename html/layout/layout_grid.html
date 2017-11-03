@@ -11,26 +11,26 @@
             body{
                 margin: 0 auto;
                 max-width: 1024px;
-                min-height: 100vh;
-                display: grid;
-                grid-template-areas: "header header"
-                                    "aside main"
+                min-height: 100vh;/* body krijgt min hoogte 100 %van brouwsr*/
+                display: grid; /* body is een grid container */
+                grid-template-areas: "header header"/* we geven bep. namen aan elke container. */
+                                    "aside main"    /*2x3=6 areas-> 6 namen*/
                                     "footer footer";
-                grid-template-columns: 150px 1fr;
-                grid-template-rows: auto 1fr auto;
+                grid-template-columns: 150px 1fr; /* vaste breedte voor 1ste conteiner en de rest voor 2de*/
+                grid-template-rows: auto 1fr auto;/*vaste hoogte voor 2de rij en de rest verdeelt tss 2 andere*/
                 background: whitesmoke;
             }
             #page-header{
-                grid-area: header;
+                grid-area: header; /* 2 zones met de naam header krijgen de naam header en worden zo gebruikt in pagina*/
             }
             #left-sidebar{
-                grid-area: aside;
+                grid-area: aside;  /* element left-sidebar komt in zone aside ."*/
             }
             #main{
-                grid-area: main;
+                grid-area: main; /* element grid-aria komt in zone main te staan.*/
             }
             #page-footer{
-                grid-area: footer;
+                grid-area: footer; /*grid-area komt in 2 zones te staan met de naam footer en footer.*/
             }
             .border{
                 border: 1px solid brown;
