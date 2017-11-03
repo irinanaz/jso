@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="nl">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+             *{
+                box-sizing: border-box;}
+            #wrapper{
+                margin: 0 auto;
+                max-width: 1024px;
+                min-height: 100vh;
+                display: -ms-grid;
+                display: grid;
+                grid-template-areas: 
+                "main aside";
+                -ms-grid-columns: 50% 1fr;
+                grid-template-columns: 50% 1fr;
+                background: whitesmoke;
+                }
+
+            #aside {
+                grid-area: aside;
+                 -ms-grid-column: 2;
+                grid-column: 2;
+                }
+            #main {
+                grid-area: main;
+                -ms-grid-column: 1;
+                grid-column:1;
+                }
+
+              
+
+            main{
+                padding:2em;
+                background-color: #333;
+                color: #DDD;
+            }
+            aside{
+                background-color: #CCC;
+                padding:2em;
+            }
+        </style>
+    </head>
+    <body>
+    <div id="wrapper">
+        <main id="main">
+            Look at that text! Would anyone use that? Can you imagine that, the text of your
+next webpage?! Be careful, or I will spill the beans on your placeholder text.
+You know, it really doesn’t matter what you write as long as you’ve got a young,
+and beautiful, piece of text. My text is long and beautiful, as, it has been well documented, are various
+other parts of my website. All of the words in Lorem Ipsum have flirted with me
+- consciously or unconsciously. That's to be expected.
+        </main>
+        <aside id="aside">
+            Lorem Ipsum is unattractive, both inside and out. I fully understand why it’s
+former users left it for something else. They made a good decision. If Trump
+Ipsum weren’t my own words, perhaps I’d be dating it. Lorem Ispum is a choke
+artist. It chokes! 
+            </aside>
+            </div> <!-- div#wrapper -->
+    </body>
+</html>
