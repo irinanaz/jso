@@ -5,7 +5,7 @@ function armstrong(g,c){
     var macht=1, res=0;
     for (var i=0; i<c ; i++){
         for (var j=0; j<c ; j++){
-            console.log("cijfer %d in %d", j,g.charAt(i));
+           /* console.log("cijfer %d in %s", j,g.charAt(i));*/
             macht=macht*g.charAt(i);
             
         } 
@@ -29,7 +29,7 @@ for (var getal=1; getal<=200; getal++ ){
     y=getalString.length;
     /*console.log(getal);
     console.log(y);*/
-    if( armstrong(getal,y) == true ){
+    if( armstrong(getalString,y) == true ){
         console.log("%d is een armstrong getal", getal);
     }
 }
