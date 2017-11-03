@@ -9,7 +9,7 @@ function armstrong(g,c){
             macht=macht*g.charAt(i);
             
         } 
-        console.log(macht);
+        /*console.log(macht);*/
         res+=macht;
         macht=1;
 
@@ -24,7 +24,7 @@ function armstrong(g,c){
 //console.log(armstrong (getal, x));
 var y;
 var getalString;
-for (var getal=1; getal<=200; getal++ ){
+for (var getal=1; getal<=10000; getal++ ){
     getalString = getal.toString(10);
     y=getalString.length;
     /*console.log(getal);
