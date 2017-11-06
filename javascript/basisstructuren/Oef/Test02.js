@@ -2,6 +2,7 @@
 
 var KOEF=0.62137;
 var toetsenbord = require('readline-sync');
+
 function mijlenNaarKm(mijlen){
     return mijlen*KOEF;
 }
