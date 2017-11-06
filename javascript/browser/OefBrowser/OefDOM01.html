@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Kopie</title>
+    <script>
+        function kopieren() {
+            var orig = formKopie.orig.value;
+            //var kopie =formKopie.kopie.value;
+            formKopie.kopie.value = orig;
+        }
+        function init() { // een betere manier om een onclick event op te roepen van uit functie. toonNaamZonderParams zit hier zonder(). !!
+            var btn = formKopie.btn;
+
+            btn.onclick = kopieren;
+        }
+        window.onload = init;
+    </script>
+</head>
+
+<body>
+    <form name="formKopie" action="post">
+    <input type="text" name="orig" />
+    <input type="button" name="btn" value="Kopieer" />
+    <input type="text" name="kopie" />
+    </form>
+
+</body>
+
+</html>

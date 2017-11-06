@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Kopie</title>
+    <script>
+        function berekenen() {
+            var g1 = parseFloat(frm.getal1.value);
+            var g2 = parseFloat(frm.getal2.value);
+            //var kopie =formKopie.kopie.value;
+            frm.result.value = g1+g2;
+        }
+        function init() { // een betere manier om een onclick event op te roepen van uit functie. toonNaamZonderParams zit hier zonder(). !!
+            var btn = frm.btn;
+
+            btn.onclick = berekenen;
+        }
+        window.onload = init;
+    </script>
+</head>
+
+<body>
+    <form name="frm" action="post">
+    <input type="text" name="getal1" /> <!-- samen met mag je hier type="number" toevoegen  -->
+    <input type="text" name="getal2" />
+    <input type="button" name="btn" value="Berekenen" />
+    <input type="text" name="result" readonly/> <!-- readonly - enkel voor programma-->
+    </form>
+
+</body>
+
+</html>

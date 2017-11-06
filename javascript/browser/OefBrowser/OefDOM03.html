@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Kopie</title>
+    <script>
+        function naarEuro() {
+            var g1 = parseFloat(frm.getal1.value);
+            frm.getal2.value = g1/40.3399;
+        }
+        function naarBEF() {
+            var g2 = parseFloat(frm.getal2.value);
+            frm.getal1.value = g2 * 40.3399;
+        }
+        function init() {
+            var btnE = frm.btnNaarEuro;
+            btnE.onclick = naarEuro;
+            var btnB = frm.btnNaarBEF;
+            btnB.onclick = naarBEF;
+        }
+        window.onload = init;
+
+    </script>
+</head>
+
+<body>
+    <form name="frm" action="post">
+        <input type="text" name="getal1" />
+        <input type="button" name="btnNaarEuro" value="naar EURO" />
+        <input type="button" name="btnNaarBEF" value="naar BEF" />
+        <input type="text" name="getal2" />
+
+
+    </form>
+
+</body>
+
+</html>

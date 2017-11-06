@@ -6,16 +6,16 @@
 
 function maakString(lengte, karakter){
  var s="";
- var k="";
+
  var spaties=lengte-karakter;
  var karakters=karakter*2-1;
  for (var i=0; i<spaties; i++){
     s +=" ";   
  }
  for (var j=0; j<karakters; j++){
-     k+=karakter;}
+     s+=karakter;}
 
-    return s+k;
+    return s;
     
 }
 

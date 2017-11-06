@@ -10,7 +10,7 @@ function toonNaamZonderParams() {
     alert("Dag " + naam);
 }
 
-function init(){
+function init(){ // een betere manier om een onclick event op te roepen van uit functie. toonNaamZonderParams zit hier zonder(). !!
     var btn = frm.btn;
     btn.onclick = toonNaamZonderParams;
 }
