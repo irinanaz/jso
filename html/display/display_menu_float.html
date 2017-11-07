@@ -1,77 +1,57 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
-    <style>
-            html{
-                background: lightgray;
-            }
-            body{
-                
-                margin: 0 auto;
-                max-width: 1024px;
-                min-height: 100vh;
-                display: grid; 
-                grid-template-areas: "header header"
-                                    "main aside"  
-                                    "footer footer";
-                 -ms-grid-columns: 1fr 30%;
-                 -ms-grid-rows: auto 1fr auto;
-                grid-template-columns: 1fr 30%; 
-                grid-template-rows: auto 1fr auto;
-                background: whitesmoke;
-                font-size: 14px;
-                
-            }
-            #page-header{
-                grid-area: header; 
-                background: #000000 url(images/bg-header-1.jpg) center/cover no-repeat;
-                height: 250px;
-                
-            }
-            #right-sidebar{
-                grid-area: aside;  
-            }
-            #main{
-                grid-area: main; 
-            }
-            #page-footer{
-                grid-area: footer;
-            }
-        
-        .logo{
-            width:120px;
-            height:80px;
-            background: yellow;
-            margin-top:40px;
-            margin-left:40px;
-            float:left;
-            display: inline;
-        }    
 
+Skip to content
+This repository
+
+    Pull requests
+    Issues
+    Marketplace
+    Explore
+
+    @irinanaz
+
+0
+0
+
+    0
+
+irinanaz/jso
+Code
+Issues 0
+Pull requests 0
+Projects 0
+Wiki
+Insights
+Settings
+jso/html/display/display_menu_float.html
+07a8ae7 11 days ago
+@irinanaz irinanaz html en css
+@irinanaz
+@Jef-DS
+56 lines (50 sloc) 1.35 KB
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <style>
         .menu {
             list-style-type: none;
+            border-style: solid;
             padding: 0px;
-            margin: 190px auto 0px auto;
-            width: 400px;
-            
+            border-width: 0 0 1px 0;
         }
         
         .menu>li {
+            display:inline-block;
             float: left;
-            box-sizing: border-box;
-            width:196px;
             border-style: solid;
             border-color: black;
-            border-width: 1px;
-            border-radius: 2px;
-            padding: 15px;
+            border-width: 1px 1px 0px 1px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            padding: 5px;
             margin: 0 1px;
             background-color: lightblue;
-            text-align: center;
         }
         
         .menu>li.active {
@@ -79,66 +59,43 @@
             background-color: darkblue;
         }
         
-
-        .assortimentcontainer{
-            display: flex;
-            flex-flow: row wrap;
-            width:100%;
-            padding-top:10px;
-            justify-content: center;
+        .clearfix::after{
+            content: "";
+            display:table;
+            clear:both;
         }
-        .broodje{
-            box-sizing: border-box;
-            flex: 0 1 45%;
-            background: lightgrey;
-            min-height: 100px;
-            width:48%;
-            margin-left:1%;
-            margin-bottom: 15px;
-            text-align: center;
-            padding:10px;
-        }
-        .broodje_dag{
-            
-            width:98%;
-            margin:1%;
-        }
-        .menukaart {
-            width:100%;
-        
-        }
-        h3 {font-size: 18px;
-            line-height:1.5em;}
-         p { font: 14px;}
-        .bestelbutton{
-            margin-left: 50%;
-        }  
-        </style>
+    </style>
 </head>
+
 <body>
-        <header id="page-header">
-            <div class="logo"></div>
-            <nav>
-                <ul class="menu">
-                    <li class="active"><a>Home</a></li>
-                    <li><a>Besteling</a></li>
-                </ul>
-            </nav> 
-        </header>
-        
-        <main id="main">
-            <div class="assortimentcontainer">
-                <div class="broodje"><img class = "menukaart" src="images/Broodje-1.jpg" /><h3>NaamBroodje</h3><p>prijs</p></div>    
-                <div class="broodje"><img class = "menukaart" src="images/Broodje-1.jpg" /><h3>NaamBroodje</h3><p>prijs</p></div>   
-                <div class="broodje"><img class = "menukaart" src="images/Broodje-1.jpg" /><h3>NaamBroodje</h3><p>prijs</p></div>
-                <div class="broodje"><img class = "menukaart" src="images/Broodje-1.jpg" /><h3>NaamBroodje</h3><p>prijs</p></div>
-            </div>
-        </main>
-        <aside id="right-sidebar" >
-                <div class="broodje broodje_dag"></div>      
-        </aside>
-        <footer id="page-footer" >
-                
-        </footer>   
+    <header>
+        <nav>
+            <ul class="menu clearfix">
+                <li class="active"><a>Eerste item</a></li>
+                <li><a>Tweede item</a></li>
+                <li><a>Derde item</a></li>
+                <li><a>Vierde item</a></li>
+                <li><a>Vijfde item</a></li>
+            </ul>
+        </nav>
+    </header>
+    <p>Be careful, or I will spill the beans on your placeholder text. We are going to make placeholder text great again. Greater
+        than ever before.</p>
 </body>
+
 </html>
+
+    © 2017 GitHub, Inc.
+    Terms
+    Privacy
+    Security
+    Status
+    Help
+
+    Contact GitHub
+    API
+    Training
+    Shop
+    Blog
+    About
+
