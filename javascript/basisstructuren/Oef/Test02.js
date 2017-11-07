@@ -21,7 +21,7 @@ function boeteBijSnelheid (gegToegelatenSnelheid, gemetenSnelheid,eenheid){
         gegToegelatenSnelheid=mijlenNaarKm(gegToegelatenSnelheid);
         gemetenSnelheid=mijlenNaarKm(gemetenSnelheid);
     } 
-    var overtreding = Math.abs(gegToegelatenSnelheid - gemetenSnelheid);
+    var overtreding = Math.abs(gegToegelatenSnelheid - gemetenSnelheid);//ubrat abs i v pervy case dobavit <0
     switch (true) {
         case overtreding == 0: 
                 resultaat = 0;

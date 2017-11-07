@@ -5,7 +5,7 @@ var nietgeslaagd=0;
 var somPunten=0;
 var som=0;
 
-for ( var i=1; i<=3; i++){
+for ( var i=1; i<=15; i++){
 var sPunten = parseInt(toetsenbord.question("Hoe veel studiepunten?: "),10);
 var score =parseFloat(toetsenbord.question("Wat is behaalde score? "),10);
 
