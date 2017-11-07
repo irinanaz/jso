@@ -5,39 +5,36 @@
 }
 
 .formlabel{
-    
     box-sizing: border-box;
-    text-align: right;
-    padding:5px 0px 5px 10px;
-    width:190px;
-    margin:5px;
     float:left;
-    display: block;
-    overflow: hidden;
+    width:50%;
+    margin:5px 0px;
+    text-align: right;
+    padding:5px;
+    
 }
     
 .forminput {
-    display:block;
-    padding:5px;
-    box-sizing: border-box;
-    width:190px;
-    margin: 5px 0px;
     float:left;
-    overflow: hidden;
+    box-sizing: border-box;
+    width:50%;
+    margin: 5px 0px;
+    padding:5px;
 }
 .form-radiogroup {
     display:inline-block;
-    }
-.form-radiogroup label {
+    } 
+.form-radiogroup> label {
     display:block;
-    text-align: left;}
+}
 
-.formbutton {display:block;
+.formbutton {
+    
     padding:5px;
     box-sizing: border-box;
-    width:190px;
+    width:50%;
     margin-left: 50%;
     
     float:left;
-    overflow: hidden;}
+    }
     
