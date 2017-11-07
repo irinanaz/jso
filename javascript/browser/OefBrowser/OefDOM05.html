@@ -7,10 +7,10 @@
         function omgekeerd() {
             var s1 = frm.veld1.value;
             var result = "";
-            for (i = s1.length; i >= 0; i--) {
+            for (var i = s1.length; i >= 0; i--) {
                 result += s1.charAt(i);
             }
-            frm.s2.value = result;
+            frm.veld2.value = result;
 
         }
 
@@ -25,9 +25,9 @@
 
 <body>
     <form name="frm" action="post">
-        <input type="text" name="s1" />
+        <input type="text" name="veld1" />
         <input type="button" name="btnOmg" value="omgekeerd" />
-        <input type="text" name="s2" />
+        <input type="text" name="veld2" />
 
 
     </form>

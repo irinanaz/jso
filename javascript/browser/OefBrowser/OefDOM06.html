@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tellen</title>
+    <script>
+        function som() {
+            var s1 = parseFloat(frm.veld1.value,10);
+            var s2 = parseFloat(frm.veld2.value,10);
+            var result = s1+s2;
+        
+            frm.veld3.value = result;
+        }
+
+        function min() {
+            var s1 = parseFloat(frm.veld1.value,10);
+            var s2 = parseFloat(frm.veld2.value,10);
+            var result = s1-s2;
+        
+            frm.veld3.value = result;
+        }
+
+        function vrmn() {
+            var s1 = parseFloat(frm.veld1.value,10);
+            var s2 = parseFloat(frm.veld2.value,10);
+            var result = s1*s2;
+        
+            frm.veld3.value = result;
+        }
+
+        function dln() {
+            var s1 = parseFloat(frm.veld1.value,10);
+            var s2 = parseFloat(frm.veld2.value,10);
+            var result = s1/s2;
+        
+            frm.veld3.value = result;
+        }
+        function init() {
+            var btnSom = frm.btnSom;
+            btnSom.onclick = som;
+
+            var btnMin =frm.btnMin;
+            btnMin.onclick = min;
+
+            var btnVrmn = frm.btnVrmn;
+            btnVrmn.onclick = vrmn;
+
+            var btnDln = frm.btnDln;
+            btnDln.onclick = dln;
+
+        }
+        window.onload = init;
+
+    </script>
+</head>
+
+<body>
+    <form name="frm" action="post">
+        <input type="text" name="veld1" />
+        <input type="text" name="veld2" />
+        <input type="button" name="btnSom" value="Optelling" />
+        <input type="button" name="btnMin" value="Aftrekkingn" />
+        <input type="button" name="btnVrmn" value="Vermenigvuldiging" />
+        <input type="button" name="btnDln" value="Deling" />
+        <input type="text" name="veld3" />
+
+
+    </form>
+
+</body>
+
+</html>

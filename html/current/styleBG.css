@@ -1,0 +1,11 @@
+
+/* Oef test 1
+body{background:green;}
+html {background: red;}
+*/
+
+div{
+    height: 200px;
+    width: 300px;
+    margin: 100px auto;
+    background: linear-gradient(to right, black, black 33.33%, yellow 33.33%, yellow 66.66%, red 66.66%, red 100% ); }
