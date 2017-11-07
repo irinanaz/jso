@@ -1,0 +1,38 @@
+
+
+
+.formcontainer{ 
+    width:400px;
+    grid-template-columns: 1 1;
+    display: grid;
+}
+
+.formlabel{
+    text-align: right;
+    
+    box-sizing: border-box;
+    width:190px;
+    margin:5px;
+    padding:5px;
+    
+}
+    
+.forminput {
+    
+    padding:5px;
+    box-sizing: border-box;
+    width:190px;
+    margin: 5px 0px;
+   
+}
+
+.form-radiogroup label {
+    display:block;
+    text-align: left;
+    padding:5px 0px;
+}
+.formbutton {
+    grid-column-start: 2;}
+    
+
+

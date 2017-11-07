@@ -1,0 +1,41 @@
+.formcontainer{
+    width:400px;
+    display: flex;
+     
+    justify-content: flex-start;
+    /*align-items: flex-start;*/
+    flex-flow: row wrap;
+}
+
+.formlabel{
+        text-align: right;
+        padding:5px 0px 5px 10px;
+        box-sizing: border-box;
+        width:190px;
+        margin:5px;
+      
+        
+        
+    }
+        
+    .forminput {
+       
+        
+        padding:5px;
+        box-sizing: border-box;
+        width:190px;
+        margin: 5px 0px;
+        
+    }
+    
+    .form-radiogroup label {
+       
+        display:inline-block;}
+    
+    .formbutton {
+        padding:5px;
+        box-sizing: border-box;
+        width:190px;
+        margin-left: 50%;
+    
+       }

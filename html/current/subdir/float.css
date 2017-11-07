@@ -1,0 +1,43 @@
+
+
+.formcontainer{ 
+    width:400px;
+}
+
+.formlabel{
+    
+    box-sizing: border-box;
+    text-align: right;
+    padding:5px 0px 5px 10px;
+    width:190px;
+    margin:5px;
+    float:left;
+    display: block;
+    overflow: hidden;
+}
+    
+.forminput {
+    display:block;
+    padding:5px;
+    box-sizing: border-box;
+    width:190px;
+    margin: 5px 0px;
+    float:left;
+    overflow: hidden;
+}
+.form-radiogroup {
+    display:inline-block;
+    }
+.form-radiogroup label {
+    display:block;
+    text-align: left;}
+
+.formbutton {display:block;
+    padding:5px;
+    box-sizing: border-box;
+    width:190px;
+    margin-left: 50%;
+    
+    float:left;
+    overflow: hidden;}
+    
