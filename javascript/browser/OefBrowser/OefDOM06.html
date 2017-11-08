@@ -4,9 +4,14 @@
 <head>
     <title>Tellen</title>
     <script>
+        var g1, g2;
+
+        function declareer(){
+            g1 =parseFloat(frm.veld1.value,10);;
+            g2 =parseFloat(frm.veld2.value,10);
+        }
         function som() {
-            var s1 = parseFloat(frm.veld1.value,10);
-            var s2 = parseFloat(frm.veld2.value,10);
+            declareer();
             var result = s1+s2;
         
             frm.veld3.value = result;

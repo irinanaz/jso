@@ -3,7 +3,7 @@
 var toetsenbord = require('readline-sync');
 var punten = toetsenbord.question("punten: ");
 var graad = "";
-switch (true) {  //case vergelijkt de 'punten<0' od dat juist is
+switch (true) {  //case vergelijkt de 'punten<0' of dat juist is
     case punten < 0:
     case punten > 20:
         graad = "ongeldige score";

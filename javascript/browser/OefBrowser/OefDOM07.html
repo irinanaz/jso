@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tellen</title>
+    <script>
+        /*var g = parseFloat(frm.getal.value,10);*/
+        var TELLER = 1;
+        var RANDOM;
+        function geefRandom() {
+            var randomgetal = Math.floor(1 + Math.random() * 100);
+            /*frm.rndm.value = randomgetal;*/
+            return randomgetal;
+        }
+        function vergelijk(){
+            if (TELLER==1){
+                RANDOM = geefRandom();
+            } 
+            var g1 = parseFloat(frm.getal.value);
+         if (isNaN(g1)){  alert("Dat is geen getal.") ;}
+            else { 
+                if (RANDOM == g1 ){
+                    alert("Je hebt gelijk");
+                    frm.rndm.value = "juist in "+TELLER +"pogingen";
+                    var btn = frm.vrglk;
+                    btn.disabled = true;
+                    
+            } else { 
+                if (RANDOM > g1){ alert("groter");}else{alert ("kleiner");}
+                TELLER++;
+            }
+        }
+        }
+        function init() {
+            var btn = frm.vrglk;
+            btn.onclick = vergelijk;
+
+           
+        }
+        window.onload = init;
+
+    </script>
+</head>
+
+<body>
+    <form name="frm" action="post">
+        <input type="number" name="getal" min="1" max="100" /><br/>
+        <input type="button" name="vrglk" value="Spelen" />
+        <input type="text" name="rndm" />
+
+
+    </form>
+
+</body>
+
+</html>
