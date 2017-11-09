@@ -21,11 +21,20 @@
         
         <main id="main">
             <div class="assortimentbestelling">
-                <div class="bestellingbroodje"><img class = "menukaart" src="images/Broodje-1.jpg" /><h3>NaamBroodje</h3><p>prijs</p></div>    
+                <form action="bestelling.php" method="POST">
+                    <p><label><input class="bestellingbroodje" type ="radio" name="beleg" value="curry" checked >Curry Prijs</label></p>
+                    <p><label><input class="bestellingbroodje" type ="radio" name="beleg" value="ham">Ham Prijs</label></p>
+                    <p><label><input class="bestellingbroodje" type ="radio" name="beleg" value="kaas">Kaas Prijs</label></p>
+                    <p><label><input class="bestellingbroodje" type ="radio" name="beleg" value="serano">Serano Prijs</label></p>
+                <!-- <div class="bestellingbroodje"><img class = "menukaart" src="images/Broodje-1.jpg" /><h3>NaamBroodje</h3><p>prijs</p></div>    
                 <div class="bestellingbroodje"><img class = "menukaart" src="images/Broodje-1.jpg" /><h3>NaamBroodje</h3><p>prijs</p></div>   
                 <div class="bestellingbroodje"><img class = "menukaart" src="images/Broodje-1.jpg" /><h3>NaamBroodje</h3><p>prijs</p></div>
                 <div class="bestellingbroodje"><img class = "menukaart" src="images/Broodje-1.jpg" /><h3>NaamBroodje</h3><p>prijs</p></div>
-            </div>
+        -->         <p><label for="smos" ><input type="checkbox" name="smos" value="Smos"/>Met smos</label></p>
+                    <p><label><input type ="radio" name="soort" value="wit" checked >Wit brood</label></p>
+                    <p><label><input type ="radio" name="soort" value="bruin" checked >Curry Prijs</label></p>
+                    
+            </div> 
         </main>
         <aside id="right-sidebar" >
                 <div class="broodje broodje_dag"><img class = "menukaart" src="images/Broodje-1.jpg" /><h3>NaamBroodje</h3><p>prijs</p></div>      

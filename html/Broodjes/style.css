@@ -103,10 +103,10 @@ padding:10px;
 }
 .bestellingbroodje{
     box-sizing: border-box;
-    flex: 0 1 45%;
+    flex: 0 1 32%;
     background: lightgrey;
     min-height: 100px;
-    width:48%;
+    width:30%;
     margin-left:1%;
     margin-bottom: 15px;
     text-align: center;
