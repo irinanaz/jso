@@ -1,0 +1,314 @@
+figure{
+  margin: 1em 0px;
+}
+
+.container{
+  max-width: 240px;
+  margin: 0 auto;
+}
+.main, .navigation{
+  overflow: hidden;
+}
+.masthead{
+  background-color: #E8E8E8;
+}
+#logo{
+  width: 50%;
+  float: left;
+  background-color: #888;
+  color:#EEE;
+  text-align: center;
+  font-size: 1.2em;
+}
+.social{
+  width: 50%;
+  float: left;
+  font-size: 1.2em;
+  margin: 0.67em 0;
+}
+.icon{
+  float: right;
+  margin: 0 10px 0 0;
+}
+nav>a{
+  text-decoration: none;
+  float: left;
+  width: 25%;
+  text-align: center;
+  color: #333;
+}
+figure{
+  margin: 0;
+}
+.ads>figure{
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+.masthead > figure{
+  text-align: center;
+}
+.masthead > figure > img{
+  max-width: 100%;
+  height: auto;
+}
+@media screen and (min-width:600px){
+  .container{
+    max-width: 600px;
+  }
+  .navigation > nav, .navigation .ads{
+    width: 50%;
+    float: left;
+  }
+}
+@media screen and (min-width:960px){
+  .container{
+    max-width: 1024px;
+  }
+  .navigation{
+    float: left;
+    width: 15%;
+  }
+  .content{
+    float: left;
+    width: 85%;
+  }
+  .navigation> nav, .navigation >ads, .navigation > nav> a, .navigation> .ads > .ad {
+    width: 100%;
+  }
+  .ads > figure, nav>a{
+    text-align: left;
+  }
+}
+
+/* *{
+  box-sizing: border-box;
+}
+.container{
+  width:240px;
+  margin:0 auto;
+  display:block;
+}
+header{
+  overflow: hidden;
+}
+.main, .navigation, .content{
+  width: 100%;
+  padding: 10px 0;
+}
+
+.main{
+  background:#4D4D4D;
+  height: 1.5em;
+}
+.navigation{
+  background:#E4E4E4;
+  overflow: hidden;
+}
+
+h1#logo{
+  width:50%;
+  display:block;
+  float:left;
+  background-color: #888;
+  color: #EEE;
+  font-size: 1.2em;
+  padding: 2px;
+  text-align: center;
+}
+
+.social{
+  width:50%;
+  height: 100%;
+  display:block;
+  float:left;
+}
+.social a{
+   color: #888;
+}
+
+.icon{
+  width:25px;
+  height:20px;
+  display:block;
+  float:right;
+  margin:0 10px 0 0;
+}
+
+nav{
+  width:100%; 
+}
+
+nav a{
+  display:block;
+  float:left;
+  width:25%;
+  text-align:center;
+  text-decoration: none;
+  color:#333;
+}
+
+
+.ads figure{
+  width:50%;
+  display:block;
+  max-width: 82px;
+  float:left;
+  padding-top:10px;
+}
+
+
+.ads figure img{
+  display:block;
+  margin:0 auto;
+}
+
+.masthead{
+  width:100%;
+  padding-bottom:10px;
+}
+
+figure{
+  width:100%;
+}
+
+figure img{
+  width:100%;
+  max-width:600px;
+  height:auto;
+  display:block;
+  margin:0 auto;
+}
+
+article h2{
+  font-size: 1.5em;
+}
+@media only screen and (min-width: 600px){
+  .container{
+    width:600px;
+  }
+  nav{
+    width: 50%;
+    float: left;
+  }
+  .ads figure{
+    padding-top: 0;
+  }
+}
+@media only screen and (min-width: 960px){
+  .navigation{
+    float: left;
+    width: 25%;
+  }
+  nav a{
+    float: none;
+  }
+  nav{
+    float: none;
+  }
+  .content{
+    float: left;
+    width: 75%;
+    padding-top: 0;
+  }
+  .container{
+    min-height: 100vh;
+    background: linear-gradient(to right, #E4E4E4, #E4E4E4 25%, white 25%, white);
+  }
+}
+*/
+/*
+*.main{
+  width:100%;
+  padding:10px 0;
+}
+
+header.main{background:#4d4d4d; height:16px;}
+aside.main{background:#e4e4e4;}
+
+h1#logo{
+  width:50%;
+  height:20px;
+  display:block;
+  float:left;
+  background:url(images/logo.jpg) no-repeat top left;
+  background-size:100%;
+  text-indent:-99999px;
+}
+
+.social{
+  width:50%;
+  display:block;
+  float:left;
+}
+
+.icon{
+  width:25px;
+  height:20px;
+  display:block;
+  float:right;
+  margin:0 10px 0 0;
+  text-indent:-99999px;
+}
+
+.icon.facebook{background:url(images/facebook.jpg) no-repeat top right;}
+.icon.twitter{background:url(images/twitter.jpg) no-repeat top right;}
+
+
+nav{
+  width:100%; 
+}
+
+nav a{
+  display:block;
+  float:left;
+  width:25%;
+  text-align:center;
+  text-decoration: none;
+  color:#333;
+}
+
+
+.ads figure{
+  width:50%;
+  display:block;
+  float:left;
+  padding-top:10px;
+}
+
+.ads figure img{
+  display:block;
+  margin:0 auto;
+}
+
+article h1{
+  font-size: 1.5em;
+}
+
+
+.masthead{
+  width:100%;
+  padding-bottom:10px;
+}
+
+figure{
+  width:100%;
+}
+
+figure img{
+  width:100%;
+  max-width:1000px;
+  height:auto;
+  display:block;
+  margin:0 auto;
+}
+
+
+
+@media only screen and (min-width: 600px){
+  .container{
+    width:600px;
+  }
+}*/
+
+
