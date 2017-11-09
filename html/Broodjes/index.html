@@ -5,115 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home</title>
-    <style>
-            html{
-                background: lightgray;
-            }
-            body{
-                
-                margin: 0 auto;
-                max-width: 1024px;
-                min-height: 100vh;
-                display: grid; 
-                grid-template-areas: "header header"
-                                    "main aside"  
-                                    "footer footer";
-                 -ms-grid-columns: 1fr 30%;
-                 -ms-grid-rows: auto 1fr auto;
-                grid-template-columns: 1fr 30%; 
-                grid-template-rows: auto 1fr auto;
-                background: whitesmoke;
-                font-size: 14px;
-                
-            }
-            #page-header{
-                grid-area: header; 
-                background: #000000 url(images/bg-header-1.jpg) center/cover no-repeat;
-                height: 250px;
-                
-            }
-            #right-sidebar{
-                grid-area: aside;  
-            }
-            #main{
-                grid-area: main; 
-            }
-            #page-footer{
-                grid-area: footer;
-            }
-        
-        .logo{
-            width:120px;
-            height:80px;
-            background: yellow;
-            margin-top:40px;
-            margin-left:40px;
-            float:left;
-            display: inline;
-        }    
-
-        .menu {
-            list-style-type: none;
-            padding: 0px;
-            margin: 190px auto 0px auto;
-            width: 400px;
-            
-        }
-        
-        .menu>li {
-            float: left;
-            box-sizing: border-box;
-            width:196px;
-            border-style: solid;
-            border-color: black;
-            border-width: 1px;
-            border-radius: 2px;
-            padding: 15px;
-            margin: 0 1px;
-            background-color: lightblue;
-            text-align: center;
-        }
-        
-        .menu>li.active {
-            color: white;
-            background-color: darkblue;
-        }
-        
-
-        .assortimentcontainer{
-            display: flex;
-            flex-flow: row wrap;
-            width:100%;
-            padding-top:10px;
-            justify-content: center;
-        }
-        .broodje{
-            box-sizing: border-box;
-            flex: 0 1 45%;
-            background: lightgrey;
-            min-height: 100px;
-            width:48%;
-            margin-left:1%;
-            margin-bottom: 15px;
-            text-align: center;
-            padding:10px;
-        }
-        .broodje_dag{
-            
-            width:98%;
-            margin:1%;
-        }
-        .menukaart {
-            width:100%;
-        
-        }
-        h3 {font-size: 18px;
-            line-height:1.5em;}
-         p { font: 14px;}
-        .bestelbutton{
-            margin-left: 50%;
-        }  
-        </style>
+    <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
         <header id="page-header">
@@ -121,7 +14,7 @@
             <nav>
                 <ul class="menu">
                     <li class="active"><a>Home</a></li>
-                    <li><a>Besteling</a></li>
+                    <li><a>Bestelling</a></li>
                 </ul>
             </nav> 
         </header>
@@ -135,7 +28,7 @@
             </div>
         </main>
         <aside id="right-sidebar" >
-                <div class="broodje broodje_dag"></div>      
+                <div class="broodje broodje_dag"><img class = "menukaart" src="images/Broodje-1.jpg" /><h3>NaamBroodje</h3><p>prijs</p></div>      
         </aside>
         <footer id="page-footer" >
                 
