@@ -4,8 +4,6 @@ var cursisten = 9;
 var lengte = new Array(9);
 
 
-
-
 lengte[0] = parseFloat(toetsenbord.question("Geef lengte in:"));
 var kleinste=lengte[0];
 var somLengtes=lengte[0];

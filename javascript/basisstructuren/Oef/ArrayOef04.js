@@ -22,7 +22,24 @@ function sorteren(getallen) {
          }
          return tmp;
     }
-    function sorterenPerGetal(getallen) {
+
+
+while (i<5){
+     getal = parseInt(toetsenbord.question( "Geef een uniek getal in: "));
+     if (uniekeGetallen.indexOf(getal)==-1){
+         uniekeGetallen[i]=getal;
+         i++;
+     } else { 
+         console.log( "Reeds ingegeven.");
+     }
+}
+console.log (uniekeGetallen);
+
+console.log(sorteren(uniekeGetallen));
+console.log(sorteren(uniekeGetallen));
+
+
+function sorterenPerGetal(getal) {
         var tmp = new Array;
         var tmpGetal = getallen[0];
         console.log( tmpGetal);
@@ -41,19 +58,3 @@ function sorteren(getallen) {
              }
              return tmp;
         }
-
-    
-
-
-while (i<5){
-     getal = parseInt(toetsenbord.question( "Geef een uniek getal in: "));
-     if (uniekeGetallen.indexOf(getal)==-1){
-         uniekeGetallen[i]=getal;
-         i++;
-     } else { 
-         console.log( "Reeds ingegeven.");
-     }
-}
-console.log (uniekeGetallen);
-
-console.log(sorteren(uniekeGetallen));

@@ -22,3 +22,4 @@ a.push(...b);
 console.log(a);
 
 console.log("*************")
+Math.min(...a);
