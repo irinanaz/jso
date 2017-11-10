@@ -3,18 +3,47 @@ var toetsenbord = require('readline-sync');
 var uniekeGetallen = new Array (5);
 var i=0,getal;
 
-function sorteren(getallen){
+function sorteren(getallen) {
     var tmp = new Array;
     var tmpGetal = getallen[0];
-    for (var i=1; i < getallen.lenght(); i++){
+    console.log( tmpGetal);
+    var j;
+    for (var i=1; i < getallen.lenght; i++){
         if (tmpGetal <= getallen[i]){
             tmp.push(getallen[i]);
-            tmp=geta[i];
+        } else{ 
+            for (j=tmp.length+1;j>i;j--){
+                tmp.push(tmp[j-1]);
+            }
+            
         }
+        console.log(getallen);
+        console.log(tmp);/*i++*/    
+         }
+         return tmp;
     }
+    function sorterenPerGetal(getallen) {
+        var tmp = new Array;
+        var tmpGetal = getallen[0];
+        console.log( tmpGetal);
+        var j;
+        for (var i=1; i < getallen.lenght; i++){
+            if (tmpGetal <= getallen[i]){
+                tmp.push(getallen[i]);
+            } else{ 
+                for (j=tmp.length+1;j>i;j--){
+                    tmp.push(tmp[j-1]);
+                }
+                
+            }
+            console.log(getallen);
+            console.log(tmp);/*i++*/    
+             }
+             return tmp;
+        }
 
-    return tmp;
-}
+    
+
 
 while (i<5){
      getal = parseInt(toetsenbord.question( "Geef een uniek getal in: "));
@@ -27,4 +56,4 @@ while (i<5){
 }
 console.log (uniekeGetallen);
 
-sorteren(uniekeGetallen);
+console.log(sorteren(uniekeGetallen));
