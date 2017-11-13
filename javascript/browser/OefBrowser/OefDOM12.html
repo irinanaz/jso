@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tellen</title>
+    <script>
+       
+        function init() {
+           frm.btnResult.onclick = kiezen;
+        }
+
+
+        function kiezen(){    
+            var inx;
+            if(frm.keuze[0].checked){
+                frm.keuzeBox.selectedIndex = 1;
+            }
+            if(frm.keuze[1].checked){
+                frm.keuzeBox.selectedIndex = 2;
+            }
+              
+        }
+        window.onload = init;
+
+    </script>
+</head>
+
+<body>
+    <form name="frm" action="post">
+        
+        <input type="radio" name="keuze" id="Keuze1" /><label for="Keuze1">Keuze 1</label><br/>
+        <input type="radio" name="keuze" id="Keuze2" /><label for="Keuze2">Keuze 2</label><br/>
+        <select name = "keuzeBox">
+                <option value="b0" >&#60;Overeen&#62;</Maak></option>
+                <option value="b2" >Keuze 1</option>
+                <option value="b3" >Keuze 2</option>
+                
+             </select><br/>
+        
+        <input type="button" name="btnResult" value="result" /><br/>
+        
+
+
+    </form>
+
+</body>
+
+</html>
