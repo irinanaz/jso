@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>probeersels met invoervelden op een form</title>
+</head>
+
+<body>
+    <form name="frm">
+        <input type="checkbox" name="opties" id="chbProgr"/><label for="chbProgr">professionele programmeur</label>
+        <br />Kies uw favoriete programmeertaal:
+        <input type="radio" name="programmeertalen" value="JavaScript" checked id="keuze1"><label for="keuze1">JavaScript</label>
+        <input type="radio" name="programmeertalen" value="C#" id="keuze2"><label for="keuze2">C#</label>
+        <input type="radio" name="programmeertalen" value="Java" id="keuze3"><label for="keuze3">Java</label>
+        <input type="radio" name="programmeertalen" value="Cobol" id="keuze4"><label for="keuze4">Cobol</label>
+        <br/><input type="button" name="btn" value="OK">
+    </form>
+</body>
+
+<script>
+    function test(){
+        if(frm.opties.checked){
+            alert("aangevinkt");
+        }
+        else{
+            alert("uitgevinkt");
+        }
+        frm.opties.checked = false;
+
+        if(frm.programmeertalen[0].checked){
+            alert("Dag collega");
+        }
+        else{
+            alert("Leer maar gauw deftig JavaScript programmeren");
+            frm.programmeertalen[0].checked = true;
+        }
+        
+    }
+    function init(){
+        frm.btn.onclick = test;
+    }
+    window.onload = init;
+</script>
+</html>
