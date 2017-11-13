@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Select en option</title>
+<script type="text/javascript" >
+
+function voegNaamToe(){
+    var naam = frm.naamVeld.value;
+    if (naam!=""){
+	    var nieuweOption = document.createElement('option');
+	    nieuweOption.value = naam;
+	    nieuweOption.text = naam;
+        frm.namenLinks.add(nieuweOption);
+    } else { alert ("Geef een naam")}
+    frm.naamVeld.value = "";
+    frm.naamVeld.focus();
+
+}
+function voegNaamToeR(){
+    var NieuwOptionR = document.createElement('option');
+    var inx = frm.namenLinks.selectedIndex;
+    if (inx>=0){
+        NieuwOptionR.value = frm.namenLinks[inx].value;
+        NieuwOptionR.text = frm.namenLinks[inx].text;
+        frm.namenRechts.add(NieuwOptionR);
+        frm.namenLinks.remove(inx);
+    } else { alert ("maak een keuze")}
+
+}
+function voegNaamToeL(){
+    var NieuwOptionL = document.createElement('option');
+    var inx = frm.namenRechts.selectedIndex;
+    if (inx>=0){
+        NieuwOptionL.value = frm.namenRechts[inx].value;
+        NieuwOptionL.text = frm.namenRechts[inx].text;
+        frm.namenLinks.add(NieuwOptionL);
+        frm.namenRechts.remove(inx);
+    } else { alert ("maak een keuze")}
+}
+
+
+function init(){
+    document.getElementById("btn").onclick = voegNaamToe;
+    frm.btnNaarR.onclick = voegNaamToeR;
+    frm.btnNaarL.onclick = voegNaamToeL;
+}
+
+window.onload = init;
+</script>
+</head>
+<body>
+<form name="frm">
+Naam: <input type="text" name="naamVeld" /><input type="button" value="klik" name="btn"/><br />
+
+    <select name="namenLinks" size="5" style="width:100px">
+        <option>Jan</option>
+        <option>Piet</option></select> 
+    <input type="button" value="&gt;" name="btnNaarR"/>
+    <input type="button" value="&lt;" name="btnNaarL"/>
+    <select name="namenRechts" size="5" style="width:100px">
+        <option>Joris</option>
+        <option>Corneel</option> 
+    </select>
+    
+</form>
+</body>
+</html>
