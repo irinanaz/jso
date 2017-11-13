@@ -13,6 +13,13 @@
         <input type="radio" name="programmeertalen" value="C#" id="keuze2"><label for="keuze2">C#</label>
         <input type="radio" name="programmeertalen" value="Java" id="keuze3"><label for="keuze3">Java</label>
         <input type="radio" name="programmeertalen" value="Cobol" id="keuze4"><label for="keuze4">Cobol</label>
+        <br />Kies uw favoriete programmeertaal (nu uit keuzelijst):
+        <select name="selProgrammeertalen">
+            <option value="js">JavaScript</option>
+            <option value="cs">C#</option>
+            <option value="java">Java</option>
+            <option value="cbl">Cobol</option>
+        </select>
         <br/><input type="button" name="btn" value="OK">
     </form>
 </body>
@@ -35,6 +42,13 @@
             frm.programmeertalen[0].checked = true;
         }
         
+        var idx = frm.selProgrammeertalen.selectedIndex;
+        var gekozenValue = frm.selProgrammeertalen.value;
+        alert("U koos optie nr " + idx + " met value " + gekozenValue);
+        var eersteValue = frm.selProgrammeertalen[0].value;
+        alert("De value van de eerste optie is " + eersteValue);
+        // laatste optie selecteren:
+        frm.selProgrammeertalen.selectedIndex = frm.selProgrammeertalen.length-1;
     }
     function init(){
         frm.btn.onclick = test;
