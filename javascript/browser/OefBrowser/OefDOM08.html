@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tellen</title>
+    <script>
+       
+
+        
+        function sorteren(){
+            var tmpNaam;
+            var tmpNamen = new Array();
+            for (var i=0; i<5; i++){
+                tmpNaam="text"+(i+1);
+                tmpNamen.push(document.getElementById(tmpNaam).value); // dinamische naam werkt enkel met de document.getElementById
+                //document.write(tmpNaam, tmpNamen[i]);
+            } 
+            
+            tmpNamen.sort();
+            for (var i=0; i<5; i++){
+                tmpNaam="text"+(i+1);
+                document.getElementById(tmpNaam).value = tmpNamen[i];
+            }
+            
+        }
+
+        function init() {
+            var btn = frm.sort;
+            btn.onclick = sorteren;
+        }
+
+        window.onload = init;
+
+    </script>
+</head>
+
+<body>
+    <form name="frm" action="post">
+        <input type="text" id="text1"/><br/> 
+        <input type="text" id="text2"/><br/>
+        <input type="text" id="text3"/><br/>
+        <input type="text" id="text4"/><br/>
+        <input type="text" id="text5"/><br/>
+        <input type="button" name="sort" value="Sorteren" />
+        
+
+
+    </form>
+
+</body>
+
+</html>

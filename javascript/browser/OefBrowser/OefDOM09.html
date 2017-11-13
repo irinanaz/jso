@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tellen</title>
+    <script>
+        var s2 ="s";//"🐼";
+        var s1= "h";//
+         "🐇";
+        var botsting= "*";
+        var WINNAR = "";
+
+
+         function geefRandom() {
+            var randomgetal = Math.floor(1 + Math.random() * 100);
+            return randomgetal;
+        }
+
+
+        function tekenParcour(pos1,pos2){
+            var parcour = new Array(70);
+            parcour.fill("-");
+            if (pos1<0){pos1=0}
+            if (pos2<0){pos2=0}
+            if (pos1==pos2) {
+                parcour[pos1]=botsting;
+               
+            } else {
+            
+            if (pos1>=70) { parcour[69]=s1;} else {parcour[pos1]=s1; }
+            if (pos2>=70) { parcour[69]=s2;} else {parcour[pos2]=s2; }
+            }
+            
+            
+            document.write(parcour);
+            
+        }
+
+
+        function stappenVRT1(){
+            var stap = geefRandom();
+            switch (true){
+                case stap < 50:
+                    stappen = 3;
+                    break;
+                case stap < 70:
+                    stappen = -6;
+                    break;
+                default: stappen = 3;
+                
+            }   
+            return stappen;
+        }
+        function stappenVRT2(){
+            var stap = geefRandom();
+            switch (true){
+                case stap < 20:
+                    stappen=9;
+                    break;
+                case stap < 40:
+                    stappen=-12;
+                    break;
+                case stap < 50:
+                    stappen= 1;
+                    break;
+                case stap < 80:
+                    stappen = -2;
+                    break;
+                default: stappen = 3;
+            }
+            return stappen;
+        }
+        function geefWinnar(pos1,pos2){
+            if (pos1<pos2) {
+                WINNAR = s2;
+            } else {
+                if (pos1>pos2){WINNAR = s2}else {WINNAR= s1 + s2;}
+        }
+        return WINNAR;
+        }
+
+        function speel(){
+            var pos1=0;
+            var pos2=0;
+            tekenParcour(pos1,pos2);
+            do {
+                
+                pos1=pos1+stappenVRT1();
+                pos2=pos2+stappenVRT2();
+                //if (pos1<0){pos1=0}
+                //if (pos2<0){pos2=0}
+               tekenParcour(pos1,pos2);
+               
+            } while (pos1 < 69 && pos2 < 69)
+            geefWinnar(pos1, pos2);
+            document.write ( WINNAR);
+            
+        }
+
+
+        function init() {
+            var btn = frm.start;
+            btn.onclick = speel;
+        }
+
+        window.onload = init;
+
+    </script>
+</head>
+
+<body>
+    <form name="frm" action="post">
+        
+        <input type="button" name="start" value="Start" />
+        
+
+
+    </form>
+
+</body>
+
+</html>
