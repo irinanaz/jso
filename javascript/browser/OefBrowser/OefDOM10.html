@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tellen</title>
+    <script>
+        var g1, g2;
+
+        function declareer(){
+            g1 =parseFloat(frm.veld1.value,10);;
+            g2 =parseFloat(frm.veld2.value,10);
+        }
+        function som() {
+            declareer();
+            var result = g1+g2;
+        
+            return result;
+        }
+
+        function min() {
+            declareer();
+            
+            var result = g1-g2;
+        
+            return result;
+        }
+
+        function vrmn() {
+            declareer();
+            
+            var result = g1*g2;
+        
+            return result;
+        }
+
+        function dln() {
+          
+            var result = g1/g2;
+        
+            return result;
+        }
+        function init() {
+            var btn = frm.btnResult;
+            btn.onclick = tellen;
+        }
+        function tellen(){    
+            if(frm.tellen[0].checked){
+                frm.veldRes.value = som();
+            }
+            if(frm.tellen[1].checked){
+                frm.veldRes.value = min();
+            }
+            if(frm.tellen[2].checked){
+                frm.veldRes.value = vrmn();
+            }
+            if(frm.tellen[3].checked){
+                frm.veldRes.value = dln();
+            }
+          
+        }
+        window.onload = init;
+
+    </script>
+</head>
+
+<body>
+    <form name="frm" action="post">
+        <input type="text" name="veld1" /><br/>
+        
+        <input type="radio" name="tellen" id="Keuze1" /><label for="Keuze1">Optelling</label><br/>
+        <input type="radio" name="tellen" id="Keuze2" /><label for="Keuze2">Aftrekking</label><br/>
+        <input type="radio" name="tellen" id="Keuze3" /><label for="Keuze3">Vermenigvuldiging</label><br/>
+        <input type="radio" name="tellen" id="Keuze4" /><label for="Keuze4">Deling</label><br/>
+        <input type="text" name="veld2" /><br/>
+        <input type="button" name="btnResult" value="result" /><br/>
+        <input type="text" name="veldRes" />
+
+
+    </form>
+
+</body>
+
+</html>
