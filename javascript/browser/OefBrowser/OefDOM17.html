@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Events 3</title>
+  <style>
+	body { margin: 20px; }
+	img { margin: 20px; }
+  </style>
+  <script>
+    window.onload = init;
+    
+	function init() {
+
+		var tekstVelden = document.getElementsByTagName("input");
+		for (var i = 0; i < tekstVelden.length; i++) {
+            if (tekstVelden[i].type=="text"){
+            tekstVelden[i].onblur = vervangAmpersands;
+         }
+		}
+	}
+	function vervangAmpersands(e) {
+		// in IE9 and earlier, the event object doesn't get passed
+		// to the event handler correctly, so we use window.event instead.
+		e = e || window.event;
+		
+		var tVeld = e.target || e.srcElement;
+        var tekst = tVeld.value;
+        
+        while (tekst.indexOf("&")>=0){
+        
+		    newTekst = tekst.replace("&","and"); //zonderl lus: newTekst = tekst.replace(/&/g,"and"); g-dat is globaal;
+            tekst = newTekst;
+        }
+        tVeld.value = newTekst;
+	}
+  </script>
+</head>
+<body>
+        <form name="frm" action="post">
+                <input type="text" name="veld1" />
+               
+                <input type="text" name="veld2" />
+        
+        
+        </form>
+</body>
+</html>
