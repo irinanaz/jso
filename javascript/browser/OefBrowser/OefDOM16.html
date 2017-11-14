@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>css properties wijzigen</title>
+    
+    <script>
+    
+       
+       
+    function lijstVullen(){
+        var fonts = ["xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large"];
+        
+        for (var i=0; i < fonts.length; i++ ){
+            var nieuweOption = document.createElement('option');
+            nieuweOption.value = fonts[i];
+            nieuweOption.text = fonts[i];
+            frm.font.add(nieuweOption);
+        }    
+
+    }
+    function setFont(){
+        var inx = frm.font.selectedIndex;
+        var fnt = frm.font[frm.font.selectedIndex].value;
+        document.getElementById("tekst").style.fontSize = fnt;
+    }
+       
+
+    function init(){
+        lijstVullen();
+        document.getElementById("btnFont").onclick = setFont;
+    }
+	
+window.onload = init;
+</script>
+
+</head>
+<body>
+    <form name="frm">
+    <select name = "font">
+           
+    </select>
+         <input type="button" id= "btnFont" value="Fontgrootte"/> 
+    </form>
+    <span id="tekst" >Een text</span>
+    
+</body>
+</html>
