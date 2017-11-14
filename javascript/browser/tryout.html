@@ -51,8 +51,13 @@
         frm.selProgrammeertalen.selectedIndex = frm.selProgrammeertalen.length-1;
     }
     function init(){
-        frm.btn.onclick = test
+        
         //document.write("zeg maar dag ..."); hier doc.write schrijft heel de DOM over !!!
+        frm.btn.onclick = test;
+
+        // !!!  document.write gebruiken nadat DOM-tree volledig opgebouwd is,
+        // overschrijft DOM-tree !!!
+        // document.write("zeg maar dag tegen de rest van de DOM-tree ...");
     }
     window.onload = init;
 </script>
