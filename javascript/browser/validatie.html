@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>Validatie (onsubmit)</title>
+<script>
+	function controleerInput(){
+		return form1.q.value != "";
+	}
+	
+	function init(){
+		form1.onsubmit = controleerInput;
+	}
+	
+	window.onload = init;
+</script>
+</head>
+<body>
+<form id="form1" action="http://www.google.be/search" method="get" >
+zoekterm: <input type="text" name="q" /> <br />
+<input type="submit" name="knop" value="klikken" />
+</form>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>InnerHTML</title>
+    <script>
+    function klik() {
+        divTekst.innerHTML = "<h1>Dag allemaal</h1>";
+		btn.disabled = true;
+    }
+	
+	function init(){
+		btn.onclick = klik;
+	}
+	
+	window.onload = init;
+    </script>
+</head>
+
+<body>
+    <form>
+        <div id="divTekst">hier komt misschien een resultaat</div>
+        <input type="button" value="Klik" id="btn" />
+    </form>
+</body>
+
+</html>
