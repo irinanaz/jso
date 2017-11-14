@@ -4,11 +4,11 @@
    <title>Validatie (onsubmit)</title>
 <script>
 	function controleerInput(){
-		return form1.q.value != "";
+		return form1.q.value != ""; // als het niet leeg is geeef de functie TRUE terug, en form1 wordt verstuurd.
 	}
 	
 	function init(){
-		form1.onsubmit = controleerInput;
+		form1.onsubmit = controleerInput; // voor het versturen van een form1 controleren we input
 	}
 	
 	window.onload = init;

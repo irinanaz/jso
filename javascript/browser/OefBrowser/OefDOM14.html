@@ -6,18 +6,18 @@
   
   
   function vbox(){
-	
 	var form = document.forms[0]; 
+
 	for (var i=0;i<form.elements.length;i++){ 
         if (form.elements[i].type == "checkbox"){
-        form.elements[i].checked = true; 
+                form.elements[i].checked = true; 
         }
-	}
+}
 	
 }
 
 function init(){
-    frm.btn.onclick = vbox;
+    frm.btn.onclick = vbox;  // document.getElementById("btn").onclick = vbox;
     
 }
 
@@ -30,6 +30,8 @@ window.onload = init;
         <input type="checkbox" name="geslacht" /><br/>
         <input type="checkbox" name="taal" /><br/>
         <input type="checkbox" name="korting" /><br/>
+        <input type="radio" name="tellen" id="Keuze1" /><label for="Keuze1">links</label><br/>
+        <input type="radio" name="tellen" id="Keuze2" /><label for="Keuze2">rechts</label><br/>
         <input type="button" value="checkbtn" name="btn"/>
 </form>
     

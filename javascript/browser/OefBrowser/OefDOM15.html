@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Foutboodschappen</title>
+<style type="text/css">
+	.verborgen{display:none;/*visibility:hidden;*/}
+	.getoond{color:red;display:inline;/*visibility:visible*/}
+</style>
+<script>
+ function controleerInput(){
+
+   var errorLabel = document.getElementById("errorLabel");
+   var errorLeeg = document.getElementById("errorLeeg");
+   var errorGetal = document.getElementById("errorGetal");
+   var errorTeJong = document.getElementById("errorTeJong");
+   errorLabel.className="verborgen";
+   errorLeeg.className="verborgen";
+   errorGetal.className="verborgen";
+   errorTeJong.className="verborgen";
+
+   
+   switch (true)  {
+    case form1.leeftijd.value == "":
+        errorLeeg.className = "getoond";
+        form1.leeftijd.focus();
+        form1.leeftijd.value="";
+	    return false;
+        break;
+    case isNaN(form1.leeftijd.value):
+        errorGetal.className = "getoond";
+        form1.leeftijd.focus();
+        form1.leeftijd.value="";
+        return false;
+        break;
+    case form1.leeftijd.value < 18 :
+        errorTeJong.className = "getoond";
+        form1.leeftijd.focus();
+        form1.leeftijd.value="";
+        return false;
+        break;
+    case form1.q.value == "":
+        errorLabel.className ="getoond";
+        form1.q.focus();
+        
+	    return false;
+        break;
+    default:
+        errorLabel.className ="verborgen";
+	    return true;
+    }
+    
+ }
+ 
+ function init(){
+	form1.onsubmit = controleerInput;// bij submit knop van formulieren die naar de server verstuurd moet worden
+}
+	
+window.onload = init;
+</script>
+</head>
+<body>
+<form id="form1" action="http://www.google.be/search" method="get" >
+    Leeftijd: <input type="text" name ="leeftijd"/>
+    <span id="errorLeeg" class="verborgen">Vul leeftijd in</span>
+    <span id="errorGetal" class="verborgen">Vul een getal</span>
+    <span id="errorTeJong" class="verborgen">U bent te jong</span><br/>
+    Zoekterm: <input type="text" name="q" /> <span id="errorLabel" class="verborgen">Zoekterm moet worden ingevuld</span><br />
+    <input type="submit" name="knop" value="zoeken" />
+</form>
+</body>
+</html>
