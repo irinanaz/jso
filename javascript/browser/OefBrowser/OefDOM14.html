@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Select en option</title>
+<script type="text/javascript" >
+  
+  
+  function vbox(){
+	
+	var form = document.forms[0]; 
+	for (var i=0;i<form.elements.length;i++){ 
+        if (form.elements[i].type == "checkbox"){
+        form.elements[i].checked = true; 
+        }
+	}
+	
+}
+
+function init(){
+    frm.btn.onclick = vbox;
+    
+}
+
+window.onload = init;
+</script>
+</head>
+<body>
+<form name="frm">
+         Naam: <input type="text" name="naamVeld" /><br/>
+        <input type="checkbox" name="geslacht" /><br/>
+        <input type="checkbox" name="taal" /><br/>
+        <input type="checkbox" name="korting" /><br/>
+        <input type="button" value="checkbtn" name="btn"/>
+</form>
+    
+</form>
+</body>
+</html>

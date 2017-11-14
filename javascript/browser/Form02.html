@@ -5,9 +5,9 @@
 <script>
 function toonElementen(){
 	var tekst="";
-	var form = document.forms[0];
-	for (var i=0;i<form.elements.length;i++){
-		tekst = tekst + form.elements[i].type + ": "+ form.elements[i].value +"\n";
+	var form = document.forms[0]; // zaprashivaet formu pod indexom 0.
+	for (var i=0;i<form.elements.length;i++){  // prosmatrivaet vse elementy v forme ot 0 do poslednego .length
+		tekst = tekst + form.elements[i].type + ": "+ form.elements[i].value +"\n"; // prosmatrivet elementy i vybiraet type i value.
 	}
 	alert(tekst);
 }
