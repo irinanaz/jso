@@ -1,0 +1,89 @@
+body {
+    padding-top: 20px; 
+    /* background: url(../images/bg_footer.png) right 0 no-repeat; */
+    background: url(../images/bg_footer.png) right 0 no-repeat;
+    
+    background-position: right bottom;}
+.logo {
+    text-align: left;
+    position: relative;
+    z-index: 333333;
+    
+}
+
+
+.logo a .logotxt {
+    text-indent: -999em;
+    background: url(../images/logo.gif) right 0 no-repeat;
+    background-size: contain;
+    height: 95px;
+    width: 250px; 
+    
+}
+
+.logo a .logoto {
+    display: none
+}
+
+
+
+.form {
+    
+}
+
+.zoekcontainer{
+   text-align: right;
+   max-height: 54px;
+   padding-top:5px;
+   padding-right: 5px;
+}
+#footer{
+    padding-top: 100px;
+    text-align: left;
+}    
+.zoekcontainer input.txt {
+    color: #a2a19f;
+    width: 65%;
+    background-color: #f9f9f9;
+    border-top: 1px solid #e0e0e0;
+    border-left: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 1.4rem;
+    line-height: 2rem;
+    padding: 10px 4px;
+}
+.zoekcontainer input.btn {
+    padding: 10px;
+    margin: 0 0 3px -5px;
+    width: 15%;
+    text-indent: -9999em;
+    color: #aa1a47;
+    border-top: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    background: url(../images/search.svg) center center no-repeat;
+}
+
+@media only screen and (max-width: 767px){
+body{padding-top:0;
+    min-width:320px;
+    background:none;}
+.logo a .logotxt{
+    height: 60px;
+    width:140px;
+    
+    
+    
+}
+.bg-red{ background: #aa1a47;}
+.zoekcontainer{
+    text-align: right;
+    height: 53px;
+    }
+
+#footer{
+    background-image:none;
+    background-color: orange;
+    text-align: center;
+}
+}

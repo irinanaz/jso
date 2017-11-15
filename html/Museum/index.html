@@ -11,6 +11,7 @@
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
+  <link rel="stylesheet" href="CSS/mystyle.css">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,40 +24,91 @@
 <body>
 
   <div class="container">
-    <div class="row">
+    <div id="header" class="row">
       <div class="col-md-12">
         <div class="row">
-          <div class="col-xs-3 ">Logo</div>
-          <div class="col-xs-9 col-sm-offset-2 col-sm-4 ">Zoek veld</div>
-          <div class="col-md-3 hidden-xs">contact</div>
+          <div class="col-xs-3 col-sm-4 ">
+              <div class="logo">
+                  <a href="/" title="ga naar de startpagina">
+                    
+                    <div class="logotxt">
+                      <span class="pt1">Gemeente</span>
+                      <span class="pt2">Rumst</span>
+                    </div>
+                    <span class="logoto">ga naar de startpagina</span>
+                  </a>
+                </div>
+          </div>
+          <div class="col-xs-9 col-sm-6 bg-red">
+            
+              
+              <div class="zoekcontainer">
+                  <form action="" method="GET">
+                    <input type="text" class="txt" id="txtkeyword" value="Trefwoord" name="keyword">
+                    <!-- <a href="/zoek.aspx" class="mobilesearch"><span>zoek</span></a> -->
+                    <input type="submit" value="Zoek" class="btn" id="btnSearch" title="Zoeken">
+                  </form>
+                  
+                </div>
+                  
+                
+
+          </div>
+          <div class="hidden-xs col-sm-2">Openingsuren and contact</div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-8">
-        <h1>Museum Rupelklei</h1>
-        <p>In een eerste zaal is de productie van artisanale baksteen voorgesteld, de roem van de streek. Levensgrote beelden
-          en mooie muurschilderingen lijken taferelen recht uit de romans van Piet Van Aken en Paul Coeck. De voorstelling
-          is aangevuld met socio-economische aspecten van de productie. Hoe is de klei hier gekomen? En zo dicht bij het
-          oppervlak? Toeval, dat maakt een fascinerende video duidelijk. In de prehistoriezaal wordt de verbazende geschiedenis
-          van de streek –en van de aarde- blootgelegd. Geschiedenis zoals die in de lagen van de kleigroeven is geschreven.
-          Terhagen vroeger aan de Zuidpool? Diep onder de zee? Een strand? Een steppe? Een benijdenswaardige collectie, met
-          heel zeldzame fossielen in en bovenop de klei gevonden, verteld door Terhagenaar Pierre De Loenen.</p>
+    <!--  menu  -->
+    <div  class="row">
+      <div id="main" class="col-xs-12 col-sm-8">
+        <div class="row">
+          <div class="col-xs-12">
+            <h1>Museum Rupelklei</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <p>In een eerste zaal is de productie van artisanale baksteen voorgesteld, de roem van de streek. Levensgrote beelden
+              en mooie muurschilderingen lijken taferelen recht uit de romans van Piet Van Aken en Paul Coeck. De voorstelling
+              is aangevuld met socio-economische aspecten van de productie. Hoe is de klei hier gekomen? En zo dicht bij
+              het oppervlak? Toeval, dat maakt een fascinerende video duidelijk. In de prehistoriezaal wordt de verbazende
+              geschiedenis van de streek –en van de aarde- blootgelegd. Geschiedenis zoals die in de lagen van de kleigroeven
+              is geschreven. Terhagen vroeger aan de Zuidpool? Diep onder de zee? Een strand? Een steppe? Een benijdenswaardige
+              collectie, met heel zeldzame fossielen in en bovenop de klei gevonden, verteld door Terhagenaar Pierre De Loenen.</p>
+          </div>
+        </div>
+        <div class="row hidden-xs">
+          <div class="col-xs-12">
+            <h2>Openingsuren & contact</h2>
+          </div>
+        </div>
       </div>
-      <div class="col-xs-8 col-sm-4 ">
-        <img src="images/71.gif" class="img-responsive" />Aside</div>
+    
+      <div id="aside" class="col-xs-6 col-sm-4 ">
+        <div class="row">
+          <div class="col-xs-12">
+            <img src="images/71.gif" class="img-responsive" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <h3>Openingsuren & contact</h3>
+            <p>Contacten adres info</p>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="row">
-      <div class="col-sm-12">Footer</div>
+    
+    <div id="footer" class="row">
+      <div class="col-xs-12" >Footer</div>
     </div>
   </div>
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-    crossorigin="anonymous"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"></script>
 </body>
 
 </html>
