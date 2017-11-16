@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Events 5 BG</title>
+<script>
+
+
+var teller;
+window.onload = init;
+
+function init(){
+
+    document.getElementById("start").onclick = datum;
+    document.getElementById("stop").onclick = stoptijd;
+}
+
+
+function datum() {
+    var vandaag = new Date();
+    var week = new Array ("Zaterdag","Maandag","Dinsdag","Woensdag", "Donderdag","Vrijdag","Zaterdag");
+    var maanden = new Array ("jan","feb","mrt", "apr", "mei", "jun","jul", "aug", "spt", "nov","dec");
+    var dag = vandaag.getDate();
+    var maand = maanden[vandaag.getMonth()];
+    var jaar = vandaag.getFullYear();
+    var weekDag = week[vandaag.getDay()];
+    var uur = vandaag.getHours();
+    var min = vandaag.getMinutes();
+    var sec = vandaag.getSeconds();
+    var tijd =vandaag.getTime();
+    if (uur<10){uur="0".concat(uur);}
+    if (min<10){min="0".concat(min);}
+    if (sec<10){sec="0".concat(sec);}
+    document.getElementById("dag").innerHTML = weekDag;
+    document.getElementById("datum").innerHTML = dag+" "+maand+" "+jaar;
+    document.getElementById("tijd").innerHTML = uur+":"+min+":"+sec;
+    
+    teller = setTimeout(datum,1000)	;
+	}    
+function stoptijd(){
+    if (teller!=null){
+        clearTimeout(teller);
+    }
+}
+
+
+
+</script>
+</head>
+<body>
+        <div id = "dag"></div>
+        <div id = "datum"></div>
+        <div id = "tijd"></div>
+        <input type="button" name="start" value="start" /><br/>
+        <input type="button" name="stop" value="stop" /><br/>
+
+</body>
+</html>
+
+

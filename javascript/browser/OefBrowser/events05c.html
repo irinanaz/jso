@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Events 5</title>
+<script>
+    window.onload = init;
+
+function init(){
+    document.getElementById("btn").onclick = alarm;
+    
+}
+
+
+function alarm(){
+	alert('Pagin');
+    setTimeout(window.close,3000);
+   
+}
+
+</script>
+</head>
+<body>
+    <form name="frm">
+        <input type="button" id="btn" value="Sluiten" />
+    </form>
+    
+</body>
+</html>

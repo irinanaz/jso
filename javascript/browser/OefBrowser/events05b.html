@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Events 5 BG</title>
+<script>
+
+
+function toonKleur(kleurBG) { 
+		document.body.style.background = kleurBG; 
+	}
+
+var kleur1;
+
+function bgKleur() {
+		if (kleur1) {
+			toonKleur("red");
+			kleur1 = false;
+		} else {
+			toonKleur("blue");
+			kleur1 = true;
+		}
+	}
+window.onload = function() {
+		setInterval(bgKleur, 1000);
+	}
+</script>
+</head>
+<body>
+Na 5 seconden waarschuwt deze pagina je.
+</body>
+</html>
+
+
+	
+

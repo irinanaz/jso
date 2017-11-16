@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Events 5 BG</title>
+<script>
+
+var SEC=5000;
+window.onload = init;
+
+function init(){
+    document.getElementById("btn").onclick = alarm;
+
+}
+function alarm(){
+	alert('Pagina wordt gesloten binnen 5 seconden');
+    setInterval(telSec,1000);
+    setTimeout(window.close,5000);
+}
+
+
+
+function display() { 
+    var sec= SEC/1000;
+		document.getElementById("seconden").innerHTML = sec;
+	}
+    function telSec() {
+		SEC -=1000;
+	    display();
+		
+		
+	}    
+
+
+
+
+</script>
+</head>
+<body>
+    <form name="frm">
+        <input type="button" id="btn" value="Sluiten" />
+    </form>
+    <br/>
+    <p id = "seconden"></p>
+
+</body>
+</html>
+
+
