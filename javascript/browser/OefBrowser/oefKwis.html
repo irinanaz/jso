@@ -4,16 +4,53 @@
 <head>
     <title>Tellen</title>
     <script>
-        var juist = new Array("")
+        var aantalVragen=2;
+        var aantalChoises=4;
+        var tellerJuist=0;
+        var juist = new Array("1","2");
+        var antwoorden = new Array(aantalVragen);
+        
 
         window.onload = init;
         function init() {
-            document.getElementById("control").onclick = checken;
+            document.getElementById("control").onclick = controleer;
         }
+        function controleer(){
+            var vraag;
+            for (var i=0;i<aantalVragen;i++){ 
+                vraag = "vraag"+(i+1);
+                var antw = neemAntwoord(vraag);
+                controleerAntw(antw, i);
+            }
+            alert(tellerJuist);
+        }
+        function neemAntwoord(vraag){
+            var antwoord=-1;
+                for (var choise=0; choise<aantalChoises; choise++){
+                    if (frm.vraag[choise].checked==true){
+                        antwoord = frm.vraag[choise].checked;
+                    }
+                }
+            return antwoord;    
+        }       
         
-        function checken(){
-            
+        function controleerAntw (antw,vraagInx){
+            if (antw == juist[vraagInx]){
+                tellerJuist +=1;
+                antwoorden[vraagInx] = "juist";
+            } else { antwoorden[vraagInx]="fout";}
+
         }
+        function alert(){
+            alert("u hebt "+ tellerJuist + "juiste antwoorden.");
+        }
+                
+        
+        
+	
+
+            
+        
        
 
     </script>
@@ -21,13 +58,21 @@
 
 <body>
     <form name="frm" action="post">
+        <p>Vlaag 1</p>
+        <input type="radio" name="vraag1" id="Keuze1" /><label for="Keuze1">1 Text? </label><br/>
+        <input type="radio" name="vraag1" id="Keuze2" /><label for="Keuze2">2 Text?</label><br/>
+        <input type="radio" name="vraag1" id="Keuze3" /><label for="Keuze3">3 Text?</label><br/>
+        <input type="radio" name="vraag1" id="Keuze4" /><label for="Keuze4">4 Text?</label><br/>
+        <br/>
+        <p>Vlaag 2</p>
+        <input type="radio" name="vraag2" id="Keuze1" /><label for="Keuze1">1 Text? </label><br/>
+        <input type="radio" name="vraag2" id="Keuze2" /><label for="Keuze2">2 Text?</label><br/>
+        <input type="radio" name="vraag2" id="Keuze3" /><label for="Keuze3">3 Text?</label><br/>
+        <input type="radio" name="vraag2" id="Keuze4" /><label for="Keuze4">4 Text?</label><br/>
         
-        <input type="radio" name="vraag" id="Keuze1" /><label for="Keuze1">Vraag1 Text? </label><br/>
-        <input type="radio" name="vraag" id="Keuze2" /><label for="Keuze2">Vraag2 Text?</label><br/>
-        <input type="radio" name="vraag" id="Keuze3" /><label for="Keuze3">Vraag3 Text?</label><br/>
-        <input type="radio" name="vraag" id="Keuze4" /><label for="Keuze4">Vraag4 Text?</label><br/>
-       
-        <input type="button" name="control" value="Controleer" /><br/>
+        
+        
+        <input type="button" id="control" value="Controleer" /><br/>
         
 
 
