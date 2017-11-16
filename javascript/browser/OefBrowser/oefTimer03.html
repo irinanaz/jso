@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Events 5 BG</title>
+<style>
+#balk{
+    background-color: red;
+    
+    border: 1px solid brown;
+    height: 20px;
+}
+
+</style>
+<script>
+
+'use strict';
+var teller;
+var kleur;
+
+
+window.onload = init;
+
+function init(){
+    document.getElementById("balk").style.width = 0 + "%";
+    document.getElementById("start").onclick = startTmp;
+    document.getElementById("stop").onclick = stop;
+}
+
+function startTmp(){
+    start(0);
+}
+
+
+function start(progress) {
+    var balk = document.getElementById("balk"); 
+        progress += 1;
+		balk.style.width = progress +"%";
+         
+        teller = setTimeout(start,100, progress)	;  
+	}
+    
+function stop(){
+    if (teller!=null){
+        clearTimeout(teller);
+    }
+}
+
+
+
+</script>
+</head>
+<body>
+        <div id = "balk"></div>
+       
+        <form>
+        <input type="button" id="start" value="start" /><br/>
+        <input type="button" id="stop" value="stop" /><br/>
+</form>
+
+</body>
+</html>

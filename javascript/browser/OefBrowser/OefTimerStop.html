@@ -5,7 +5,7 @@
 <title>Events 5 BG</title>
 <script>
 
-
+'use strict';
 var teller;
 window.onload = init;
 
@@ -51,8 +51,10 @@ function stoptijd(){
         <div id = "dag"></div>
         <div id = "datum"></div>
         <div id = "tijd"></div>
-        <input type="button" name="start" value="start" /><br/>
-        <input type="button" name="stop" value="stop" /><br/>
+        <form>
+        <input type="button" id="start" value="start" /><br/>
+        <input type="button" id="stop" value="stop" /><br/>
+</form>
 
 </body>
 </html>
