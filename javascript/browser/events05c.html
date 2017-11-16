@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Events 5c</title>
+<script>
+window.onload = init;
+function init(){
+	document.getElementById("btn").onclick = sluitingstijd;
+}
+function sluitingstijd(){
+	alert("Binnen 5 seconden wordt deze pagina gesloten");
+	setTimeout(close, 5000);
+}
+</script>
+</head>
+<body>
+<input type="button" value="sluiten" id="btn" />
+<div id="divTeller"></div>
+</body>
+</html>

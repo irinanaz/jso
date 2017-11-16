@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Events 5d</title>
+<script>
+window.onload = init;
+function init(){
+	document.getElementById("btn").onclick = sluitingstijd;
+}
+function sluitingstijd(){
+	alert("Binnen 5 seconden wordt deze pagina gesloten");
+	setInterval(aftellen, 1000, 5);
+	setTimeout(close, 5000);
+}
+function aftellen(start){
+	var div = document.getElementById("divTeller");
+	var teller = div.innerText == "" ? start : parseInt(div.innerText) - 1;
+	div.innerText = teller;
+}
+</script>
+</head>
+<body>
+<input type="button" value="sluiten" id="btn" />
+<div id="divTeller"></div>
+</body>
+</html>
