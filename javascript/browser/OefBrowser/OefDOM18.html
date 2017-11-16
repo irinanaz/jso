@@ -9,31 +9,34 @@ body{width:100%;
 </style>
 
 <script>
-    
+    var volg = false;
+   
 window.onload = init;
+
 function init(){
-	var area = document.body;//getElementById("area");
-    area.onmousemove = volgen;
-    area.ondblclick = vast((e.pageX+10),(e.pageY+10));
+    var area = document.body;
+    area.onmousemove = volgen;  // beter aan document te kopellen : document.onmousemove enz. dan style body en area mogen weg.
+    area.ondblclick = stoppen;
+    area.onmousedown = bewegen;
+}
+function bewegen(){
+    volg=true;
+}
+function stoppen(){
+    volg= false;
 }
 function volgen(e){
+    if (volg){
 		var bericht = document.getElementById("bericht");
 		var x = e.pageX;
 		var y = e.pageY;
-        //bericht.innerHTML = "huidige muispositie: " + x + ", " + y;
         bericht.style.left = (x+10) + "px";
         bericht.style.top = (y+10) + "px";
-        area.ondblclick = vast((e.pageX+10),(e.pageY+10));
-        area.onmousemove = false;
     }
-
-  
-
-function vast(evX,evY) {
         
-        bericht.style.left = evX + "px";
-        bericht.style.top =  evY + "px"; 
     }
+
+
 </script>
 </head>
 <body>
