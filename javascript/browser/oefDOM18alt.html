@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html style="height:100%; min-height:100%; width:100%; min-width:100%">
+<head>
+<title>Oefening DOM 18 (alternatieve oplossing)</title>
+<script>
+function verplaatsTekst(event){
+    pText.style.left = event.x + "px";
+    pText.style.top = event.y + "px";
+}
+
+function stopBewegen(event){
+    document.onmousemove = null;
+}
+
+function startBewegen(event){
+// 0 Specifies the left mouse-button
+// 1 Specifies the middle mouse-button
+// 2 Specifies the right mouse-button
+// Internet Explorer 8, and earlier, returns another result:
+// 1 Specifies the left mouse-button
+// 4 Specifies the middle mouse-button
+// 2 Specifies the right mouse-button
+  if(event.button == 0){ // left mouse button pressed  
+    document.onmousemove = verplaatsTekst;
+  }
+}
+
+document.onmousedown = startBewegen;
+document.ondblclick = stopBewegen; 
+</script>
+
+<body>
+<p id="pText" style="position:absolute; left:10px" >ik volg je overal ...</p>
+</div>
+</body>
+</html>
