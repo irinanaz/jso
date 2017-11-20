@@ -2,13 +2,23 @@
 <html>
 
 <head>
-    <title>Tellen</title>
+    <title>Kwis</title>
+    <style>
+        .juist{
+            color:blue;
+
+        }
+        .fout{
+            color:red;
+        }
+    </style>
     <script>
-        var aantalVragen=2;
+        var aantalVragen=3;
         var aantalChoises=4;
-        var tellerJuist=0;
-        var juistKwis = new Array("1","2");
+        var tellerJuist;
+        var juistKwis = new Array("0","1","2");
         var antwoorden = new Array(aantalVragen);
+        var meldingPos;
         
 
         window.onload = init;
@@ -16,14 +26,16 @@
             document.getElementById("control").onclick = controleerKwis;
         }
         function controleerKwis(){
+            tellerJuist=0;
             var vraag;
-            for (var i=0;i<aantalVragen-1;i++){ 
+
+            for (var i=0;i<aantalVragen;i++){ 
                 vraag = "vraag"+(i+1);
                 var antw = neemAntwoord(vraag);
-                alert("index of antw:"+ antw);
-                controleerAntw(antw, i);
+                // alert("index of antw:"+ antw);
+                controleerAntw(antw,i);
             }
-            //geefAlert(tellerJuist);
+            geefAlert(tellerJuist);
         }
         function neemAntwoord(vraag){
             var antwoord=-1;
@@ -38,43 +50,49 @@
         }       
         
         function controleerAntw (antw,vraagInx){
-            alert ("antw en vraagindex" + antw,vraagInx);
+            //alert ("antw en vraagindex" + antw+vraagInx);
+            meldingPos="melding"+(vraagInx+1);
             if (antw == juistKwis[vraagInx]){
                 tellerJuist +=1;
                 antwoorden[vraagInx] = "juist";
-                alert ("juist");
-            } else { antwoorden[vraagInx]="fout";}
-
+                //alert ("juist");
+                document.querySelectorAll("span[id='"+meldingPos+"']")[0].innerText = " - Juist";
+                document.querySelectorAll("span[id='"+meldingPos+"']")[0].className = "juist";
+            } else { 
+                antwoorden[vraagInx]="fout";
+                document.querySelectorAll("span[id='"+meldingPos+"']")[0].innerText = " - Fout";
+                document.querySelectorAll("span[id='"+meldingPos+"']")[0].className = "fout";
+            }
+           //alert(antwoorden);
         }
+
         function geefAlert(){
             alert("u hebt "+ tellerJuist + "juiste antwoorden.");
         }
-                
-        
-        
-	
 
-            
         
-       
-
+ 
     </script>
 </head>
 
 <body>
     <form name="frm" action="post">
-        <p>Vlaag 1</p>
+        <p>Vraag 1 <span id="melding1"></span></p><div id="melding1"></div>
         <input type="radio" name="vraag1" id="Keuze1" /><label for="Keuze1">1 Text? </label><br/>
         <input type="radio" name="vraag1" id="Keuze2" /><label for="Keuze2">2 Text?</label><br/>
         <input type="radio" name="vraag1" id="Keuze3" /><label for="Keuze3">3 Text?</label><br/>
         <input type="radio" name="vraag1" id="Keuze4" /><label for="Keuze4">4 Text?</label><br/>
         <br/>
-        <p>Vlaag 2</p>
+        <p>Vraag 2<span id="melding2"></span></p>
         <input type="radio" name="vraag2" id="Keuze1" /><label for="Keuze1">1 Text? </label><br/>
         <input type="radio" name="vraag2" id="Keuze2" /><label for="Keuze2">2 Text?</label><br/>
         <input type="radio" name="vraag2" id="Keuze3" /><label for="Keuze3">3 Text?</label><br/>
         <input type="radio" name="vraag2" id="Keuze4" /><label for="Keuze4">4 Text?</label><br/>
-        
+        <p>Vraag 3<span id="melding3"></span></p>
+        <input type="radio" name="vraag3" id="Keuze1" /><label for="Keuze1">1 Text? </label><br/>
+        <input type="radio" name="vraag3" id="Keuze2" /><label for="Keuze2">2 Text?</label><br/>
+        <input type="radio" name="vraag3" id="Keuze3" /><label for="Keuze3">3 Text?</label><br/>
+        <input type="radio" name="vraag3" id="Keuze4" /><label for="Keuze4">4 Text?</label><br/>
         
         
         <input type="button" id="control" value="Controleer" /><br/>

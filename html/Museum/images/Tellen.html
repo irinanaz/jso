@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!-- saved from url=(0093)file:///C:/Users/User112.PC112.000/Documents/IrinaNazJSO2/javascript/browser/regexTester.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Tellen</title>
+    <script>
+        function geefInvoer(){
+            var  invoer = frm.invoer.value;
+            if (document.frm.ltr.checked == true){
+            var regexp = new RegExp(frm.expressie.value); 
+            } else {
+            var regexp = new RegExp(frm.expressie.value,"i"); // "i" - ignore case - niet meer lettergevoelig.
+            // var regexp = new RegExp("^([1-9]|1\\d|2[0-5])");
+            }
+            if (regexp.test(invoer)){
+                alert (invoer + " is opgebouwd zoals de reguliere expressie beschrijft");
+            } else {
+                alert( invoer + " is NIET opgebouwd volgens de regels" );
+            }
+     // ?  -->  0 of 1
+     // *  -->  0 of meer
+     // +  -->  1 of meer
+     // {10} -->  10 keer
+     // {4, 10} --> min 4 max 10 keer
+     // \d --> cijfer
+     // quantifier staat achter de nodige karakter
+     // [aeiu] --> een karakter uit de lijst 
+     // [^aeui] --> [^ ] geen van de lijst
+     // ^      --> begin van de string
+     // $      --> eind van de string begin en ende in vaste expressie mag ook, bv IBAN te controleren.
+     // ^[A-Z] -->begint met A tot Z volgens de unicode
+     // .      --> precies één karacter , maakt niet uit de welke
+     // ^[A-Z].*[.]$  --> begint met een hoofdletter , verder zoveel je wilt karakters en eindigen met punt
+     // [.]be$   --> eindigt op .be
+     // [.](be|com|net)$
+     // .+[@].+[.](be|com|net)$ conroleert voor email
+     // (^[1-9]$|(^1[0-9]$)|(^2[0-5]$))  --> conroleer invoer van getallen van 1-25 inclusief.
+     // ^(BE|be)\d{2}.*\d{4}.*\d{4}.*\d{4}$  --> controleert voor IBAN.
+     // ^\d{6}.*\d{3}.*\d{2}$  --> controleert voor rijksregister nummer.
+        }
+        function init (){
+            document.getElementById("btn").onclick = geefInvoer;
+        }
+        window.onload = init;
+
+    </script>
+</head>
+
+<body>
+    <form name="frm" action="file:///C:/Users/User112.PC112.000/Documents/IrinaNazJSO2/javascript/browser/post">
+        <label for="invr">invoer</label><input type="text" name="invoer" id="invr" pattern="">
+        <label for="expr">reguliere expressie</label><input type="text" name="expressie" id="exprs">
+        <label for="ltr">hoofdlettergevoelig?</label><input type="checkbox" name="ltr">
+        <input type="button" name="cntr" value="controleer" id="btn">
+        
+
+
+    </form>
+
+
+
+</body></html>
