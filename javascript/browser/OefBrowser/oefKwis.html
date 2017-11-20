@@ -7,41 +7,46 @@
         var aantalVragen=2;
         var aantalChoises=4;
         var tellerJuist=0;
-        var juist = new Array("1","2");
+        var juistKwis = new Array("1","2");
         var antwoorden = new Array(aantalVragen);
         
 
         window.onload = init;
         function init() {
-            document.getElementById("control").onclick = controleer;
+            document.getElementById("control").onclick = controleerKwis;
         }
-        function controleer(){
+        function controleerKwis(){
             var vraag;
-            for (var i=0;i<aantalVragen;i++){ 
+            for (var i=0;i<aantalVragen-1;i++){ 
                 vraag = "vraag"+(i+1);
                 var antw = neemAntwoord(vraag);
+                alert("index of antw:"+ antw);
                 controleerAntw(antw, i);
             }
-            alert(tellerJuist);
+            //geefAlert(tellerJuist);
         }
         function neemAntwoord(vraag){
             var antwoord=-1;
+            var vragen = document.querySelectorAll("input[name='"+vraag+"']") ;
                 for (var choise=0; choise<aantalChoises; choise++){
-                    if (frm.vraag[choise].checked==true){
-                        antwoord = frm.vraag[choise].checked;
+                    
+                    if (vragen[choise].checked==true){
+                        antwoord = choise;
                     }
                 }
             return antwoord;    
         }       
         
         function controleerAntw (antw,vraagInx){
-            if (antw == juist[vraagInx]){
+            alert ("antw en vraagindex" + antw,vraagInx);
+            if (antw == juistKwis[vraagInx]){
                 tellerJuist +=1;
                 antwoorden[vraagInx] = "juist";
+                alert ("juist");
             } else { antwoorden[vraagInx]="fout";}
 
         }
-        function alert(){
+        function geefAlert(){
             alert("u hebt "+ tellerJuist + "juiste antwoorden.");
         }
                 
