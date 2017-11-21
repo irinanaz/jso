@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test 2 - deel 2 - vraag 3</title>
+    <script>
+function init(){
+    document.getElementById("btnVertaal").onclick = vertaal;
+}
+function vertaal(){
+    var zin = document.getElementById("txtInvoer").value;
+    var txtResult = document.getElementById("txtVertaling");
+    txtResult.value = pigLatin(zin);
+}
+
+function pigLatin(zin){
+    var result = zin.charAt(0).toLowerCase() != "p" ? "p": "";
+    for(var i=0; i < zin.length; i++){
+        if(i > 0 && zin.charAt(i-1) == " " && zin.charAt(i).toLowerCase()!= "p"){
+                result += "p";
+        }
+        result += zin.charAt(i);
+    }
+    return result;
+}
+window.onload = init;
+</script>
+</head>
+
+<body>
+     <form name="frm">
+        <label for="txtInvoer">Originele zin: </label><input type="text" id="txtInvoer" name="txtInvoer" placeholder="Zin om te vertalen naar pigLatin"/>
+        <input type="button" value="Vertaal naar pigLatin" id="btnVertaal"/>
+        <label for="txtVertaling">Vertaling: </label><input type="text" id="txtVertaling" name="txtVertaling" readonly />
+    </form>
+</body>
+
+</html>
