@@ -7,41 +7,41 @@ var honderdtallen = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"]
 var duizendtallen = ["", "M", "MM"];
 
 
-function geefJaar(){
-var jaarCorrect=false;
-var jaar = toetsenbord.question("Geef jaar in (van 1 tem 2100):  ");
-while (jaarCorrect==false){
-    //console.log(jaarCorrect,parseInt(jaar));
-    if (isNaN(jaar)==true){
-        console.log("Dat is de correcte invoer niet. Geef een getal in.")
-        jaar = toetsenbord.question("Geef jaar in, aub (van 1 tem 2100):  ");
-    } else {
-        if (jaar >0 && jaar<=2100){
-            jaarCorrect=true;
-        }else {
-            jaar = toetsenbord.question("Geef jaar in, aub. dat moet tussen 1 en 2100 liggen:  ");
+function geefJaar() {
+    var jaarCorrect = false;
+    var jaar = toetsenbord.question("Geef jaar in (van 1 tem 2100):  ");
+    while (jaarCorrect == false) {
+        //console.log(jaarCorrect,parseInt(jaar));
+        if (isNaN(jaar) == true) {
+            console.log("Dat is de correcte invoer niet. Geef een getal in.")
+            jaar = toetsenbord.question("Geef jaar in, aub (van 1 tem 2100):  ");
+        } else {
+            if (jaar > 0 && jaar <= 2100) {
+                jaarCorrect = true;
+            } else {
+                jaar = toetsenbord.question("Geef jaar in, aub. dat moet tussen 1 en 2100 liggen:  ");
+            }
+
         }
-
     }
-}
-//console.log(jaar, jaarCorrect);
-return jaar;
+    //console.log(jaar, jaarCorrect);
+    return jaar;
 }
 
-function jaarNaarRomeins(jaar){
-    var romeinsGeg = [duizendtallen,honderdtallen,tientallen,eenheden];
+function jaarNaarRomeins(jaar) {
+    var romeinsGeg = [duizendtallen, honderdtallen, tientallen, eenheden];
     // console.log( jaar.length);
-    var jRom=[0,0,0,0];
-    var jaarRom="";
-    var jR=3;
-    for (var i=jaar.length-1; i>=0;i--){
-        jRom[jR]=jaar[i];
+    var jRom = [0, 0, 0, 0];
+    var jaarRom = "";
+    var jR = 3;
+    for (var i = jaar.length - 1; i >= 0; i--) {
+        jRom[jR] = jaar[i];
         // console.log(jRom);
-        jR-=1;
+        jR -= 1;
     }
 
-    for (jR = 0; jR<4; jR++){
-        jRom[jR]=romeinsGeg[jR][jRom[jR]];
+    for (jR = 0; jR < 4; jR++) {
+        jRom[jR] = romeinsGeg[jR][jRom[jR]];
         jaarRom = jaarRom.concat(jRom[jR]);
         // console.log(jRom[jR]);
         // console.log(jRom);
@@ -54,7 +54,7 @@ var jaarArab = geefJaar();
 console.log(jaarArab);
 var jaarRom = jaarNaarRomeins(jaarArab);
 console.log(jaarRom);
-console.log(jaarArab+" is in Romeinse cijfers "+jaarRom+".");
+console.log(jaarArab + " is in Romeinse cijfers " + jaarRom + ".");
 
 
 /* TODO: 

@@ -2,6 +2,28 @@
 <html>
 <head>
 <title>Test 2 - deel 2 - vraag 3</title>
+
+<script>
+   
+
+            function pigLatin(){
+                var tekstOrig = document.getElementById("txtInvoer").value;
+                
+                var tekstBegin = tekstOrig.replace(/(^[A-OR-Za-or-z])/gi,'p$1');
+                var tekstNieuw = tekstBegin.replace(/([a-zA-Z]) ([A-OR-Za-or-z])/gi,'$1 p$2');
+                // als er meerdere zinnen zijn:
+                // var tekstNieuw = tekstBegin.replace(/([a-zA-Z.,!:;]) ([A-OR-Za-or-z])/gi,'$1 p$2');
+                document.getElementById("txtVertaling").value = tekstNieuw;
+
+            }
+
+            function init() {    
+                frm.btnVertaal.onclick = pigLatin;
+            }
+    
+        window.onload = init;
+    
+</script>
 </head>
 <body>
     <form name="frm">

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tellen</title>
+    <style>
+        input {
+            width: 300px;
+        }
+    </style>
+    <script>
+        var vragen = ["vraag1", "vraag2", "vraag3", "vraag4", "vraag5"];
+        var antwJuist = ["antwoord1", "antwoord2", "antwoord3", "antwoord4", "antwoord5"];
+        var tabel = [vragen, antwJuist];
+        var indx;
+
+        function geefRandom() {
+            var randomIndx = Math.floor(Math.random() * 4);
+
+            return randomIndx;
+        }
+
+        function toonVraag() {
+            indx = geefRandom();
+            document.getElementById("txtVraag").value = tabel[0][indx];
+
+            //alert(indx,vragen[indx]);
+
+        }
+        function toonAntwoord() {
+
+            document.getElementById("txtAntw").value = tabel[1][indx];
+            //alert(indx,antwJuist[indx]);
+
+
+        }
+        function init() {
+            toonVraag();
+            frm.vragen.onclick = toonVraag;
+            frm.antwoorden.onclick = toonAntwoord;
+        }
+
+        window.onload = init;
+
+    </script>
+</head>
+
+<body>
+    <center>
+        <form name="frm" action="post">
+            <input type="button" name="vragen" value="Bepaal de actieve vraag " />
+            </br>
+            <label for="txtVraag">Vraag:</label>
+            <Br/>
+            <input type="text" id="txtVraag" name="vraagText" />
+            <br/>
+            <input type="button" name="antwoorden" value="Bepaal het antwoord op die vraag" />
+            <br/>
+            <label for="txtVraag">Antwoord:</label>
+            <Br/>
+            <input type="text" id="txtAntw" name="antwText" />
+            <br/>
+
+
+
+        </form>
+    </center>
+
+</body>
+
+</html>
