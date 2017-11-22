@@ -11,6 +11,7 @@ function naarAntwerps(tekst) {
 function naarLimburgs(tekst) {
     var nieuweTekst = "";
     var tekst2 = tekst.replace(/([aeuio]|[AEUIO])/g,'$1$1');
+    // of var tekst2 = tekst.replace(/([aeuio])/gi,'$1$1');
     return tekst2;
 }
 

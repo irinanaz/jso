@@ -11,13 +11,11 @@ function controleerInvoer(){
     iban = toetsenbord.question("iban: ");
      console.log(exp.test(iban));
     while (exp.test(iban)==false){
-       
-        
-        iban = toetsenbord.question("Geef de juiste iban: ");
-        
+       iban = toetsenbord.question("Geef de juiste iban: ");    
     }
     return iban;
 }
+
 function idNummer(iban) {
     var ibanNew = iban.replace(/( +)/g,''); 
     console.log(ibanNew);
