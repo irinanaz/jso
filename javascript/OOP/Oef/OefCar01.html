@@ -52,11 +52,13 @@
         }
 
         function bewerking(){
-            var merkIndx = document.getElementById("idMerken").selectedIndex;
-            var modelIndx = document.getElementById("idModellen").selectedIndex;
-            var kleurIndx = document.getElementById("idKleur").selectedIndex;
+            var merk = document.getElementById("idMerken").value;
+            var model = document.getElementById("idModellen").value;
+            var kleur = document.getElementById("idKleuren").value;
+            var kmStand = document.getElementById("idkmStand").value;
+            document.getElementById("idkmStand").value = kmStand + document.getElementById("idAftand").value;
                 //frm.keuze.selectedIndex
-            alert(merk);
+            alert("U habt "+merk+" "+model+" "+kleur);
         }
         // function geefAlert(){
         //     alert("u hebt "+ tellerJuist + "juiste antwoorden.");
@@ -69,20 +71,20 @@
 
 <body>
     <form name="frm" action="post">
-        <select name="merken" id="idMerken" style="width:100px">
+        <label for ="idMerken">Merk</label><select name="merken" id="idMerken" style="width:100px">
         </select>
-        <select name="modellen" id="idModellen" style="width:100px">
+        <label for ="idModellen">Model</label><select name="modellen" id="idModellen" style="width:100px">
         </select>
-        <select name="kleuren" id="idKleuren" style="width:100px">
+        <label for ="idKleuren">Kleur</label><select name="kleuren" id="idKleuren" style="width:100px">
         </select>
-        <input type="text" name="bouwJaar" id="idBouwJaar" />
-        <input type="checkbox" name="cabrio" id="idCabrio" />
-        <input type="text" name="kmStand" id="idkmAfstand" />
-
-        <input type="text" name="afstand" id="idAfstand" />
-
-
+        <label for ="idBouwJaar">Bouwjaar</label><input type="text" name="bouwJaar" id="idBouwJaar" />
+        <label for ="idCabrio">Cabrio</label><input type="checkbox" name="cabrio" id="idCabrio" />
+        <label for ="idkmStand">KM stand</label><input type="text" name="kmStand" id="idkmStand" /><br/>
         <input type="button" id="idRijd" naam="rijd" value="Rijd" />
+        <label for = "idAfstand">Afstand</label><input type="text" name="afstand" id="idAfstand" />
+
+
+        
         <br/>
 
 
