@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CarRent</title>
+    <style>
+    </style>
+    <script>
+
+        var merkenAutos = new Array("BMW", "Renault", "Fiat");
+
+        var bmw = new Array("model11", "model12", "model13", "model14");
+        var renault = new Array("model21", "model22", );
+        var fiat = new Array("model31", "model32", "model33", "model34");
+        var kleuren = new Array("kleur1", "kleur2", "kleur3", "kleur4", "kleur5", "kleur6");
+        var modellen = new Array(bmw, renault, fiat);
+
+        window.onload = init;
+        function init() {
+            laden(document.getElementById("idMerken"), merkenAutos);
+            laden(document.getElementById("idModellen"), bmw);
+            laden(document.getElementById("idKleuren"), kleuren);
+            document.getElementById("idMerken").onchange = zoekModel;
+            document.getElementById("idRijd").onclick = bewerking;
+            
+        }
+        function laden(select, lijst) {
+
+            for (var i = 0; i < lijst.length; i++) {
+                var option = document.createElement('option');
+                option.value = lijst[i];
+                option.text = lijst[i];
+                select.add(option);
+            }
+            //select[merk].selected = true;
+        }
+        function zoekModel() {
+            var keuzeMerk = document.getElementById("idMerken").selectedIndex;
+            document.getElementById("idAfstand").value = keuzeMerk;
+            var lijstModellen = modellen[keuzeMerk];
+            leegMaken(document.getElementById("idModellen"));
+            laden(document.getElementById("idModellen"), lijstModellen);
+        }
+        function leegMaken(select) {
+            var lengte =  select.options.length;
+            for (var i = 0; i <lengte; i++) {
+                //select.option[0].value = "";
+                // option.text = lijst[i];
+                select.remove(0);
+                //  select.add(option);
+            }
+        }
+
+        function bewerking(){
+            var merkIndx = document.getElementById("idMerken").selectedIndex;
+            var modelIndx = document.getElementById("idModellen").selectedIndex;
+            var kleurIndx = document.getElementById("idKleur").selectedIndex;
+                //frm.keuze.selectedIndex
+            alert(merk);
+        }
+        // function geefAlert(){
+        //     alert("u hebt "+ tellerJuist + "juiste antwoorden.");
+        // }
+
+
+
+    </script>
+</head>
+
+<body>
+    <form name="frm" action="post">
+        <select name="merken" id="idMerken" style="width:100px">
+        </select>
+        <select name="modellen" id="idModellen" style="width:100px">
+        </select>
+        <select name="kleuren" id="idKleuren" style="width:100px">
+        </select>
+        <input type="text" name="bouwJaar" id="idBouwJaar" />
+        <input type="checkbox" name="cabrio" id="idCabrio" />
+        <input type="text" name="kmStand" id="idkmAfstand" />
+
+        <input type="text" name="afstand" id="idAfstand" />
+
+
+        <input type="button" id="idRijd" naam="rijd" value="Rijd" />
+        <br/>
+
+
+
+    </form>
+
+</body>
+
+</html>

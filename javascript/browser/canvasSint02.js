@@ -1,7 +1,9 @@
 'use strict';
 var canvas, context, topx;
 
-window.onload = drawSint;
+window.onload = function () {
+    setInterval(drawSint, 1000);
+};
 
 function drawSint() {
     canvas = document.getElementById("mijnCanvas");
@@ -17,9 +19,14 @@ function drawSint() {
     drawFace();
     drawMiter2();
     drawImage("images/speelgoedzak.png",
-        Math.floor(Math.random() * (canvas.clientWidth - 150)),
-        Math.floor(Math.random() * (canvas.clientHeight - 150)), 150, 150);
+        // Math.floor(Math.random() * (canvas.clientWidth - 150)),
+        // Math.floor(Math.random() * (canvas.clientHeight - 150)), 
+        canvas.clientWidth - 175,
+        60,
+        150, 150);
     drawText("yellow", "Dag sinterklaasje!", topx, canvas.clientHeight - 50);
+
+    letItSnow();
 }
 
 function drawFace() {
@@ -97,16 +104,47 @@ function drawMiter() {
     drawLine("gold", topx, 60, topx, 300, 10);
 }
 
-/* onderstaande functies met dank aan Irina */
-function drawBeard2(){
-    drawPolygon("white",[topx-60,360,topx+60,360,topx,520]);
-}
-function drawMiter2(){
-    drawPolygon("red",[topx-65,298,topx-100,180,topx,60,topx+100,180,topx+65,298]);
-    drawLine("gold", topx-98,180,topx+98,180,10);
-    drawLine("gold", topx,62,topx,298,10);
+
+function drawCandy(color, x, y, radius) {
+    drawCircle(color, x, y, radius);
+    drawPolygon(color, [x + radius, y, x + 2 * radius, y - radius, x + 2 * radius, y + radius]);
+    drawPolygon(color, [x - radius, y, x - 2 * radius, y - radius, x - 2 * radius, y + radius]);
 }
 
-function drawCoat(){
-    drawPolygon("red",[topx-165,600,topx-100,380,topx,260,topx+100,380,topx+165,600]);
+function letItSnow() {
+    for (var i = 0; i < 30; i++) {
+        var x = Math.floor(Math.random() * canvas.width);
+        var y = Math.floor(Math.random() * canvas.height);
+        var radius = 5 + Math.floor(Math.random() * 10);
+        //drawCandy(getRandomTransparentColor(), x, y, radius);
+        drawCandy(getRandomRainbowColor(), x, y, radius);
+    }
+}
+
+function getRandomTransparentColor() {
+    return "rgba(" + getRandomColorPartNumber() + "," +
+        getRandomColorPartNumber() + "," + getRandomColorPartNumber() + "," + Math.random() + ")";
+}
+
+function getRandomColorPartNumber() {
+    return Math.floor(Math.random() * 256);
+}
+
+function getRandomRainbowColor() {
+    return "hsl(" + Math.floor(Math.random() * 24) * 15 + ",100%,50%)";
+}
+
+
+/* onderstaande functies met dank aan Irina */
+function drawBeard2() {
+    drawPolygon("white", [topx - 60, 360, topx + 60, 360, topx, 520]);
+}
+function drawMiter2() {
+    drawPolygon("red", [topx - 65, 298, topx - 100, 180, topx, 60, topx + 100, 180, topx + 65, 298]);
+    drawLine("gold", topx - 98, 180, topx + 98, 180, 10);
+    drawLine("gold", topx, 62, topx, 298, 10);
+}
+
+function drawCoat() {
+    drawPolygon("red", [topx - 165, 600, topx - 100, 380, topx, 260, topx + 100, 380, topx + 165, 600]);
 }
