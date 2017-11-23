@@ -36,7 +36,7 @@
         }
         function zoekModel() {
             var keuzeMerk = document.getElementById("idMerken").selectedIndex;
-            document.getElementById("idAfstand").value = keuzeMerk;
+            // voor controledocument.getElementById("idAfstand").value = keuzeMerk;
             var lijstModellen = modellen[keuzeMerk];
             leegMaken(document.getElementById("idModellen"));
             laden(document.getElementById("idModellen"), lijstModellen);
@@ -55,8 +55,8 @@
             var merk = document.getElementById("idMerken").value;
             var model = document.getElementById("idModellen").value;
             var kleur = document.getElementById("idKleuren").value;
-            var kmStand = document.getElementById("idkmStand").value;
-            document.getElementById("idkmStand").value = kmStand + document.getElementById("idAftand").value;
+            var kmStand = parseInt(document.getElementById("idkmStand").value);
+            document.getElementById("idAfstand").value = kmStand + parseInt(document.getElementById("idAfstand").value);
                 //frm.keuze.selectedIndex
             alert("U habt "+merk+" "+model+" "+kleur);
         }
