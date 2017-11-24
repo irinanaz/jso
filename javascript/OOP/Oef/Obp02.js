@@ -5,7 +5,7 @@ var toetsenbord = require('readline-sync');
 
 //Constructor
 function TV(){
-    
+    this.post;
 };
 TV.prototype.getProgramma = function (){  
     var programma; 

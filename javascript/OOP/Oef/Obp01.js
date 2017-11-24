@@ -5,8 +5,7 @@ var toetsenbord = require('readline-sync');
 
 //Constructor
 function Radio(){
-
-       
+    
     };
     
    
