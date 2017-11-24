@@ -2,6 +2,7 @@
 
 var toetsenbord = require('readline-sync');
 var aantal =5;
+var 
 //Constructor
 
 function Tankbeurt(){
@@ -18,19 +19,14 @@ var tankbeurten =[];
 
 
     for (var i=1; i<=aantal; i++){
-        var beurt="beurt"+i;
-        beurt = new Tankbeurt();
-        beurt.hoeveelLiter= toetsenbord.question("Hoeveel liter getankt: ");
-        beurt.hoeveelKM = toetsenbord.question("Hoeveel km gereden: ");
-        console.log(beurt);
+        
+        tankbeurten[i] = new Tankbeurt();
+        tankbeurten[i].hoeveelLiter= toetsenbord.question("Hoeveel liter getankt: ");
+        tankbeurten[i].hoeveelKM = toetsenbord.question("Hoeveel km gereden: ");
+        console.log(tankbeurten[i]);
     }
     
 
 
 
 
-console.log (beurt1);
-console.log (beurt2);
-console.log (beurt3);
-console.log (beurt4);
-console.log (beurt5);
