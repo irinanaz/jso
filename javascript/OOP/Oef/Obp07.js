@@ -41,3 +41,4 @@ while (stoppen!="j"){
 console.log( bank.koersen);
 
 console.log("de Maximale waarde is: " , bank.geefMaxCoupon());
+

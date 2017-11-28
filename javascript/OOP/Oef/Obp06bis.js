@@ -57,3 +57,13 @@ begroting.voegInkomstToe(3000);
 //begroting.voegInkomstToe(11000); 
 //begroting.presenteerBegroting();
 console.log(begroting.presenteerBegroting());
+
+/*UITVOER
+-5000
+-6000
+-7000
+4000
+3000
+11000
+De begroting is in evenwicht.
+*/

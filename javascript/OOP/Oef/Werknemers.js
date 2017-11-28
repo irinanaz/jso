@@ -44,3 +44,11 @@ werknemer2.volledigeNaam = function(){
     return "Met de groeten van " + this.voornaam + " " + this.naam;
 }
 console.log(werknemer2.volledigeNaam());
+
+/* uitvoer
+Isabel KAPOT
+Isabel KAPOT
+Pol STOK
+Pol STOKkrijgt een loon van 1234
+met de groeten van Peter Selie
+*/

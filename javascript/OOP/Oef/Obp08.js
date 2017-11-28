@@ -46,3 +46,19 @@ while (stoppen!="j"){
 console.log( bank.koersen);
 
 console.log("de Maximale waarde is: " , bank.geefMaxCoupon());
+
+/* UITVOER
+Geef de koers in:   2
+Wilt u stoppen (j/n):n
+Geef de koers in:   1.75
+Wilt u stoppen (j/n):n
+Geef de koers in:   1.85
+Wilt u stoppen (j/n):n
+Geef de koers in:   2.01
+Wilt u stoppen (j/n):n
+Geef de koers in:   3
+Wilt u stoppen (j/n):j
+[ 1.75, 1.85, 2.01, 3 ]
+[ 1.75, 1.85, 2.01, 3 ]
+de Maximale waarde is:  7.85
+*/
