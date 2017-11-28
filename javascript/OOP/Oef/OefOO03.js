@@ -17,7 +17,7 @@ var tankbeurten =[];
 //     console.log(this.uitgaven);
 // }
 
-
+function 
     for (var i=1; i<=aantal; i++){
         
         tankbeurten[i] = new Tankbeurt();

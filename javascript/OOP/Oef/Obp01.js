@@ -6,7 +6,7 @@ var toetsenbord = require('readline-sync');
 //Constructor
 function Radio(){
     
-    };
+    }
     
    
 Radio.prototype.getMuziek = function (){   
@@ -14,7 +14,7 @@ Radio.prototype.getMuziek = function (){
             return "lalala";
             
         }  else return "LALALA";
-    };
+    }
 
 
 
