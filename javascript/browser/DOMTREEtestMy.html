@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <script>
+    window.onload = function(){
+        var elt = document.body; // enkel voor body en html.
+        elt = document.head;
+        elt = document.getElementsByTagName("p")[0];
+        var result =  ""; 
+        result = "Element type is " + elt.nodeType+ "\n";
+        result += "Element name is "+ elt.nodeName + "\n";
+        result += "Element value is "+elt.nodeValue +"\n";
+        alert (result);
+        var btn = document.getElementById("btn");
+        btn.onclick = toonKinderenVanBody;
+
+    };
+
+    function toonKinderenVanBody(){
+        var body = document.body;
+        //var kinderen = body.childNodes; // geeft de text stukken als tabs en newlines als children.
+        // daarom de volgende lijn:
+        var kinderen = body.children; // geeft enkel echte directe kinderen;
+        for (var i=0; i< kinderen.length; i++){
+            console.log( kinderen[i].nodeType, kinderen[i].nodeName, kinderen[i].nodeValue);
+            if (kinderen[i].hasAttributes()){
+                console.log(kinderen[i].nodeName, "heeft minstens 1 atribuut");
+                console.log("attribute value heeft waarde", kinderen[i].getAttribute("value"));
+                kinderen[i].setAttribute("value","Done");
+            }
+        }
+
+    }
+    </script>
+ <head><title>Een voorbeeld</title></head>
+ <body>
+ <h1>Een voorbeeld</h1>
+ <p> Dit is een <em>belangrijke</em> tekst</p>
+ <input type="button" id="btn" value = "Klik"/>
+ </body>
+</html> 
