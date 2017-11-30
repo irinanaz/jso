@@ -11,8 +11,8 @@ window.onload = function(){
 
 function verwijderKnop(){
     var btn = document.getElementById("btnVerwijderKnop");
-    document.body.removeChild(btn);
-}
+    document.body.removeChild(btn); //verwijdert de element , nml knop met id uit de DOMtree.
+}       // dat zoekt waar de id staat en verwijdert de parent van de id --> input button.
 
 function verwijderParagrafen(){
     var div = document.getElementById("eenDiv");
@@ -25,9 +25,9 @@ function verwijderParagrafen(){
 }
 
 function verwijderDiv(){
-    var div = document.getElementById("eenDiv");
-    if(div){
-        document.body.removeChild(div);
+    var div = document.getElementById("eenDiv"); // zoekt bepaalde id
+    if(div){                                // "falsy"
+        document.body.removeChild(div);     // verwijdert de parent van id en alle children.
     }
 }
 </script>
