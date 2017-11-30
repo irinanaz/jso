@@ -29,16 +29,12 @@ function maakLijst(){
     document.body.appendChild(ul);
     ul.id="idLijst";
     var li;
-    // for(var i=0; i<lijstje.length; i++){
-    //     li = document.createElement("li");
-    //     li.innerText = lijstje[i];
-    //     ul.appendChild(li);
-    // }
-    // met forEach:
+   
     lijstje.forEach( item => {li = document.createElement("li");
         li.innerText = item;
         ul.appendChild(li);})
 }
+
 function vulLijstAan(){
     
     var li;
@@ -49,10 +45,7 @@ function vulLijstAan(){
         document.getElementById("idInvoer").value="";
         document.getElementById("idInvoer").focus();
     
-    // met forEach:
-    // lijstje.forEach( item => {li = document.createElement("li");
-    //     li.innerText = item;
-    //     ul.appendChild(li);})
+   
 }
 
 function maakKnop(){
