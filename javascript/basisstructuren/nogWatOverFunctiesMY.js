@@ -1,4 +1,6 @@
 'use strict';
+//Functions are "first class values". doc--> overzichtJavascript p.40.
+//kunnen toegekend aan variabele, gebruiken als parameter , als resultaat van de function
 
 function fie1(){
     console.log("fie1 wordt uitgevoerd");
