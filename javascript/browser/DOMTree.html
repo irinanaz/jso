@@ -1,0 +1,47 @@
+<!DOCTYPE html> 
+<html> 
+    <script>
+    window.onload = function(){
+        var elt;
+        // elt = document.body;   // object dat body voorstelt opvragen
+        // elt = document.head;  // object dat head voorstelt opvragen
+        // !!! body en head zijn props van document.  Alle andere elementen moeten
+        // op een andere manier (document.getElementById(....), 
+        // document.getElemensByTagName(....),  ...) opgevraagd worden
+        // bv:
+        elt = document.getElementsByTagName("p")[0];  // object dat eerste p-tag voorstelt opvragen
+        var result = "";
+        // alle objecten in de DOM-tree hebben props om het type, de naam en de waarde 
+        // op te vragen:
+        result = "Element type is " + elt.nodeType + "\n";
+        result += "Element name is " + elt.nodeName + "\n";
+        result += "Element value is " + elt.nodeValue;
+        alert(result);
+
+        var btn = document.getElementById("btn");
+        btn.onclick = toonKinderenVanBody;
+    };
+
+    function toonKinderenVanBody(){
+        var body = document.body;
+     //   var kinderen = body.childNodes;   // incl alle tekst (ook "enters" die owv leesbaarheid in tekst staan)
+        var kinderen = body.children;
+        for(var i=0; i<kinderen.length; i++){
+            console.log(kinderen[i].nodeType, kinderen[i].nodeName, 
+                kinderen[i].nodeValue);
+            if(kinderen[i].hasAttributes()){
+                console.log(kinderen[i].nodeName, " heeft minstens 1 attribuut");
+                console.log("attribuut value heeft waarde ",
+                    kinderen[i].getAttribute("value"));
+                kinderen[i].setAttribute("value", "done");
+            }
+        }
+    }
+    </script>
+  <head><title>Een voorbeeld</title></head> 
+  <body> 
+    <h1>Een voorbeeld</h1> 
+    <p> Dit is een <em>belangrijke</em> tekst</p> 
+    <input type="button" id="btn" value="klik"/>
+  </body> 
+</html> 
