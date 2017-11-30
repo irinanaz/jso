@@ -3,12 +3,14 @@
 <head>
 <title>DOM manipulatie: voorbeeld 1</title>
 <script>
-var lijstje = ["brood", "kaas", "boter", "ham"];
+var lijstje = ["melk", "kaas", "boter", "yoghurt"];
 
 window.onload = function(){
     maakHoofding();
     maakLijst();
+    maakAankruisvakje();
     maakKnop();
+    
     document.getElementById("idBtn").onclick = vulLijstAan;
 }
 
@@ -31,13 +33,13 @@ function maakLijst(){
     var li;
    
     lijstje.forEach( item => {li = document.createElement("li");
-        li.className = "melk";
         li.innerText = item;
+        li.className="melk";
         ul.appendChild(li);})
 }
 
 function vulLijstAan(){
-    
+   
     var li;
     
         li = document.createElement("li");
@@ -48,16 +50,48 @@ function vulLijstAan(){
     
    
 }
-
+function maakAankruisvakje(){
+    var vakje = document.createElement("input");
+    vakje.type = "checkbox";
+    vakje.id = "check";
+    document.body.appendChild(vakje);
+    var lbl = document.createElement("label");
+    lbl.for="check";
+    lbl.innerHTML = "enkel de melkproducten verwijderen";
+    document.body.appendChild(lbl);
+}
 function maakKnop(){
     var btn = document.createElement("input"); // create an tag input
     btn.type = "button";        // create an tag proportie type
     btn.value = "bestellen";    // create an tag proportie value
     btn.onclick = function(){
         alert("uw bestelling wordt verwerkt");
+        lijstVerwijderen();
     }
+    
     document.body.appendChild(btn);  // plaatst een btn als de laatste child van body.
 }
+
+
+function lijstVerwijderen(){
+    var lijst = document.getElementById("idLijst"); // zoekt een div
+    if(lijst){
+        var itemLijst = lijst.getElementsByTagName("li"); // maakt een lijst van alle <p> in deze div
+       
+        if (document.getElementById("check").checked){
+            for(var i =itemLijst.length - 1; i >= 0; i--){  
+                if(itemLijst[i].className=="melk"){
+                    lijst.removeChild(itemLijst[i]); // verwijdert per p.
+                }
+            }
+        }else {
+            for (var i =itemLijst.length - 1; i >= 0; i--){  
+                    lijst.removeChild(itemLijst[i]); // verwijdert per p.
+            }
+        }
+    }
+}
+
 </script>
 </head>
 <body>
