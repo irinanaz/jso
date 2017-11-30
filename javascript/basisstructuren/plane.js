@@ -7,7 +7,8 @@ functions are first class values.  You can
 - return the value/function from a function
 */
 
-var passengers = [{ name: "Jane Doloop", paid: true, ticket: "coach" },
+var passengers = [
+{ name: "Jane Doloop", paid: true, ticket: "coach" },
 { name: "Dr. Evel", paid: true, ticket: "firstclass" },
 { name: "Sue Property", paid: false, ticket: "firstclass" },
 { name: "John Funcall", paid: true, ticket: "premium" }];

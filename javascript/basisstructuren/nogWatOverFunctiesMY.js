@@ -12,8 +12,8 @@ fie1();
 // f();  // fout bij uitvoering; want f is nog niet gekend
 
 // een function kan toegekend worden aan een var:
-var f = fie1;
-f();
+var f = fie1;   // toekennen.
+f();            // oproep van de functie.
 
 f = function(){
     console.log("sorry... geen inspiratie voor deze anonieme fie")
@@ -46,4 +46,5 @@ function fieMetFunctionAlsUitkomst(){
 
 var resultFie = fieMetFunctionAlsUitkomst();
 resultFie();
-console.log( fieMetFunctionAlsUitkomst()() );
+console.log( fieMetFunctionAlsUitkomst()() );// 2 keer() --> eerst roepen we fieMet...(). Dat heeft functie bij return.
+                                            // om deze 'return' functie op te roepen moeten we nog () hebben.

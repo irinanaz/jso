@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DOM manipulatie: voorbeeld 1</title>
+<script>
+var lijstje = ["brood", "kaas", "boter", "ham"];
+
+window.onload = function(){
+    maakHoofding();
+    maakLijst();
+    maakKnop();
+    document.getElementById("idBtn").onclick = vulLijstAan;
+}
+
+function maakHoofding(){
+    var h2 = document.createElement("h2");  // create aan element maar bepaald nog geen juiste plek in DOMtree.
+    h2.innerText = "Boodschappenlijstje";  // waarde die tussen <h2></h2> komt.
+    document.body.appendChild(h2);   // hier wordt bepaald waar de nieuw tag komt staan als de laatste element.
+}                                    // als eerste child insertBefore - zie cursus
+
+// function maakLijst(){
+//     var ul = document.createElement("ul");
+//     document.body.appendChild(ul);
+//     ul.id="idLijst";
+    
+// }
+function maakLijst(){
+    var ul = document.createElement("ul");
+    document.body.appendChild(ul);
+    ul.id="idLijst";
+    var li;
+    // for(var i=0; i<lijstje.length; i++){
+    //     li = document.createElement("li");
+    //     li.innerText = lijstje[i];
+    //     ul.appendChild(li);
+    // }
+    // met forEach:
+    lijstje.forEach( item => {li = document.createElement("li");
+        li.innerText = item;
+        ul.appendChild(li);})
+}
+function vulLijstAan(){
+    
+    var li;
+    
+        li = document.createElement("li");
+        li.innerText = document.getElementById("idInvoer").value;
+        document.getElementById("idLijst").appendChild(li);
+        document.getElementById("idInvoer").value="";
+        document.getElementById("idInvoer").focus();
+    
+    // met forEach:
+    // lijstje.forEach( item => {li = document.createElement("li");
+    //     li.innerText = item;
+    //     ul.appendChild(li);})
+}
+
+function maakKnop(){
+    var btn = document.createElement("input"); // create an tag input
+    btn.type = "button";        // create an tag proportie type
+    btn.value = "bestellen";    // create an tag proportie value
+    btn.onclick = function(){
+        alert("uw bestelling wordt verwerkt");
+    }
+    document.body.appendChild(btn);  // plaatst een btn als de laatste child van body.
+}
+</script>
+</head>
+<body>
+   
+    <h1>Onderstaande elementen zijn dynamisch toegevoegd</h1>
+    <form nam= "frm">
+            <input type="text" id="idInvoer"name="invoer"></input>
+            <input type="button" id="idBtn" value="Toevoegen"></input>
+        </form><br/>
+</body>
+</html>
