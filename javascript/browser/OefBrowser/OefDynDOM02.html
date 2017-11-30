@@ -68,12 +68,9 @@ function lijstVerwijderen(){
     var lijst = document.getElementById("idLijst"); // zoekt een div
     if(lijst){
         var itemLijst = lijst.getElementsByTagName("li"); // maakt een lijst van alle <p> in deze div
-            for(var i =itemLijst.length - 1; i >= 0; i--){  
-                
-                    lijst.removeChild(itemLijst[i]); // verwijdert per p.
-                
-            }
-        
+        while(ul.firstChild){    // als er eerste cchild is
+            lijst.removeChild(ul.firstChild); // verwijdert de eerste element in ul
+        }    
     }
 }
 

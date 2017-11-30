@@ -56,9 +56,11 @@ function maakAankruisvakje(){
     vakje.id = "check";
     document.body.appendChild(vakje);
     var lbl = document.createElement("label");
-    lbl.for="check";
+    lbl.htmlFor ="check";
     lbl.innerHTML = "enkel de melkproducten verwijderen";
     document.body.appendChild(lbl);
+    document.body.insertBefore(lbl.btn);
+    document.body.insertBefore(vakje,lbl);
 }
 function maakKnop(){
     var btn = document.createElement("input"); // create an tag input
@@ -80,13 +82,13 @@ function lijstVerwijderen(){
        
         if (document.getElementById("check").checked){
             for(var i =itemLijst.length - 1; i >= 0; i--){  
-                if(itemLijst[i].className=="melk"){
+                if(itemLijst[i].className =="melk"){
                     lijst.removeChild(itemLijst[i]); // verwijdert per p.
                 }
             }
         }else {
             for (var i =itemLijst.length - 1; i >= 0; i--){  
-                    lijst.removeChild(itemLijst[i]); // verwijdert per p.
+                lijst.removeChild(itemLijst[i]); // verwijdert per p.
             }
         }
     }
