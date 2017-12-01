@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>DOM manipulatie: voorbeeld 3</title>
+<title>DOM manipulatie: oefening 2</title>
 <script>
 var lijstje = ["brood", "kaas", "boter", "ham"];
 
@@ -9,7 +9,7 @@ window.onload = function(){
     maakHoofding();
     maakLijst();
     maakKnop();
-    document.getElementById("btnSwitch").onclick = wijzigLijstitemsInButtons;
+    document.getElementById("btnVoegToe").onclick = voegItemToe;
 }
 
 function maakHoofding(){
@@ -21,6 +21,7 @@ function maakHoofding(){
 function maakLijst(){
     var ul = document.createElement("ul");
     document.body.appendChild(ul);
+    ul.id = "lijst"
     var li;
     for(var i=0; i<lijstje.length; i++){
         li = document.createElement("li");
@@ -35,26 +36,29 @@ function maakKnop(){
     btn.value = "bestellen";
     btn.onclick = function(){
         alert("uw bestelling wordt verwerkt");
+        maakLijstLeeg();
     }
     document.body.appendChild(btn);
 }
 
-function wijzigLijstitemsInButtons(){
-    var div = document.createElement("div");
-    var ul = document.getElementsByTagName("ul")[0];
-    var btn;
-    for(var i=0; i< ul.childNodes.length; i++){
-        btn = document.createElement("button");
-        // btn.type="button";  // zinloos
-        btn.innerText= ul.childNodes[i].innerText;
-        div.appendChild(btn);
-    }
-    document.body.replaceChild(div, ul);// vervangd ul door juist gemaakte div.(newchild, oldchild).
+function voegItemToe(){
+    var li = document.createElement("li");
+    li.innerText = document.getElementById("invoer").value;
+    var ul = document.getElementById("lijst");
+    ul.appendChild(li);
+}
+
+function maakLijstLeeg(){
+     var ul = document.getElementById("lijst");
+     while(ul.firstChild){
+         ul.removeChild(ul.firstChild);
+     }
 }
 </script>
 </head>
 <body>
     <h1>Onderstaande elementen zijn dynamisch toegevoegd</h1>
-    <input type="button" value="switch" id="btnSwitch" />
+    <input type="text" id="invoer" />
+    <input type="button"  id="btnVoegToe"  value="Toevoegen"/>
 </body>
 </html>
