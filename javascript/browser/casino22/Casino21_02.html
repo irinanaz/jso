@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DOM manipulatie: voorbeeld 1</title>
+<script src = "speelkaarten.js"></script>
+<!-- <script src = "controller.js"></script> -->
+<script>
+var kaartenboek = new Speelkaartenboek();
+
+window.onload = function(){
+    
+    toonImg("images/cardback.png","idBack");
+    document.getElementById("idGeefBtn").onclick = geefKaart;
+    document.getElementById("idShakeBtn").onclick = schud;
+}
+function toonImg(imagebron,idPlaats){
+    var image;
+    
+        image = document.createElement("img");
+        image.src=imagebron;
+        image.className ="speelkaart";
+        document.getElementById(idPlaats).appendChild(image);
+}
+
+function schud(){
+    kaartenboek.schud();
+    tafelOpruimen("idOpen");
+    document.getElementById("idGeefBtn").disabled= false;
+}
+function tafelOpruimen(openKaarten){
+    
+        let kaarten = document.getElementById(openKaarten); 
+        if(kaarten){
+            var kaart = kaarten.getElementsByTagName("img"); 
+            while(kaarten.firstChild){   
+                kaarten.removeChild(kaarten.firstChild); 
+            }    
+        }
+    
+}
+function geefKaart(){
+    //var indx = kaartenboek.index;
+    if (kaartenboek.isLeeg()){
+        document.getElementById("idGeefBtn").disabled = true;
+        
+    }else{
+        var beeld = kaartenboek.volgendeKaart().afbeelding;
+        toonImg(beeld,"idOpen");
+    }
+}
+</script>
+</head>
+<body>
+   
+    <div id="idBack"></div>
+    <div id="idOpen"></div>
+    <form>
+        <input type="button" id="idGeefBtn" value="Geef kaart"/>
+        <input type="button" id="idShakeBtn" value="Schud"/>
+    </form>
+
+            
+</body>
+</html>

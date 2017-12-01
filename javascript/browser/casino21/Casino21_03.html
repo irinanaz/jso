@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>BLACK JACK 3</title>
+<script src = "speelkaarten.js"></script>
+<script src = "hand.js"></script>
+<!-- <script src = "controller.js"></script> -->
+<script>
+var kaartenboek = new Speelkaartenboek();
+var hand = new Hand();
+
+window.onload = function(){
+    
+    toonImg("images/cardback.png","idBack");
+    document.getElementById("idGeefBtn").onclick = speelBlackJack;
+    document.getElementById("idShakeBtn").onclick = schud;
+}
+function geefKaart(){
+    //var indx = kaartenboek.index;
+    if (kaartenboek.isLeeg()){
+        document.getElementById("idGeefBtn").disabled = true;
+        
+    }else{
+        if (!hand.magStoppen())
+        var kaart = kaartenboek.volgendeKaart();
+        var beeld = kaart.afbeelding;
+        toonImg(beeld,"idOpen");
+    }
+    
+}
+function speelBlackJack(){
+    var bericht = "";
+    
+    if (!hand.magStoppen() || hand.isKapot()) {
+         var kaart = kaartenboek.volgendeKaart();
+         var beeld = kaart.afbeelding;
+         toonImg(beeld,"idOpen");
+    } 
+  
+//     if (hand.isKapot()) {
+//         divResult.innerHtml = "Helaas, u bent uw inzet kwijt";
+//     }
+//     else {
+//         divResult.innerHtml = "U krijgt uw inzet"+ hand.factor() +" keer terug.";
+//     }
+}
+
+function toonImg(imagebron,idPlaats){
+    var image;
+    
+        image = document.createElement("img");
+        image.src=imagebron;
+        image.className ="speelkaart";
+        document.getElementById(idPlaats).appendChild(image);
+}
+
+function schud(){
+    kaartenboek.schud();
+    tafelOpruimen("idOpen");
+    document.getElementById("idGeefBtn").disabled= false;
+}
+function tafelOpruimen(openKaarten){
+    
+        let kaarten = document.getElementById(openKaarten); 
+        if(kaarten){
+            var kaart = kaarten.getElementsByTagName("img"); 
+            while(kaarten.firstChild){   
+                kaarten.removeChild(kaarten.firstChild); 
+            }    
+        }
+    
+}
+
+</script>
+</head>
+<body>
+   
+    <div id="idBack"></div>
+    <div id="idOpen"></div>
+    <form>
+        <input type="button" id="idGeefBtn" value="Geef kaart"/>
+        <input type="button" id="idShakeBtn" value="Schud"/>
+    </form>
+
+            
+</body>
+</html>
