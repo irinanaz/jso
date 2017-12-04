@@ -1,63 +1,40 @@
-'use strict';
-window.onload = function () {
-    loadImage();
-    loadFont();
-    loadColor();
-    document.getElementById("idBeeld").onchange = changeImage;
-    document.getElementById("idFontstyle").onchange = changeFont;
-    document.getElementById("idKleur").onchange = changeColor;
-}
-function loadImage(){
-    var beeld = JSON.parse(localStorage.getItem('beeld'));
-    if (beeld) {
-        var myImage = beeld.beeld;
-        // document.getElementById("beeld").src = "images/" + myImage + ".png";
-    } else {
-        var myImage = 'crocodile';
-    }
-    document.getElementById("beeld").src = "images/" + myImage + ".png";
+window.onload = function(e) {
+	var bgcolorForm = document.getElementById('bgcolor');
+	var fontForm = document.getElementById('font');
+	var imageForm = document.getElementById('image');
+
+	if (!localStorage['bgcolor']) {
+		populateStorage();
+	} else {
+		setStyles();
+	}
+
+	bgcolorForm.onchange = populateStorage;
+	fontForm.onchange = populateStorage;
+	imageForm.onchange = populateStorage;
 }
 
-function loadFont(){
-    var font = JSON.parse(localStorage.getItem('font'));
-    
-    if(font){
-        var myFont=font.font;
-        
-    } else {
-        var indx = document.getElementById("idFontstyle").selectedIndex;
-        var myFont = document.getElementById("idFontstyle")[indx].value;
-        
-    }
-    document.body.style.fontFamily = myFont;
-}
-function loadColor(){
-    var kleur = JSON.parse(localStorage.getItem('kleur'));
-    if(kleur) {
-        var myColor = kleur.kleur;
-        //document.body.style.background = myColor;
-    } else{
-        var myColor = document.getElementById("idKleur").value;
-        
-    }
-    document.body.style.background = myColor;
-}
-function changeFont() {
+function populateStorage() {
+	localStorage.setItem('bgcolor', document.getElementById('bgcolor').value);
+	localStorage.setItem('font', document.getElementById('font').value);
+	localStorage.setItem('image', document.getElementById('image').value);
 
-    var indx = document.getElementById("idFontstyle").selectedIndex;
-    var myFont = document.getElementById("idFontstyle")[indx].value;
-    localStorage.setItem('font', JSON.stringify({ "font": myFont }));
-    document.body.style.fontFamily = myFont;
+	setStyles();
 }
-function changeColor() {
-    var myColor = document.getElementById("idKleur").value;
-    localStorage.setItem('kleur', JSON.stringify({ "kleur": myColor }));
-    document.body.style.background = myColor;
-}
-function changeImage() {
 
-    var indx = document.getElementById("idBeeld").selectedIndex;
-    var myImage = document.getElementById("idBeeld")[indx].value;
-    localStorage.setItem('beeld', JSON.stringify({ "beeld": myImage }));
-    document.getElementById("beeld").src = "images/" + myImage + ".png";
+function setStyles() {
+	var currentColor = localStorage.getItem('bgcolor');
+	var currentFont = localStorage.getItem('font');
+	var currentImage = localStorage.getItem('image');
+
+	document.getElementById('bgcolor').value = currentColor;
+	document.getElementById('font').value = currentFont;
+	document.getElementById('image').value = currentImage;
+	
+	var htmlElem = document.querySelector('html');
+	var imgElem = document.querySelector('img');
+
+	htmlElem.style.backgroundColor = currentColor;
+	htmlElem.style.fontFamily = currentFont;
+	imgElem.setAttribute('src', currentImage);
 }

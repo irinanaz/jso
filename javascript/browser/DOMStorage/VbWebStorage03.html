@@ -14,7 +14,7 @@
 </body>
 <script>
 function bewaarPersoonInLocalStorage(naam, voornaam){
-	localStorage.setItem('persoon', JSON.stringify({"naam": naam, "voornaam": voornaam}));
+	localStorage.setItem('persoon', JSON.stringify({naam: naam, voornaam: voornaam}));
 }
 
 function toonPersoonUitLocalStorage(){

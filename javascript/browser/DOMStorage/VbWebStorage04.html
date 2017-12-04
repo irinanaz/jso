@@ -1,57 +1,42 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-	<title>Web Storage - OEF 1</title>
+<title>Web Storage - voorbeeld 4</title>
 </head>
-
 <body>
-	<h1>array met JSON object in web storage</h1>
+	<h1>array met JSON objecten in web storage</h1>
 	<form>
-		<label for="naam">Naam:</label>
-		<input type="text" id="naam" placeholder="Tik hier uw naam">
-		<br/>
-		<label for="voornaam">Voornaam:</label>
-		<input type="text" id="voornaam" placeholder="Tik hier uw voornaam">
-		<br/>
-		<input type="button" value="Voeg toe" onclick="voegPersoonInLocalStorage(this.form.naam.value, this.form.voornaam.value)">
+		<label for="naam">Naam: </label><input type="text" id="naam"
+			placeholder="Tik hier uw naam"><br /> <label for="voornaam">Voornaam: </label><input
+			type="text" id="voornaam" placeholder="Tik hier uw voornaam"><br />
+		<input type="button" value="Voeg toe"
+			onclick="bewaarPersoonInLocalStorage(this.form.naam.value, this.form.voornaam.value)">
 	</form>
-	<input type="button" value="Toon" onclick="toonPersoonUitLocalStorage()">
-	<ul id="overzicht"></ul>
+	<input type="button" value="Toon"
+		onclick="toonPersonenUitLocalStorage()">
+	<div id="overzicht"></div>
 </body>
 <script>
-	
-	function voegPersoonInLocalStorage(naam, voornaam) {
-		
-		if (parseInt(localStorage['tellerP']) >= 1) {
-
-			localStorage['tellerP'] = parseInt(localStorage['tellerP']) + 1;
-
-		} else {
-			localStorage['tellerP'] = 1;
-		}
-		var pers = 'persoon' + localStorage['tellerP'];
-
-		localStorage.setItem(pers, JSON.stringify({ "naam": naam, "voornaam": voornaam }));
-
-
+function bewaarPersoonInLocalStorage(naam, voornaam){
+	var personen = JSON.parse(localStorage.getItem('personen'));
+	if (personen == null){
+		personen = new Array();
 	}
-	function toonPersoonUitLocalStorage() {
+	personen[personen.length] = {naam: naam, voornaam: voornaam};
+	localStorage.setItem('personen', JSON.stringify(personen));
+}
 
-		document.getElementById("overzicht").innerHTML="";
-
-		if (parseInt(localStorage['tellerP'])>0) {
-			for (var i = 1; i <= parseInt(localStorage['tellerP']); i++) {
-				li = document.createElement("li");
-				var value = JSON.parse(localStorage.getItem('persoon' + i)).voornaam+" "+JSON.parse(localStorage.getItem('persoon' + i)).naam;
-				li.innerText = value;
-				document.getElementById("overzicht").appendChild(li);
-			}
+function toonPersonenUitLocalStorage(){
+	var personen = JSON.parse(localStorage.getItem('personen'));
+	var output = "<h3>Overzicht personen:</h3>";
+	if(personen != null){
+		output += "<ul>"; 
+		for(var i=0; i < personen.length; i++){
+			output += "<li>" + personen[i].voornaam + " " + personen[i].naam + "</li>";
 		}
-		else {
-			alert("Er is nog geen persoon bewaard.");
-		}
+		output += "</ul>";
 	}
+	document.getElementById("overzicht").innerHTML = output;
+}
 </script>
-
 </html>
