@@ -1,50 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>BLACK JACK 3</title>
-<script src = "speelkaarten.js"></script>
+<title>DOM manipulatie: voorbeeld 1</title>
+<script src= "speelkaarten.js"></script>
 <script src = "hand.js"></script>
 <!-- <script src = "controller.js"></script> -->
 <script>
 var kaartenboek = new Speelkaartenboek();
-var hand = new Hand();
 
 window.onload = function(){
     
     toonImg("images/cardback.png","idBack");
-    document.getElementById("idGeefBtn").onclick = speelBlackJack;
+    document.getElementById("idGeefBtn").onclick = geefKaart;
     document.getElementById("idShakeBtn").onclick = schud;
 }
-function geefKaart(){
-    //var indx = kaartenboek.index;
-    if (kaartenboek.isLeeg()){
-        document.getElementById("idGeefBtn").disabled = true;
-        
-    }else{
-        if (!hand.magStoppen())
-        var kaart = kaartenboek.volgendeKaart();
-        var beeld = kaart.afbeelding;
-        toonImg(beeld,"idOpen");
-    }
-    
-}
 function speelBlackJack(){
-    var bericht = "";
-    
-    if (!hand.magStoppen() || hand.isKapot()) {
-         var kaart = kaartenboek.volgendeKaart();
-         var beeld = kaart.afbeelding;
-         toonImg(beeld,"idOpen");
-    } 
-  
-//     if (hand.isKapot()) {
-//         divResult.innerHtml = "Helaas, u bent uw inzet kwijt";
-//     }
-//     else {
-//         divResult.innerHtml = "U krijgt uw inzet"+ hand.factor() +" keer terug.";
-//     }
+    var 
 }
-
 function toonImg(imagebron,idPlaats){
     var image;
     
@@ -70,7 +42,16 @@ function tafelOpruimen(openKaarten){
         }
     
 }
-
+function geefKaart(){
+    //var indx = kaartenboek.index;
+    if (kaartenboek.isLeeg()){
+        document.getElementById("idGeefBtn").disabled = true;
+        
+    }else{
+        var beeld = kaartenboek.volgendeKaart().afbeelding;
+        toonImg(beeld,"idOpen");
+    }
+}
 </script>
 </head>
 <body>
