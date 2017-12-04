@@ -1,0 +1,58 @@
+
+
+body{
+    
+    font: monospace;
+}
+H2{
+    font-size: 3rem;
+    text-shadow: 2px 2px black;
+    color:#fff;
+}
+#container {
+    width:60%;
+    margin: 100px auto;
+ 
+}
+ #frm{
+    margin-top:-4em;
+    width: 600px;
+    background: #eee;
+    border :2px solid #555;
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    padding: 20px;
+} 
+#beeld {
+    
+    
+    text-align: center;
+}
+#labels {
+    
+    
+    text-align: right;
+}
+#keuze {
+   
+    
+    text-align: center;
+}
+#image {
+    width: 100px;
+    height: auto;
+}
+ select, input {
+    line-height: 40px; 
+    width:100%;
+    padding: 5px;
+}
+label {
+    line-height: 30px;
+    width:100%;
+    padding: 6px;
+}
+
+select {
+    width:100%;
+}
