@@ -3,11 +3,18 @@
 window.onload = function() {
 	var button = document.getElementById("previewButton");
 	button.onclick = previewHandler;
-
+	document.getElementById("shape").onchange=showPallete;
 	// Easter Egg ;-)
 	makeImage();
 }
-
+function showPallete(){
+	if (document.getElementById("shape").value != "none"){
+		document.getElementById("backgroundColorShape").style.visibility='visible';
+	} else{
+		document.getElementById("backgroundColorShape").style.visibility = 'hidden';
+		document.getElementById("backgroundColorShape").value="";
+	}
+}
 function previewHandler() {
 	var canvas = document.getElementById("tshirtCanvas");
 	var context = canvas.getContext("2d");
@@ -23,6 +30,7 @@ function previewHandler() {
 		for (var squares = 0; squares < 20; squares++) {
 			drawSquare(canvas, context);
 		}
+
 	}
 	else if (shape == "circles") {
 		for (var circles = 0; circles < 20; circles++) {
@@ -35,9 +43,8 @@ function previewHandler() {
 
 // This is where we'll set the background color
 function fillBackgroundColor(canvas, context) {
-	var selectObj = document.getElementById("backgroundColor");
-	var index = selectObj.selectedIndex;
-	var bgColor = selectObj[index].value;
+	
+	var bgColor = document.getElementById("backgroundColor").value;
 
 	context.fillStyle = bgColor;
 	context.fillRect(0, 0, canvas.width, canvas.height);
@@ -53,7 +60,7 @@ function drawSquare(canvas, context) {
 	// Use this fillStyle instead if you want to try
 	// "twitter blue"
 	//context.fillStyle = "rgb(0, 173, 239)";
-	context.fillStyle = "lightblue";
+	context.fillStyle = document.getElementById("backgroundColorShape").value; 
 	context.fillRect(x, y, w, w);
 }
 
@@ -69,7 +76,7 @@ function drawCircle(canvas, context) {
 	// Use this fillStyle instead if you want to try
 	// "twitter blue"
 	//context.fillStyle = "rgb(0, 173, 239)";
-	context.fillStyle = "lightblue";
+	context.fillStyle = document.getElementById("backgroundColorShape").value;
 	context.fill();
 }
 
@@ -77,7 +84,7 @@ function drawCircle(canvas, context) {
 function drawText(canvas, context) {
 	var selectObj = document.getElementById("foregroundColor");
 	var index = selectObj.selectedIndex;
-	var fgColor = selectObj[index].value;
+	var fgColor = document.getElementById("foregroundColor").value;
 
 	context.fillStyle = fgColor;
 	context.font = "bold 1em sans-serif";
