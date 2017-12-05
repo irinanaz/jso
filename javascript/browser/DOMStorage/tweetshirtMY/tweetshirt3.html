@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+    <title>TweetShirt</title>
+    <meta charset="utf-8" />
+	<style>
+		canvas {
+			border: 1px solid black;
+		}
+	</style>
+	<script src="tweetshirt3.js"></script>
+</head>
+<body>
+    <canvas width="600" height="200" id="tshirtCanvas">
+		<p>You need canvas to use Tweetshirt!</p>
+		<p>This example requires a browser that supports the
+		<a href="http://www.w3.org/html/wg/html5/">HTML5</a> 
+		&lt;canvas&gt; feature.</p>
+	</canvas>
+	<form>
+	<p>
+		<label for="backgroundColor">Select background color:</label>
+		<input type="color" id="backgroundColor"></input>
+	</p>
+	<p>
+		<label for="shape">Circles or squares?</label>
+		<select id="shape">
+			<option value="none" selected="selected">Neither</option>
+			<option value="circles">Circles</option>
+			<option value="squares">Squares</option>
+		</select><input type="color" id="backgroundColorShape" style="visibility: hidden"></input>
+	</p>
+	<p>
+		<label for="foregroundColor">Select text color:</label>
+		<input id="foregroundColor" type="color"></input>
+		<label for="foregroundText"	>Select de tekstgrootte in em</label>
+		<input id="foregroundText" type="number" value="1" min="0.1" step="0.1"></input>
+	</p>
+	<p>
+		<label for="tweets">Pick a tweet:</label>
+		<select id="tweets">
+		</select>
+	</p>
+	<p>
+		<input type="button" id="previewButton" value="Preview">
+	</p>
+	<p>
+		<input type="button" id="idSave" value="Save">
+	</p>
+	<p>
+		<input type="button" id="idReload" value="Reload">
+	</p>
+</form>
+
+<!-- sorry, API van Twitter is veranderd en vereist authenticatie -->
+<!-- <script src="http://twitter.com/statuses/user_timeline/timoreilly.json?callback=updateTweets"> -->
+<script src="tweets.json">
+</script> 
+
+
+</body>
+</html>
+
+
+
+

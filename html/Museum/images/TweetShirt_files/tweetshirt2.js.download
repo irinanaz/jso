@@ -7,6 +7,7 @@ window.onload = function() {
 	// Easter Egg ;-)
 	makeImage();
 }
+
 function showPallete(){
 	if (document.getElementById("shape").value != "none"){
 		document.getElementById("backgroundColorShape").style.visibility='visible';
@@ -15,6 +16,7 @@ function showPallete(){
 		document.getElementById("backgroundColorShape").value="";
 	}
 }
+
 function previewHandler() {
 	var canvas = document.getElementById("tshirtCanvas");
 	var context = canvas.getContext("2d");
@@ -25,18 +27,10 @@ function previewHandler() {
 	var selectObj = document.getElementById("shape");
 	var index = selectObj.selectedIndex;
 	var shape = selectObj[index].value;
-
-	if (shape == "squares") {
-		for (var squares = 0; squares < 20; squares++) {
-			drawSquare(canvas, context);
-		}
-
+	for (var i = 0; i < 20; i++) {
+		drawShape(canvas, context, shape);;
 	}
-	else if (shape == "circles") {
-		for (var circles = 0; circles < 20; circles++) {
-			drawCircle(canvas, context);
-		}
-	}
+	
 	drawText(canvas, context);
 	drawBird(canvas, context);
 }
@@ -50,33 +44,32 @@ function fillBackgroundColor(canvas, context) {
 	context.fillRect(0, 0, canvas.width, canvas.height);
 
 }
+//Draw shape
+function drawShape(canvas, context, shape){
+	var sh = Math.floor(Math.random() * 40);    
+	var x = Math.floor(Math.random() * canvas.width);
+	var y = Math.floor(Math.random() * canvas.height);	
+	context.fillStyle = document.getElementById("backgroundColorShape").value;
+
+	if (shape == "squares") {
+		 drawSquare(canvas, context,sh,x,y);
+	}
+	else if (shape == "circles") {
+		drawCircle(canvas, context,sh,x,y);
+	}
+}
 
 // Draws a square at a random location
-function drawSquare(canvas, context) {
-	var w = Math.floor(Math.random() * 40);    
-	var x = Math.floor(Math.random() * canvas.width);
-	var y = Math.floor(Math.random() * canvas.height);
-
-	// Use this fillStyle instead if you want to try
-	// "twitter blue"
-	//context.fillStyle = "rgb(0, 173, 239)";
-	context.fillStyle = document.getElementById("backgroundColorShape").value; 
-	context.fillRect(x, y, w, w);
+function drawSquare(canvas, context,sh,x,y) {
+ 
+	context.fillRect(x, y, sh, sh);
 }
 
 // Draws a circle at a random location
-function drawCircle(canvas, context) {
-	var radius = Math.floor(Math.random() * 40);
-	var x = Math.floor(Math.random() * canvas.width);
-	var y = Math.floor(Math.random() * canvas.height);
+function drawCircle(canvas, context,sh,x,y) {
 
 	context.beginPath();
-	context.arc(x, y, radius, 0, degreesToRadians(360), true);
-
-	// Use this fillStyle instead if you want to try
-	// "twitter blue"
-	//context.fillStyle = "rgb(0, 173, 239)";
-	context.fillStyle = document.getElementById("backgroundColorShape").value;
+	context.arc(x, y, sh, 0, degreesToRadians(360), true);
 	context.fill();
 }
 
@@ -87,6 +80,7 @@ function drawText(canvas, context) {
 	var fgColor = document.getElementById("foregroundColor").value;
 
 	context.fillStyle = fgColor;
+	var myFont= document.getElementById("foregroundText").value;
 	context.font = "bold 1em sans-serif";
 	context.textAlign = "left";
 	context.fillText("I saw this tweet", 20, 40);
@@ -94,24 +88,29 @@ function drawText(canvas, context) {
 
 	// draw the tweet!
 	selectObj = document.getElementById("tweets");
-	var tweet = selectObj[index].value;
-	context.font = "italic 1.2em serif";
-	context.fillText(tweet, 30, 100);
+	var indx = document.getElementById("tweets").selectedIndex;
+	var tweet = selectObj[indx].value;
+	myFont = "italic "+myFont+"em serif";
+	context.font = myFont;
+	context.textAlign ="center";
+	context.textBaseline="middle";
+	context.fillText(tweet, canvas.width/2, canvas.height/2);
 
 	// If you want to try splitIntoLines to 
 	// handle longer tweets, uncomment this code
 	// and replace the context.fillText line above
-/*
-	if (tweet.length > 60) {
-		var tweetLines = splitIntoLines(tweet);
-		for (var i = 0; i < tweetLines.length; i++) {
-			context.fillText(tweetLines[i], 30, 70+(i*25));
-		}
-	}
-	else {
-		context.fillText(tweet, 30, 100);
-	}
-*/
+
+	// if (tweet.length > 60) {
+	// 	var tweetLines = splitIntoLines(tweet);
+	// 	for (var i = 0; i < tweetLines.length; i++) {
+			
+	// 		context.fillText(tweetLines[i], 30, 70+(i*25));
+	// 	}
+	// }
+	// else {
+	// 	context.fillText(tweet, 30, 100);
+	// }
+
 
 	context.font = "bold 1em sans-serif";
 	context.textAlign = "right";

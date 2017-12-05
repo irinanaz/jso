@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!-- saved from url=(0117)file:///C:/Users/User112.PC112.000/Documents/IrinaNazJSO2/javascript/browser/DOMStorage/tweetshirtMY/tweetshirt2.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>TweetShirt</title>
+    
+	<style>
+		canvas {
+			border: 1px solid black;
+		}
+	</style>
+	<script src="./TweetShirt_files/tweetshirt2.js.download"></script>
+</head>
+<body>
+    <canvas width="600" height="200" id="tshirtCanvas">
+		<p>You need canvas to use Tweetshirt!</p>
+		<p>This example requires a browser that supports the
+		<a href="http://www.w3.org/html/wg/html5/">HTML5</a> 
+		&lt;canvas&gt; feature.</p>
+	</canvas>
+	<form>
+	<p>
+		<label for="backgroundColor">Select background color:</label>
+		<input type="color" id="backgroundColor">
+	</p>
+	<p>
+		<label for="shape">Circles or squares?</label>
+		<select id="shape">
+			<option value="none" selected="selected">Neither</option>
+			<option value="circles">Circles</option>
+			<option value="squares">Squares</option>
+		</select><input type="color" id="backgroundColorShape" style="visibility: hidden">
+	</p>
+	<p>
+		<label for="foregroundColor">Select text color:</label>
+		<input id="foregroundColor" type="color">
+		<label for="foregroundText">Select de tekstgrootte in em</label>
+		<input id="foregroundText" type="number">
+	</p>
+	<p>
+		<label for="tweets">Pick a tweet:</label>
+		<select id="tweets">
+		<option value="Have a nice day!">Have a nice day!</option><option value="Sunny side up">Sunny side up</option><option value="Carpe diem">Carpe diem</option><option value="Smile">Smile</option><option value="Be positive">Be positive</option><option value="A winner is a looser who never gives up">A winner is a looser who never gives up</option><option value="Nie neute, nie pleuje">Nie neute, nie pleuje</option><option value="ploef">ploef</option><option value="Good code is like a good joke - it needs no explanation">Good code is like a good joke - it needs no explanation</option><option value="Java verhoudt zich tot JavaScript zoals ham zich verhoudt tot hamster">Java verhoudt zich tot JavaScript zoals ham zich verhoudt tot hamster</option></select>
+	</p>
+	<p>
+		<input type="button" id="previewButton" value="Preview">
+	</p>
+</form>
+
+<!-- sorry, API van Twitter is veranderd en vereist authenticatie -->
+<!-- <script src="http://twitter.com/statuses/user_timeline/timoreilly.json?callback=updateTweets"> -->
+<script src="./TweetShirt_files/tweets.json">
+</script> 
+
+
+
+
+
+
+
+
+</body></html>
