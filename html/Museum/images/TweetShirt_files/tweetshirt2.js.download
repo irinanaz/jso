@@ -88,6 +88,7 @@ function drawText(canvas, context) {
 
 	// draw the tweet!
 	selectObj = document.getElementById("tweets");
+<<<<<<< HEAD:html/Museum/images/TweetShirt_files/tweetshirt2.js.download
 	var indx = document.getElementById("tweets").selectedIndex;
 	var tweet = selectObj[indx].value;
 	myFont = "italic "+myFont+"em serif";
@@ -95,6 +96,12 @@ function drawText(canvas, context) {
 	context.textAlign ="center";
 	context.textBaseline="middle";
 	context.fillText(tweet, canvas.width/2, canvas.height/2);
+=======
+	index = selectObj.selectedIndex;
+	var tweet = selectObj[index].value;
+	context.font = "italic 1.2em serif";
+	context.fillText(tweet, 30, 100);
+>>>>>>> 4ddd553e5da5526d435099329bd6e37f7a36c503:javascript/browser/DOMStorage/tweetshirt/tweetshirt1.js
 
 	// If you want to try splitIntoLines to 
 	// handle longer tweets, uncomment this code
