@@ -86,6 +86,11 @@ function geefLoon(afdeling, filenaam){
     var doc = loadXMLDoc(filenaam);
     var totaal =0;
     var afd = doc.getElementById(afdeling);
+    // of met queryselector:
+    //var afd = doc.querySelectorAll("afdeling[id"+afdeling+"]> arbeider");
+    // in oef 6 : 
+    // var afd = doc.querySelectorAll("afdeling[id"+afdeling+"] arbeider");
+    // zonder > want we moeten alle arbeiders van alle afdelingen hebben.
     console.dir(afd);
     for (var i = 0; i< afd.children.length; i++){
         if (afd.children[i].nodeName == "arbeider"){
@@ -125,6 +130,11 @@ function runOef4(){
                 if ( valuta == "BEF"){
                 loon = toEUR(loon);
             }
+        
+        
+            
+      
+            
         }
         totaal += loon;
     }

@@ -1,0 +1,17 @@
+<!ELEMENT html (head,body )? >
+<!ELEMENT head (title ?) >
+<!ELEMENT title #PCDATA>
+<!ELEMENT body (text,a)*>
+<!ELEMENT text #PCDATA>
+<!ELEMENT a (texta?)>
+<!ATTLIST a href #PCDATA #REQUIRED >
+<!ATTLIST a target #PCDATA #REQUIRED >
+<!ELEMENT texta (#PCDATA) >
+
+
+<html>
+<head><title>De titel</title></head>
+<body>
+De link: <a href="http://www.vdab.be">De VDAB</a>
+</body>
+</html>
