@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no" ?>
-<!DOCTYPE items SYSTEM "items.dtd">
+<!--standalone="no" betekent dat er nog een externe file bij hoort-->
+<!DOCTYPE items SYSTEM "items.dtd"> <!--inbouw van een externe DTD file "pad naar een file"-->
 <!--Een XML bestand met CD- en boekdata -->
 <items>
 	<item id="id1">
-		<categorie>&Cat1;</categorie>
+		<categorie>&Cat1;</categorie><!--&Cat1; betekent de waarde van, nl. CD zie DTDfile-->
 		<omschrijving>&apos;s Nachts kouder dan XML</omschrijving>
 		<prijs>5.20</prijs> 
 	</item>

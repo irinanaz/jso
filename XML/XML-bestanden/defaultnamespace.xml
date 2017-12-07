@@ -2,10 +2,10 @@
 
 <!-- Using default namespaces         -->
 
-<directory xmlns = "urn:deitel:textInfo"
+<directory xmlns = "urn:deitel:textInfo" 
            xmlns:image = "urn:deitel:imageInfo">
 
-   <file filename = "book.xml">
+   <file filename = "book.xml">   <!--<--hier -->
       <description>A book list</description>
    </file>
 
@@ -15,3 +15,4 @@
    </image:file>
 
 </directory>
+<!-- in tags die zonder 'iets': staan wordt per default de waarde van (lijn 5 ) xmlns toegevoegd -->

@@ -13,11 +13,12 @@ alert("textContent: "+ doc.documentElement.textContent);
 alert("aantal childelementen van xml-rootelement: " + doc.documentElement.children.length);
 
 // element toevoegen:
-var aantal = doc.documentElement.children.length;
-var aantalNode = doc.createElement("aantal");
-var tekstNode = doc.createTextNode(aantal);
-aantalNode.appendChild(tekstNode);
-doc.documentElement.appendChild(aantalNode);
+var aantal = doc.documentElement.children.length;//3 
+var aantalNode = doc.createElement("aantal");  //tag
+     //dat moet in mijn file komen dus doc.creat...tag aantal wgemaakt in doc.
+var tekstNode = doc.createTextNode(aantal);  // waarde van de tag 
+aantalNode.appendChild(tekstNode);  // voegen tekstNode als chiled van aantalNode
+doc.documentElement.appendChild(aantalNode); // voegen we aantalNode als child van doc nl.child van item.
 console.log(doc.documentElement.innerHTML);
 </script>
 </head>

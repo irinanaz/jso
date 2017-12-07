@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<!DOCTYPE werknemers SYSTEM "oef6b.dtd" >
+<werknemers>
+	<afdeling id="magazijn">
+		<arbeider loon="2000">
+			<naam>Jan</naam>
+		</arbeider>
+		<arbeider loon="2000">
+			<naam>Piet</naam>
+		</arbeider>
+	</afdeling>
+	<afdeling id="magazijn">
+		<arbeider loon="4000">
+			<naam>Corneel</naam>
+		</arbeider>
+		<bediende loon="4000">
+			<naam>Joris</naam>
+		</bediende>
+	</afdeling>
+</werknemers>

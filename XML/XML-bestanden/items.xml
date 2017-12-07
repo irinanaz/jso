@@ -1,15 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<!DOCTYPE items [
-<!ELEMENT items (item*)>
+<!-- inline DTD : -->
+<!DOCTYPE items [   <!-- inline DTD begint met !DOCTYPE -->
+<!ELEMENT items (item*)>  
+<!-- !rootelement tagnaam (child van tag en quantifier) -->
 <!ELEMENT item (categorie, omschrijving, prijs)>
 <!ELEMENT categorie (#PCDATA)>
+<!-- !rootelement per child tagnaam (inhoud van tag en typeData) -->
 <!ELEMENT omschrijving (#PCDATA)>
 <!ELEMENT prijs (#PCDATA)>
 <!ATTLIST item id ID #REQUIRED>
+<!-- attribuut van NAAM attNAAM ID=uniekewaarde verplicht/of stand.waarde -->
 <!ATTLIST prijs valuta (EUR|USD) "EUR">
-<!ENTITY Cat1 "CD">
+<!-- attribuut van NAAM attNAAM (optie|optie|optie) "standaarte waarde">-->
+<!ENTITY Cat1 "CD"><!-- constanten bepalen : Cat1 heeft waarde "CD" , als we ergens schrijven Cat1 dat geeft "CD"-->
 <!ENTITY Cat2 "Boek">
 ]>
+<!-- inline DTD Ends-->
 <!--Een XML bestand met CD- en boekdata -->
 <items>
 	<item id="id1">
