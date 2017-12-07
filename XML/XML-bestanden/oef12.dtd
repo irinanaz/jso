@@ -1,0 +1,9 @@
+<!ELEMENT klaslocaal (row)* >
+<!ELEMENT row (arbeider*, bediende*) >
+<!ATTLIST afdeling id CDATA #REQUIRED >
+<!ELEMENT arbeider (naam) >
+<!ATTLIST arbeider loon CDATA #REQUIRED >
+<!ELEMENT bediende (naam) >
+<!ATTLIST bediende loon CDATA #REQUIRED >
+<!ELEMENT naam (#PCDATA) >
+<!ELEMENT loon (#PCDATA) >
