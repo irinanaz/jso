@@ -11,17 +11,21 @@ window.onload = function(){
     document.getElementById("btnZoek").onclick = function(){
         var doc = loadXMLDoc(XMLFILE);
         var xPathExpr = document.getElementById("txtXPath").value;
+        //xPathExpr velden in html-doc doc:
         var result = document.evaluate(xPathExpr, doc, null, XPathResult.ANY_TYPE, null);
+        
         document.getElementById("result").innerHTML = "";
         switch(result.resultType){
                 case XPathResult.UNORDERED_NODE_ITERATOR_TYPE:
-                    var thisNode = result.iterateNext();
+
+                    var thisNode = result.iterateNext(); //om een lijste te overlopen en aan te vragen - read only
+                    // soort van weizertje/pijltje die verwijst naar element.als geenelementen niet meer - fout terug.
                     while (thisNode) {
                         document.getElementById("result").innerHTML +=  thisNode.textContent + "<br />";
-                        thisNode = result.iterateNext();
+                        thisNode = result.iterateNext();  //iterator verschuift naar volgende element.
                     }	
                     break;
-                case XPathResult.NUMBER_TYPE:
+                case XPathResult.NUMBER_TYPE: // als we zeker zijn dat het getal is kunnen we numberValue gebruiken:
                     document.getElementById("result").innerHTML = result.numberValue;
                     break;
       }
