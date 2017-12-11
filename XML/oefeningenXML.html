@@ -121,6 +121,71 @@ function oefening07(){
     geefGemiddeldArbeidersLoon("marketing", "XML-bestanden/oef7.xml");
 }
 
+function oefening08(){
+    var doc = document.implementation.createDocument("", "", null);
+    var htmlEl = doc.createElement("html");
+    doc.appendChild(htmlEl);
+    var headEl = doc.createElement("head");
+    htmlEl.appendChild(headEl);
+    var titleEl = doc.createElement("title");
+    titleEl.appendChild(doc.createTextNode("De titel"));
+    headEl.appendChild(titleEl);
+    var bodyEl = doc.createElement("body");
+    htmlEl.appendChild(bodyEl);
+    bodyEl.appendChild(doc.createTextNode("De link: "));
+    var aEl = doc.createElement("a");
+    aEl.setAttribute("href", "http://www.vdab.be")
+    aEl.appendChild(doc.createTextNode("De vdab"));
+    bodyEl.appendChild(aEl);
+
+    // ter controle:
+    toonNode(doc.documentElement);
+
+    return doc;
+}
+
+function toonNode(node){
+    var serializer = new XMLSerializer();
+    var str = serializer.serializeToString(node);
+    alert(str);
+}
+
+function oefening09(){
+    var doc = oefening08();
+    var pEl = doc.createElement("p");
+    pEl.appendChild(doc.createTextNode("De eerste paragraaf"));
+    var bodyEl = doc.documentElement.lastChild;
+    bodyEl.appendChild(pEl);
+    // ter controle:
+    toonNode(doc.documentElement);
+}
+
+function oefening10(){
+    var doc = loadXMLDoc("XML-bestanden/itemspuur.xml");
+    var prijzen = doc.querySelectorAll("prijs");
+    for(var i=0; i< prijzen.length; i++){
+        prijzen[i].textContent = 1.05 * prijzen[i].textContent;
+    }
+    // ter controle:
+    toonNode(doc);
+}
+
+function oefening11(){
+    var xml = loadXMLText("XML-bestanden/oef11.html");
+    var parser = new DOMParser();
+    var xmlDoc = parser.parseFromString(xml, "application/xhtml+xml");
+    var urlNodes = xmlDoc.getElementsByTagName("a") ;
+    var urls = [];
+    var url;
+    for(var i=0; i < urlNodes.length; i++){
+        url = urlNodes[i].getAttribute("href");
+        if(urls.indexOf(url) == -1){
+            urls.push(url);
+        }
+    }
+    alert("Volgende urls staan in het document: "+ urls);
+}
+
 </script>
 </head>
 <body>
@@ -131,7 +196,11 @@ function oefening07(){
         <input type="button" value="oef 4" onclick="oefening04()"/>
         <input type="button" value="oef 5" onclick="oefening05()"/>        
         <input type="button" value="oef 6" onclick="oefening06()"/>        
-        <input type="button" value="oef 7" onclick="oefening07()"/>                   
+        <input type="button" value="oef 7" onclick="oefening07()"/>   
+        <input type="button" value="oef 8" onclick="oefening08()"/>        
+        <input type="button" value="oef 9" onclick="oefening09()"/>        
+        <input type="button" value="oef 10" onclick="oefening10()"/>  
+        <input type="button" value="oef 11" onclick="oefening11()"/>                         
     </form>
 </body>
 </html>
