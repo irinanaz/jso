@@ -7,9 +7,11 @@
 <tr><th>naam</th><th>nummer</th><th>aantal doelpunten</th></tr>
 
 <xsl:for-each select="speler">
-<xsl:sort select="naam" />
-<xsl:sort select="aantal-doelpunten" data-type="number" 
-	order="descending"/>
+<!-- sorteren op naam(alfabetisch):-->
+<xsl:sort select="naam" /> 
+<!-- sorteren op nummers dalend:-->
+<xsl:sort select="aantal-doelpunten" data-type="number" order="descending"/>
+
 <tr>
 <td><xsl:apply-templates select="naam" /></td>
 <td><xsl:apply-templates select="nummer" /></td>

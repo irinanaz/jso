@@ -29,3 +29,7 @@
     <aantal-doelpunten>4</aantal-doelpunten>
   </speler>
 </ploeg>
+
+<!-- Oef 2a:   count(/ploeg/speler)    //5 -->
+<!-- Oef 2b:   /ploeg/speler/naam       -->
+<!-- sum(/ploeg/speler/aantal-doelpunten) div count(/ploeg/speler)-->

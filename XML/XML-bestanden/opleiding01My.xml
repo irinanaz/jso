@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding="utf-8" ?>
 <!-- een xml bestand met de gegevens van een opleiding -->
+
+<?xml-stylesheet type="text/xsl" href="opleidingenMy.xsl"?>
 <opleiding code='INT37'>
     <titel>Java en XML</titel>
     <lokatie>Beta</lokatie>

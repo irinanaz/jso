@@ -8,8 +8,8 @@
 <table>
 <tr><th>naam</th><th>nummer</th><th>aantal doelpunten</th></tr>
 
-<xsl:for-each select="speler">
-<xsl:sort select="naam" />
+<xsl:for-each select="speler"> <!--met for-each kan je sorteren met de volgende lijn:-->
+<xsl:sort select="naam" />  <!-- sorteren op naam, enkel met for-each>
 <tr>
 <td><xsl:apply-templates select="naam" /></td>
 <td><xsl:apply-templates select="nummer" /></td>

@@ -1,5 +1,7 @@
 <?xml version='1.0'?>
 <!-- This file represents a fragment of a book store inventory database -->
+<?xml-stylesheet type="text/xsl" href="BooksMy.xsl"?>
+
 <bookstore>
   <book genre="autobiography" publicationdate="1981" ISBN="1-861003-11-0">
     <title>The Autobiography of Benjamin Franklin</title>
@@ -26,3 +28,7 @@
   </book>
 </bookstore>
 
+<!-- Oef1:   /bookstore/book[@publicationdate>1980]/title -->
+<!-- Oef2:   /bookstore/book[title='The Confidence Man']/author -->
+<!-- Oef3:   /bookstore//name -->
+<!-- Oef4:   /bookstore/book[@genre='autobiography'] -->

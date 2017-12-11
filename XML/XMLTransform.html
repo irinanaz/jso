@@ -7,9 +7,10 @@
     <script>
         'use strict';
 
-        var XMLPATH = "XML-bestanden/";
-        // om veiligheidsreden geeft een <input type="file"> het pad van het bestand standaard niet terug
+        var XMLPATH = "XML-bestanden/"; 
+        // om veiligheidsreden geeft een <input type="file"> het pad van het bestand standaard niet teru//
 
+        // gewoon pikken deze functies:
         function loadXMLDocIE(filename) {
             var xhttp = new ActiveXObject("Msxml2.XMLHTTP");
             xhttp.open("GET", filename, false);
@@ -17,7 +18,7 @@
             xhttp.send();
             return xhttp.responseXML;
         }
-
+        // voor IE browser -- gewoon pikken
         function transformIE(xmlFile, xslFile) {
             var xml = loadXMLDocIE(XMLPATH + xmlFile);
             var xsl = loadXMLDocIE(XMLPATH + xslFile);
@@ -25,12 +26,14 @@
             var result = xml.transformNode(xsl);  // transformNode geeft een string terugs
             document.getElementById("result").innerHTML = result;
         }
-
+        // voor alle andere browsers -- gewoon pikken
         function transform(xmlFile, xslFile) {
             var xml = loadXMLDoc(XMLPATH + xmlFile);
             var xsl = loadXMLDoc(XMLPATH + xslFile);
+            // bepalen de instructies voor komende transformatie:
             var xsltProcessor = new XSLTProcessor();
             xsltProcessor.importStylesheet(xsl);
+
             var resultDocument = xsltProcessor.transformToDocument(xml);
             // afhankelijk van de output method in de stylesheet geeft transformToDocument
             // een HTMLDocument (HTML DOM-tree) of een XMLDocument (XML DOM-tree) terug
@@ -42,10 +45,10 @@
                 var xmlFile = document.getElementById("xmlFile").files[0].name;
                 var xslFile = document.getElementById("xslFile").files[0].name;
                 if ("ActiveXObject" in window) {
-                    // IE
+                    // voor IE
                     transformIE(xmlFile, xslFile);
                 }
-                else {
+                else {   // voor de andere browsers
                     transform(xmlFile, xslFile);
                 }
             }
@@ -55,11 +58,12 @@
 
 <body>
     <form>
-        <label for="xmlFile">xml-bestand: </label><input type="file" id="xmlFile"> <br>
+        <label for="xmlFile">xml-bestand: </label><input type="file" id="xmlFile"> <br> 
+        <!-- type=fyle geeft de naam van de gekozen na de knop - door HTML5 -->
         <label for="xslFile">xsl(t)-bestand: </label><input type="file" id="xslFile"> <br>
         <input type="button" id="btnTransform" value="Transform">
     </form>
-    <div id="result">
+    <div id="result"><!-- div voor result -->
     </div>
 </body>
 

@@ -8,7 +8,7 @@
 <table>
 <tr><th>naam</th><th>nummer</th><th>aantal doelpunten</th></tr>
 
-<xsl:for-each select="speler">
+<xsl:for-each select="speler">  <!-- idem als template in vorige oef.-->
 <tr>
 <td><xsl:apply-templates select="naam" /></td>
 <td><xsl:apply-templates select="nummer" /></td>
@@ -20,7 +20,7 @@
 </xsl:template>
 
 <xsl:template match="naam">
-<xsl:value-of select="."></xsl:value-of>
+<xsl:value-of select="."></xsl:value-of>  <!--  "." neemt de waarde van tag naam.nl wat binnen de tag naam staat-->
 </xsl:template>
 
 <xsl:template match="nummer">
