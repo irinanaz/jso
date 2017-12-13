@@ -41,13 +41,15 @@
                             tabel.children[0].removeChild(rijen[1]);
                         }
                         document.getElementById("Tabel").innerHTML ="<thead><tr><th>omschrijving</th><th>adres</th><th>gemeente</th></tr></thead>";
+                        var j=0;
                         for (var i = 0; i < records.length; i++) {
                             var record = records[i];
                             var omschrijving = record.omschrijving;
-                            var adres = record.straat +" "+record.huisnummer;
-                            var gemeente = record.postcode +" "+record.district;
+                            var adres = record.straat +"&nbsp"+record.huisnummer;
+                            var gemeente = record.postcode +"&nbsp"+record.district;
                             if(record.luiertafel == "ja"){
-                            var nieuweRij = tabel.insertRow(i + 1);
+                            var nieuweRij = tabel.insertRow(j + 1);
+                            j++;
                             var celOmschr = nieuweRij.insertCell(0);
                             celOmschr.innerHTML = omschrijving;
                             var celAdres = nieuweRij.insertCell(1);

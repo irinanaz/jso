@@ -43,8 +43,8 @@
                         for (var i = 0; i < records.length; i++) {
                             var record = records[i];
                             var omschrijving = record.getElementsByTagName("omschrijving")[0].textContent;
-                            var adres = record.getElementsByTagName("straat")[0].textContent +" "+record.getElementsByTagName("huisnummer")[0].textContent;
-                            var gemeente = record.getElementsByTagName("postcode")[0].textContent +" "+record.getElementsByTagName("district")[0].textContent;
+                            var adres = record.getElementsByTagName("straat")[0].textContent +"&nbsp"+record.getElementsByTagName("huisnummer")[0].textContent;
+                            var gemeente = record.getElementsByTagName("postcode")[0].textContent +"&nbsp"+record.getElementsByTagName("district")[0].textContent;
                             
                             var nieuweRij = tabel.insertRow(i + 1);
                             var celOmschr = nieuweRij.insertCell(0);
