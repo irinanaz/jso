@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>AJAX: XML ophalen</title>
+    <script>
+        var xmlHttp = false;
+        function loadXMLHttpRequest() {
+            try {  // Firefox/Opera/Safari/IE7+
+                xmlHttp = new XMLHttpRequest();
+            }
+            catch (e) {
+                try { // IE5
+                    xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+                }
+                catch (e) {
+                    try { // IE6
+                        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    catch (e) {
+                        alert("Deze browser ondersteunt geen AJAX");
+                    }
+                }
+            }
+        }
+        function voegRijToe(){
+    
+    var rij = tabel.insertRow(-1);  // achteraan rij toevoegen
+    var cel = rij.insertCell(0);
+    cel.innerText = "Knutsel";
+    var cel2 = rij.insertCell(1);
+    cel2.innerText = "smurf";
+}
+function dataOphalen() {
+    if (xmlHttp) {
+        xmlHttp.open("GET", "ploeg.xml");
+        h1 = document.createElement("H1");
+        h1.innerHTML = "Overzicht spelers";
+        document.getElementById("result").appendChild(h1);
+        tabel = document.createElement("table");
+        tabel.id= "tabel";
+        tabel.style.border=1+"px";
+        document.getElementById("result").appendChild(tabel);
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                var xmlDoc = xmlHttp.responseXML;
+                var spelers = xmlDoc.getElementsByTagName("speler");
+                var result;
+                var ul = document.createElement("ul");
+                ul.id="ulResult";
+                document.getElementById("result").appendChild(ul);
+                for (var i = 0; i < spelers.length; i++) {
+                    var li=  document.createElement("li");
+                    var speler = spelers[i];
+                    var id = speler.attributes["id"].nodeValue;
+                    var naamNodes = speler.getElementsByTagName("naam");
+                    var naam = naamNodes[0].firstChild.nodeValue;
+                    result = "(" + id + ")&nbsp;" + naam + "<br/>";
+                    li.innerHTML = result;
+                    document.getElementById("ulResult").appendChild(li);
+                }
+                // document.getElementById("result").innerHTML = result;
+            }
+        }
+        xmlHttp.send();
+    }
+}
+    </script>
+</head>
+<body onload="loadXMLHttpRequest()">
+    <input type="button" value="Haal XML op" onclick="dataOphalen()" />
+    <div id="result">
+    </div>
+</body>
+</html>

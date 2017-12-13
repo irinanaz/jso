@@ -26,19 +26,28 @@
         function dataOphalen() {
             if (xmlHttp) {
                 xmlHttp.open("GET", "ploeg.xml");
+                h1 = document.createElement("H1");
+                h1.innerHTML = "Overzicht spelers";
+                document.getElementById("result").appendChild(h1);
                 xmlHttp.onreadystatechange = function () {
                     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-                        var xmlDoc = xmlHttp.responseXML; //dan krijgen we xml dom tree als antwoord
+                        var xmlDoc = xmlHttp.responseXML;
                         var spelers = xmlDoc.getElementsByTagName("speler");
-                        var result = "<h1>Overzicht spelers</h1>";
+                        var result;
+                        var ul = document.createElement("ul");
+                        ul.id="ulResult";
+                        document.getElementById("result").appendChild(ul);
                         for (var i = 0; i < spelers.length; i++) {
+                            var li=  document.createElement("li");
                             var speler = spelers[i];
                             var id = speler.attributes["id"].nodeValue;
                             var naamNodes = speler.getElementsByTagName("naam");
                             var naam = naamNodes[0].firstChild.nodeValue;
-                            result += "(" + id + ")&nbsp;" + naam + "<br/>";
+                            result = "(" + id + ")&nbsp;" + naam + "<br/>";
+                            li.innerHTML = result;
+                            document.getElementById("ulResult").appendChild(li);
                         }
-                        document.getElementById("result").innerHTML = result;
+                        // document.getElementById("result").innerHTML = result;
                     }
                 }
                 xmlHttp.send();
