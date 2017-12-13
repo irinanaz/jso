@@ -20,7 +20,7 @@ function showHint(str) {
       document.getElementById("txtHint").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "http://localhost:1337/gethint.js?q="+str, true);
+  xhttp.open("GET", "http://localhost:1337/gethint.js?q="+str, true); // versturen van request . Of /smurf
   xhttp.send();
 }
 </script>

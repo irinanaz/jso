@@ -30,20 +30,21 @@ function findHints(q) {
     }
 }
 
-/*
-// enable cross domain calls (CORS = cross origin resource sharing)
+
+// enable cross domain calls (CORS = cross origin resource sharing) 
+
 app.all('/*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-*/
+
 
 app.get(['/*.htm*', '/*.css', '/scripts/*.js'], function (req, res) {
     res.sendFile(path.join(__dirname + url.parse(req.url).pathname));
 });
 
-app.get('/getHint.js', function (req, res) {
+app.get('/getHint.js', function (req, res) {   //of smurf ipv getHint.js - zelf te kiezen
     console.log('request received');
     console.log("Looking for names starting with %s", req.query.q);
     res.end(findHints(req.query.q));
