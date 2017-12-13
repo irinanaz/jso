@@ -4,9 +4,9 @@
     <title>AJAX: data ophalen met fetch</title>
     <script>
         function dataOphalen() {
-            fetch("data.txt").then(function(response){
+            fetch("data.txt").then(function(response){ //als fetch succees 
                 return response.text();
-            }).then( function(responseText){
+            }).then( function(responseText){  // als fetch misgegaan
                  document.getElementById("result").innerHTML =
                          "<pre>" + responseText + "</pre>";
             });

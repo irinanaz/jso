@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>AJAX: XML ophalen (3)</title>
+    <script>
+        var xmlHttp = false;
+        function loadXMLHttpRequest() {
+            try {  // Firefox/Opera/Safari/IE7+
+                xmlHttp = new XMLHttpRequest();
+            }
+            catch (e) {
+                try { // IE5
+                    xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+                }
+                catch (e) {
+                    try { // IE6
+                        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    catch (e) {
+                        alert("Deze browser ondersteunt geen AJAX");
+                    }
+                }
+            }
+        }
+
+        function dataOphalen() {
+            if (xmlHttp) {
+                xmlHttp.open("GET", "http://datasets.antwerpen.be/v4/gis/openbaartoilet.xml");
+                xmlHttp.onreadystatechange = function () {
+                    if( xmlHttp.readyState !=4){
+                        document.getElementById("Tabel").innerHTML = "<tr>pagina wordt geladen</tr>";
+                        
+                    }
+                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                        var xmlDoc = xmlHttp.responseXML;
+                        var records = xmlDoc.getElementsByTagName("record");
+                        var tabel = document.getElementById("Tabel");
+                        var rijen = document.getElementsByTagName("tr");
+                        while(rijen.length > 1){
+                            tabel.children[0].removeChild(rijen[1]);
+                        }
+                        document.getElementById("Tabel").innerHTML ="<thead><tr><th>omschrijving</th><th>adres</th><th>gemeente</th></tr></thead>";
+                        for (var i = 0; i < records.length; i++) {
+                            var record = records[i];
+                            var omschrijving = record.getElementsByTagName("omschrijving")[0].textContent;
+                            var adres = record.getElementsByTagName("straat")[0].textContent +" "+record.getElementsByTagName("huisnummer")[0].textContent;
+                            var gemeente = record.getElementsByTagName("postcode")[0].textContent +" "+record.getElementsByTagName("district")[0].textContent;
+                            
+                            var nieuweRij = tabel.insertRow(i + 1);
+                            var celOmschr = nieuweRij.insertCell(0);
+                            celOmschr.innerHTML = omschrijving;
+                            var celAdres = nieuweRij.insertCell(1);
+                            celAdres.innerHTML = adres;
+                            var celDistrict = nieuweRij.insertCell(2);
+                            celDistrict.innerHTML = gemeente;
+                        }
+                    }
+                }
+                xmlHttp.send();
+            }
+        }
+    </script>
+</head>
+<body onload="loadXMLHttpRequest()">
+    <input type="button" value="Haal XML op" onclick="dataOphalen()" />
+<table id="Tabel" border="0">
+<thead><tr></tr></thead>
+</table>
+</body>
+</html>
