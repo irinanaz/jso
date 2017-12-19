@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
+    <title>The Scriptors Meet &amp; Greet</title>
+    <script>
+        function ajax_post(){
+            // Create our XMLHttpRequest object
+            var hr = new XMLHttpRequest();
+            // Create some variables we need to send to our PHP file
+            var url = "scripts/contact.php";
+            var naam = document.getElementById("naam").value;
+            var ln = document.getElementById("last_name").value;
+            var vars = "bedrijfNaam="+naam+"&bedrijfNaam="+ln;
+            hr.open("POST", url, true);
+            // Set content type header information for sending url encoded variables in the request
+            hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            // Access the onreadystatechange event for the XMLHttpRequest object
+            hr.onreadystatechange = function() {
+                if(hr.readyState == 4 && hr.status == 200) {
+                    var return_data = hr.responseText;
+                    document.getElementById("status").innerHTML = return_data;
+                }
+            }
+            // Send the data to PHP now... and wait for response to update the status div
+            hr.send(vars); // Actually execute the request
+            document.getElementById("status").innerHTML = "processing...";
+        }
+        </script>
+</head>
+
+<body>
+    <!-- <div id="wrapper"> -->
+
+    <header id="menu">
+        <a href="#nowhere" class="navicon"></a>
+
+        <div class="toggle">
+            <header class="toggle_header">
+                <h1>The Scriptors</h1>
+                <h3>Meet &amp; Greet</h3>
+            </header>
+            <ul class="toggle__menu">
+                <li>
+                    <a href="#welcome">Home</a>
+                </li>
+                <li>
+                    <a href="#program">Programma</a>
+                </li>
+                <li>
+                    <a href="#course">Onze Opleiding</a>
+                </li>
+                <li>
+                    <a href="#students">Cursisten</a>
+                </li>
+                <li>
+                    <a href="#register">Inschrijven</a>
+                </li>
+                <li>
+                    <a href="#partners">Partners</a>
+                </li>
+                <li>
+                    <a href="#contact">Contact</a>
+                </li>
+            </ul>
+            <ul class="social">
+                <li>
+                    <a href="https://github.com/">
+                        <i class="fa fa-github"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://vk.com/">
+                        <i class="fa fa-vk"></i>
+                    </a>
+                </li>
+            </ul>
+            <div class="small">blablabla</div>
+        </div>
+    </header>
+    <section id="section1">
+        Welkom/Intro
+    </section>
+    <section id="section2">
+        Programma
+    </section>
+    <section id="section3">
+        Onze Opleiding
+    </section>
+    <section id="section4">
+        Cursisten
+    </section>
+    <section id="section5">
+        Inschrijvingsformulier
+    </section>
+    <section id="section6">
+        Partners
+    </section>
+    <section id="section7">
+        <div id="contact-form">
+            <form  name="frmContact" id="frmContact" class="frmContact" novalidate>
+                <div class="control-group">
+                    <div class="form-group">
+                        <div class="controls">
+                            <input type="text" name="naam" id="naam" class="form-control" placeholder="Naam" required data-validation-required-message="Naam ontbreekt">
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="form-group">
+                        <div class="controls">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="E-mail" required data-validation-email-message="Ongeldig e-mail adres"
+                                data-validation-required-message="E-mail adres ontbreekt">
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="form-group">
+                        <div class="controls">
+                            <input type="text" name="bedrijfNaam" id="bedrijfNaam" placeholder="Bedrijf" required data-validation-required-message="Bedrijfsnaam ontbreekt">
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="form-group">
+                        <div class="controls">
+                            <input type="tel" name="tel" id="tel" class="form-control" placeholder="Telefoon" required data-validation-required-message="Telefoon ontbreekt">
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="form-group">
+                        <div class="controls">
+                            <textarea name="berichtFrm" id="berichtFrm" cols="30" rows="10" class="form-control" placeholder="Bericht" required data-validation-required-message="Bericht ontbreekt"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" id="btnContactFrm" class="btnContactFrm">Verstuur</button>
+                <span id="status"></span>
+            </form>
+            <div id="success"></div>
+        </div>
+    </section>
+    <footer>Footer</footer>
+    <!-- </div> -->
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="scripts/app.js"></script>
+
+
+</html>

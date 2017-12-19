@@ -1,0 +1,24 @@
+/*knoop*/
+.knop {
+font-family: Lato;
+font-style: italic;
+font-weight: 700;
+line-height: 31px;
+font-size: 15px;
+letter-spacing: -.5px;
+color: #1e414e;
+}
+/* <a href="https://" target="_self" class="fw-btn tf-sh-f3868c78f9cf1b54fbdb98546c56b564  fw-btn-sm   fw-btn-2" style="outline: none;" hidefocus="true">
+<span>
+    &nbsp; &nbsp; &nbsp; Event details &nbsp; &nbsp; &nbsp;		</span>
+</a> */
+
+H3{
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 38px;
+    font-size: 36px;
+    letter-spacing: -.5px;
+    color: #1e414e;}
+    

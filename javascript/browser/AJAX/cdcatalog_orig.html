@@ -7,7 +7,7 @@
   var xhttp;
   function loadXMLDoc(filename) {
     if (window.ActiveXObject) {
-      xhttp = new ActiveXObject("Msxml2.XMLHTTP");
+      xhttp = new ActiveXObject("Msxml2.XMLHTTP");// voor IE testen
     }
     else {
       xhttp = new XMLHttpRequest();
@@ -19,8 +19,8 @@
   }
 
   function displayResult() {
-    var xml = loadXMLDoc("cdcatalog.xml");
-    var xsl = loadXMLDoc("cdcatalog.xsl");
+    var xml = loadXMLDoc("cdcatalog.xml");// synchroon. dwz wachten totdat xml volledig geladen is.
+    var xsl = loadXMLDoc("cdcatalog.xsl");// synchroon. dwz wachten totdat xsl volledig geladen is.
     // code for IE
     if (window.ActiveXObject || xhttp.responseType == "msxml-document") {
       var ex = xml.transformNode(xsl);

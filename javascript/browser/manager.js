@@ -3,12 +3,12 @@ window.onload = function() {
 		document.getElementById("output").innerHTML = "Bummer, no Web Workers";
 	}
 	else {
-		var worker = new Worker("worker.js");
+		var worker = new Worker("worker.js");// naam van de file waar de Worker moet in werken
+		// maken een constructor:
+		worker.postMessage("ping");  //postMessage is vast
 
-		worker.postMessage("ping");
-
-		worker.onmessage = function(event) {
-			var message = "Worker says " + event.data;
+		worker.onmessage = function(event) { //onmessage is verplicht->worker is klaar. event is ook.
+			var message = "Worker says " + event.data;// event.data is verplicht-> dat is antwoord van worker.
 			document.getElementById("output").innerHTML = message;
 		}
 		worker.onerror = function(error) {
@@ -16,7 +16,7 @@ window.onload = function() {
 				"There was an error in " + error.filename + 
 				" at line number " + error.lineno +
 				": " + error.message;
-		};
+		};// .data, .filename,.lineno,.message zijn vast gelegd - kunnen we niet kiezen.
 	}
 }
 

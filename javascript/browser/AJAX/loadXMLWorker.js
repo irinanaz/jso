@@ -1,4 +1,4 @@
-onmessage = function (e) {
+onmessage = function (e) { 
    // console.log("worker started for " + e.data);
     loadXML(e.data, function (xhr) {
         postMessage({responseXML: xhr.responseText, responseType: xhr.responseType});   // responseXML is not available in workers!!!
