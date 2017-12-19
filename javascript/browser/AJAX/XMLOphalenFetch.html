@@ -1,57 +1,5 @@
 ﻿<!DOCTYPE html>
 <html>
-<<<<<<< HEAD
-<head>
-    <title>AJAX: XML ophalen</title>
-    <script>
-        var xmlHttp = false;
-        function loadXMLHttpRequest() {
-            try {  // Firefox/Opera/Safari/IE7+
-                xmlHttp = new XMLHttpRequest();
-            }
-            catch (e) {
-                try { // IE5
-                    xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
-                }
-                catch (e) {
-                    try { // IE6
-                        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-                    }
-                    catch (e) {
-                        alert("Deze browser ondersteunt geen AJAX");
-                    }
-                }
-            }
-        }
-
-        function dataOphalen() {
-            
-
-                fetch("ploeg.xml").then(function (response) {
-                   
-                    
-                    return response.text();
-                }).then(function(responseText){
-                    var domParser = new DOMParser();  
-                    doc = domParser.parseFromString(responseText, "application/xml");
-                    var spelers = doc.getElementsByTagName("speler");
-                    var result = "<h1>Overzicht spelers</h1>";
-                    for (var i = 0; i < spelers.length; i++) {
-                            var speler = spelers[i];
-                            var id = speler.attributes["id"].nodeValue;
-                            var naamNodes = speler.getElementsByTagName("naam");
-                            var naam = naamNodes[0].firstChild.nodeValue;
-                            result += "(" + id + ")&nbsp;" + naam + "<br/>";
-                    }
-                    document.getElementById("result").innerHTML = result;
-                })
-                
-            
-        }
-    </script>
-</head>
-<body onload="loadXMLHttpRequest()">
-=======
 
 <head>
     <title>AJAX: XML ophalen met fetch</title>
@@ -77,7 +25,6 @@
 </head>
 
 <body>
->>>>>>> 0904b4d2105237c8696a50c418eaa5bb710fde1e
     <input type="button" value="Haal XML op" onclick="dataOphalen()" />
     <div id="result">
     </div>
