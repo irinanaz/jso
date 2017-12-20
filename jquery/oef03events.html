@@ -5,6 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Google</title>
+    <style>
+     form{
+            
+        display:grid;
+        grid-template-columns: 100px 200px auto;
+        grid-column-gap:  10px;
+        grid-row-gap: 10px;
+    }
+    label{
+        grid-column-start: 1;
+        text-align: right;
+    }
+    input[type=submit]{
+        grid-column-start: 2;
+        
+    }
+    /* #form select, #form input{
+        width:190px;
+    } */
+    
+    </style>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        
+       
+      
+        $(function(){
+            $(':submit', '#form').click(function(evt){
+                
+                let msg="";
+                $('#msg').text('');
+                if($('#q').val()==""){ 
+                    evt.preventDefault();
+                    msg=" veld moet ingevuld zijn"; 
+                    $('#msg').text(msg);
+                }
+               
+                    $('#msgLand').text('');
+                    let msgLand="";
+                    if($('#lr').val()=="lang_fr" && $('#cr').val()=="countryNL"){
+                        evt.preventDefault();
+                        msg=" land en taal fout.. ";
+                        $('#msgLand').text(msg);
+                    
+                }
+            
+                
+               
+            });
+        });
+        
+    
+    </script>
 </head>
 <body>
     <ol>
@@ -17,5 +70,21 @@
         <li>Je kunt in Google zoeken naar websites in een bepaald land via name=cr. Mogelijke landen zijn 'countryBE', 'countryNL', 'countryFR'.... Voeg een select-element toe waarmee je kunt kiezen tussen België, Nederland, Frankrijk en alle landen </li>
         <li>Zorg ervoor dat er een foutmelding verschijnt wanneer iemand probeert te zoeken naar Franstalige websites in Nederland.</li>
     </ol>
+    <form id="form" name="form" action="https://www.google.be/search">
+        <Label for="q">Zoekterm:</label>
+        <input type="text" name="q" id="q"/><span id="msg"></span>
+        <label for="lr">Taal:</label>
+        <select name="lr" id ="lr">
+            <option  value="lang_nl">Nederlands</option>
+            <option  value="lang_fr">Frans</option>
+        </select><span id="msgLand"></span>
+        <label for="cr">Land:</label>
+        <select name="cr" id ="cr">
+            <option  value="countryBE">België</option>
+            <option  value="countryNL">Nederland</option>
+            <option  value="countryFR">Frankrijk</option>
+        </select>
+        <input type="submit" name="btnVerzenden" value="Verzenden"/>
+    </form>
 </body>
 </html>

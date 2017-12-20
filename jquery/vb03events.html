@@ -10,38 +10,44 @@
         /*$(document).ready(function(){ //voor oudere mensen
             console.log($('h1').text());
         });*/
-        /*$(function(){ //aangeraden voor jonge, hippe mensen
+        $(function(){ //aangeraden voor jonge, hippe mensen
             console.log($('h1').text());
-        });*/
+        });
         /*$(() => { //aangeraden voor jonge, hippe mensen die willen opscheppen
           console.log($('h1').text());
         });*/
-        /*$(function(){
+        $(function(){
             $('#btn').click(function(){ //de functie wordt uitgevoerd wanneer er geklikt wordt op de knop
                 alert('Wie heb ik aan de lijn, hallo, hallo?');
             });
-        });*/
-        /*$(function(){  //we kunnen klikken op eender welk element
+        });
+        $(function(){  //we kunnen klikken op eender welk element
             $('h1').click(function(){
                 $(this).text('Aaaauw'); //this verwijst naar het element zelf
             });
-        });*/
-        /*$(function(){
+        });
+        $(function(){
             $(':submit', '#form').click(function(evt){
-                evt.preventDefault();// we willen geen form submit
+                evt.preventDefault();
+                // we willen geen form submit- we willen dat de submit doet onze instructies ipv standaarte.
+
                 let naam = $('#txtNaam').val();
                 let $li = $('<li>').text(naam);
                 $('#namen').append($li);
+                $('#txtNaam').val(''); // om input leeg te maken
             });
-        });*/
-        /*$(function(){
+        });
+        $(function(){
             $('input[type!=submit]', '#form').mouseenter(function(){
                 $(this).css('background-color', 'red');
             });
             $('input[type!=submit]', '#form').mouseleave(function(){
+                //om meerdere stijlen door te geven{code als in css file}
                 $(this).css('background-color', 'white');
             });
-        });*/
+        });
+/* als je enkele dom moet hebben om verder te gaan:
+document.addEventListener("DOMContentLoaded,function(){    }");*/
     </script>
 </head>
 <body>
@@ -54,5 +60,7 @@
   </form>
   <ul id="namen">
   </ul>
+
 </body>
 </html>
+
