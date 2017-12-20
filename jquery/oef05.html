@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Google</title>
+    <style>
+     form{
+            
+        display:grid;
+        grid-template-columns: 100px 100px auto;
+        grid-column-gap:  10px;
+        grid-row-gap: 10px;
+    }
+    label{
+        grid-column-start: 1;
+        text-align: right;
+    }
+    input{
+        grid-column-start: 2;
+        
+    }
+    /* table{grid-column-start:1; 
+        grid-column-end: 3;
+    } */
+    /* td {
+        width: 100px; 
+    } */
+    /* #form select, #form input{
+        width:190px;
+    } */
+    @media only screen and (max-width: 440px) {
+            
+            form{background: #ccc;
+                grid-template-columns: 100%;
+                padding:10px;
+            }
+            label{
+            grid-column-start: 1;
+            text-align: center;
+        }
+        input[type=submit]{
+            grid-column-start: 1;
+        }
+        /* table{grid-column-start:1; 
+        grid-column-end: 2; */
+    }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        
+     
+      
+$(function(){
+    $(':button', '#form').click(function(evt){
+                
+        let msg="";
+        $('#msg').text('');
+        if($('#idItem').val()==""){ 
+            evt.preventDefault();
+            msg=" veld moet ingevuld zijn"; 
+            $('#msg').text(msg);
+        }
+        var item=$('#idItem').val();   
+        var prijs=$('#idPrijs').val();    
+        voegRij(item,prijs);
+    $('#idItem').val('');
+    $('#idPrijs').val('');
+    // if ($('idItems').length==0){
+    //     $('#idItems').th.text('je hebt 0 items totaal');
+    // }
+    telTotaal(item,prijs);           
+           
+    });
+});
+function voegRij(i,p){
+    let $tr = $('<tr>');
+    
+    let $tdItem = $('<td>').text(i);
+    let $tdPrijs = $('<td class="prijs">').text(p);
+    let $tdDel = $('<td>');
+    let $del =$('<input type="button" value="verwijderen"/>');
+    $tdDel.append($del);
+    $tr.append($tdItem);
+    $tr.append($tdPrijs);
+    $tr.append($tdDel);
+    $('#idItems').append($tr);
+    $('#txtNaam').val('');
+    $del.click(function(evt){
+        //console.dir($(this).parent());
+    $(this).parent().parent().remove();
+    telTotaal();
+
+    });
+}     
+function telTotaal(){
+    totaalItems = $('td[class="prijs"]').length;
+    //console.log(totaalItems);
+    var totaal = 0;
+    $('td[class="prijs"]').each((index, el) => totaal += parseFloat($(el).html()));
+    $('#idTotaal').text("Totaal items: "+totaalItems+". Totaal prijs:"+ totaal +" euro.");
+
+}
+</script>
+</head>
+<body>
+    
+    <form id="form" name="form" >
+        <Label for="idItem">Naam:</label>
+        <input type="text" name="Item" id="idItem"/><span id="msg"></span>
+        <label for="idPrijs">Prijs:</label>
+        <input type="number" name="prijs" id ="idPrijs">
+            
+        
+        <input type="button" id="btn" value="Toevoegen"/>
+    <table id="idItems">
+        <th></th>
+    </table>
+    
+    </form>
+    <br>
+<div id="idTotaal"></div>
+</body>

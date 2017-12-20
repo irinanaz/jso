@@ -24,7 +24,20 @@
     /* #form select, #form input{
         width:190px;
     } */
-    
+    @media only screen and (max-width: 440px) {
+            
+            form{background: #ccc;
+                grid-template-columns: 100%;
+                padding:10px;
+            }
+            label{
+            grid-column-start: 1;
+            text-align: center;
+        }
+        input[type=submit]{
+            grid-column-start: 1;
+        }
+    }
     </style>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script>
