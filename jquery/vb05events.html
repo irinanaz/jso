@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Producten</title>
+    <style>
+            form{
+                display:grid;
+                grid-template-columns: 100px 100px auto;
+                grid-row-gap: 10px;
+                grid-column-gap: 10px;
+            }
+            label{
+                grid-column-start: 1;
+                text-align: right;
+            }
+            input[type=button]{
+                grid-column-start: 2;
+            }
+            table{
+                width:305px;
+            }
+           
+            table td{
+                width:33%;
+            }
+            table td:nth-child(2), table th:nth-child(2){
+                text-align: right;
+            }
+            .verborgen{
+                display:none;
+            }
+        </style>
+    
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        let producten=[];
+        let $tabel;
+        $(function(){
+            $(':button', '#frm').click(function(){
+                let naam = $('#naam').val();
+                let prijs = parseInt($('#prijs').val());
+                let p = new Product(naam, prijs);
+                zetProductInTabel(p);
+                producten.push(p);
+                berekenTotaal();
+                $('#naam').val('');
+                $('#prijs').val('');
+            });
+            $tabel = $('#producten');
+        });
+        function berekenTotaal(){
+            if (producten.length >0){
+                $('#producten').removeClass('verborgen')
+            }else{
+                $('#producten').addClass('verborgen');
+            }
+            let sum = 0;
+            producten.forEach(element => {
+                sum += element.prijs;
+            });
+            $('#totaal').text(sum);
+        }
+        function zetProductInTabel(product){
+            $tdnaam = $('<td>').text(product.naam);
+            $tdprijs= $('<td>').text(product.prijs);
+            $tdbutton = $('<td>').html('<button>Verwijderen</button>');
+            $('button', $tdbutton).click({rij:producten.length}, function(evt){
+                producten.splice(evt.data.rij,1);
+                $($('tr', $tabel)[evt.data.rij+1]).remove(); //rekening houden met <tr><th>
+                berekenTotaal();
+            });
+            $tr = $('<tr>').append($tdnaam).append($tdprijs).append($tdbutton);
+            $laatste = $('#laatste');
+            $laatste.before($tr);
+        }
+        function Product(naam, prijs){
+            this.naam = naam;
+            this.prijs = prijs;
+        }
+    </script>    
+</head>
+<body>
+    <form id="frm">
+        <label for="naam">Naam:</label>
+        <input type="text" id="naam" />
+        <label for="prijs">Prijs:</label>
+        <input type="number" id="prijs"/>
+        <input type="button" value="Toevoegen"/>
+    </form>
+    <table id="producten" class="verborgen">
+        <tr><th>Naam</th><th>Prijs</th><th></th></tr>
+    <tr id="laatste"><td>Totaalprijs:</td><td id="totaal">0</td><td></td></tr>
+    </table>
+</body>
+</html>
