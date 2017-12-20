@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JQuery selectors</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.1.1.js"></script>-->
+</head>
+<body>
+    <ul>
+        <li class="active">Eerste</li>
+        <li>Tweede</li>
+    </ul>
+    <p id="start">Dit is de start</p>
+    <p>Dit is de laatste paragraaf op
+        <time datetime="2017-01-01">1/01/2017</time>
+    </p>
+    <script>
+        console.dir(jQuery); //jQuery object
+        //console.dir($);        //verkorte versie jQuery object
+        //console.log($('ul').html()); //innerHTML van ul
+        //console.log($('ul').text()); //textContent van ul
+        //console.log($('p')); // alle p-elementen
+        //console.log($('p').text()); // textContent van alle p-elementen
+        //console.log($('p').html()); // innerHTML van EERSTE p-elementen
+        //$('p').text('vervangen'); // vervangt text van ELK p-element 
+        //$('p').each((index, el) => console.log($(el).html())); // http://api.jquery.com/each/
+        //console.log($('#start').text()); // innerHTML van p#start
+        //console.log($('.active').text()); //textContent van alle elementen met class .active
+        //console.log($('[datetime]').text()); // textContent van alle elementen met datetime attribuut
+        //console.log($(('[datetime=2017-01-01]')).text()); //textContent van elementen met datetime attribuut = '2017-01-01'
+        //console.log($('[datetime!=2017-01-01]').text()); //textContent van alle elementen zonder datetime = 2017-01-01
+        //console.log($('li:last-child').text());//textContent van alle li-elementen die last child zijn
+        //console.log($('ul').find('li').text()); //textContent van alle li in ul
+        //console.log($('ul>li').text()); //textContent van alle li in ul
+        //console.log($('li', 'ul').text());//textContent van alle li in een ul-context (omgeving)
+        //console.log($('p:contains("laatste")').text()); // p-element met tekst "laatste"
+        /*let $li = $('li'); // jQuery objecten
+        let liElement = $li[0]; // eerste li als DOM-object
+        console.log(liElement.innerHTML);
+        console.log($(liElement).html()); // en terug een jQUery element*/
+    </script>
+</body>
+</html>

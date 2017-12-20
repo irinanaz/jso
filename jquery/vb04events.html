@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Google</title>
+    <style>
+        form{
+            display:grid;
+            grid-template-columns: 100px 100px auto;
+            grid-row-gap: 10px;
+            grid-column-gap: 10px;
+        }
+        label{
+            grid-column-start: 1;
+            text-align: right;
+        }
+        input[type=submit]{
+            grid-column-start: 2;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>    
+    <script>
+    $(function(){
+            $(':submit','#frm').click(function(evt){
+                let tekst = $('#q').val();
+                if (tekst === ""){
+                    $('#verplichterror').text('U moet een tekst invullen');
+                    evt.preventDefault();
+                }else{
+                    $('#verplichterror').text('');
+                }
+                let taal = $('#lr').val();
+                let land = $('#cr').val();
+                if (taal === "lang_fr" && land === "countryNL"){
+                    evt.preventDefault();
+                    $('#landerror').text('U kunt geen franse websites zoeken in Nederland');
+                }else{
+                    $('#landerror').text('');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <ol>
+        <li>Maak een form waarmee je in Google kunt zoeken</li>
+        <li>Voeg na het inputveld een span-toe waarin je een foutmelding kunt zetten</li>
+        <li>Test bij het klikken op de knop of het inputveld is ingevuld. Wanneer
+            dat niet het geval is, moet je een foutmelding tonen en mogen de form gegevens niet verstuurd worden.
+        </li>
+        <li>Je kunt in Google zoeken op een bepaalde taal via name=lr. Mogelijke talen zijn 'lang_nl', 'lang_fr', .... Voeg een select-element toe waarmee je kunt kiezen tussen Nederlands, Frans en alle talen (value="")</li>
+        <li>Je kunt in Google zoeken naar websites in een bepaald land via name=cr. Mogelijke landen zijn 'countryBE', 'countryNL', 'countryFR'.... Voeg een select-element toe waarmee je kunt kiezen tussen België, Nederland, Frankrijk en alle landen </li>
+        <li>Zorg ervoor dat er een foutmelding verschijnt wanneer iemand probeert te zoeken naar Franstalige websites in Nederland.</li>
+    </ol>
+    <form id="frm" action="https://www.google.be/search">
+        <label for="q">Zoekterm</label>
+        <input type="text" name="q" id="q"/><span id="verplichterror"></span>
+        <label for="lr">Taal:</label>
+        <select name="lr" id="lr">
+            <option value="">Alle talen</option>
+            <option value="lang_nl">Nederlands</option>
+            <option value="lang_fr">Frans</option>
+        </select>
+        <label for="cr">Land:</label>
+        <select name="cr" id="cr">
+            <option value="">Alle landen</option>
+            <option value="countryBE">België</option>
+            <option value="countryFR">Frankrijk</option>
+            <option value="countryNL">Nederland</option>
+        </select>
+        <span id="landerror"></span>
+        <input type="submit" value="Verzenden"/>
+    </form>
+</body>
+</html>

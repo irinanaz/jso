@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM tree manipulatie</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+    <ul>
+        <li class="active">Eerste</li>
+        <li>Tweede</li>
+    </ul>
+    <p id="start">Dit is de start</p>
+    <p>Dit is de laatste paragraaf op
+        <time datetime="2017-01-01">1/01/2017</time>
+    </p>
+    <script>
+        /*let $li = $('<li>'); // maak nieuw li element
+        $li.text('Derde'); //zet tekst
+        $('ul').append($li); // voeg nieuw element toe aan ul*/
+        
+        //$('#start').before($('<p>').text('Nee, dit is de start')); // zet een nieuw p-element voor #start
+        //$('ul').css('list-style','none');//list style van alle ul-elementen wordt afgezet
+    </script>
+</body>
+</html>
