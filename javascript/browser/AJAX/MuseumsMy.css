@@ -1,0 +1,18 @@
+body{
+    margin:40px;
+}
+fieldset{
+    border:1 px;
+    background: #eee;
+}
+div#mapA, div#mapB {
+    display: inline-block;
+	margin: 5px;
+	width: 400px;
+	height: 400px;
+    border: 1px solid black;
+    text-align: center;
+}
+.focusedRow{
+    background: #ccc;
+}
