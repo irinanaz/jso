@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>oefening AJAX - musea 6</title>
+  <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <script>
+    function Museum(stad, naam, adres, lat, long) {
+      this.stad = stad;
+      this.naam = naam;
+      this.adres = adres;
+      this.lat = lat;
+      this.long = long;
+    }
+  </script>
+  <style>
+    .map {
+      margin: 5px;
+      width: 400px;
+      height: 400px;
+      border: 1px solid black;
+      display: inline-block;
+    }
+
+    .mapMetBijschrift {
+      display: inline-block;
+      text-align: center;
+    }
+
+    .gemarkeerdeRij {
+      background-color: #CFCFCF;
+      padding: 0px;
+    }
+
+    #knoppen {
+      margin: auto;
+      width: 50%;
+    }
+
+    button {
+      width: 75px;
+      margin: 10px;
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+  </style>
+</head>
+
+<body onload="dataOphalen()">
+  <h1>Musea in Antwerpen en Brussel (met map)</h1>
+  <h2>(oplossing met jQuery)</h2>
+  <div id="knoppen">
+    <button id="btnRefresh" onclick="dataOphalen()">Refresh</button>
+    <button id="btnVorig" onclick="naarVorig()">Vorig</button>
+    <button id="btnVolgend" onclick="naarVolgend()">Volgend</button>
+  </div>
+  <div class="mapMetBijschrift">
+    <div>
+      <strong>Antwerpen</strong>
+    </div>
+    <div id="mapApen" class="map"></div>
+  </div>
+  <div class="mapMetBijschrift">
+    <div>
+      <strong>Brussel</strong>
+    </div>
+    <div id="mapBxl" class="map"></div>
+  </div>
+  <div id="txtHintApen"></div>
+  <div id="txtHintBxl"></div>
+  <table>
+    <thead id="tableHead"></thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+  <script>
+    var map = [];
+    var huidig = 0;
+    var musea = [];
+    var eersteGezet = false;
+
+    function naarVorig() {
+      if (huidig > 0) {
+        bewerkRij(huidig, ontkleurRij, "gemarkeerdeRij");
+        bewerkRij(--huidig, kleurRij, "gemarkeerdeRij");
+        zoomIn(huidig);
+        enableKnoppen();
+      }
+    }
+
+    function naarVolgend() {
+      if (huidig < musea.length - 1) {
+        bewerkRij(huidig, ontkleurRij, "gemarkeerdeRij");
+        bewerkRij(++huidig, kleurRij, "gemarkeerdeRij");
+        zoomIn(huidig);
+        enableKnoppen();
+      }
+    }
+
+    function enableKnoppen() {
+      // property disabled werkt niet in FF en Chrome
+      if (huidig == 0) {
+        $("#btnVorig").attr("disabled", "disabled");
+      }
+      else {
+        $("#btnVorig").removeAttr("disabled");
+      }
+      if (huidig == musea.length - 1) {
+        $("#btnVolgend").attr("disabled", "disabled");
+      }
+      else {
+        $("#btnVolgend").removeAttr("disabled");
+      }
+    }
+
+    function kleurRij(rij, stijl) {
+      rij.addClass(stijl);
+    }
+
+    function ontkleurRij(rij, stijl) {
+      rij.removeClass(stijl);
+    }
+
+    function bewerkRij(rijIndex, fie, stijl) {
+      var rij = $("#tableBody tr:nth-child(" + (rijIndex + 1) + ")")
+      fie(rij, stijl);
+    }
+
+    function zoomIn(huidig) {
+      var museum = musea[huidig];
+      var mapId;
+      if (museum.stad == "Antwerpen") {
+        mapId = "mapApen";
+      }
+      else {
+        mapId = "mapBxl";
+      }
+      map[mapId].setCenter(new google.maps.LatLng(museum.lat, museum.long));
+      map[mapId].setZoom(15);
+    }
+
+    function dataOphalen() {
+      musea = [];
+      huidig = 0;
+      eersteGezet = false;
+      document.getElementById("txtHintApen").innerHTML = "De gegevens van Antwerpen worden opgehaald...";
+      document.getElementById("txtHintBxl").innerHTML = "De gegevens van Brussel worden opgehaald...";
+      maakTableHeader();
+      museaOphalen("http://datasets.antwerpen.be/v4/gis/museumoverzicht.xml", museaApenTonen);
+      museaOphalen("http://opendata.brussel.be/api/records/1.0/search/?dataset=musea-in-brussel&rows=100", museaBxlTonen);
+    }
+
+    function maakTableHeader() {
+      var theader = $("#tableHead");
+      theader.html("");
+      var headerRow = $("<tr></tr>");
+      theader.append(headerRow);
+      var cell0 = $("<td></td>").html("<th class='sort_asc'>stad<span></span></th>");
+      theader.append(cell0);
+      var cell1 = $("<td></td>").html("<th>museum<span></span></th>");
+      theader.append(cell1);
+      var cell2 = $("<td></td>").html("<th>adres<span></span></th>");
+      theader.append(cell2);
+      koppelEventHandlersAanClickKolomhoofdingen();
+    }
+
+    function koppelEventHandlersAanClickKolomhoofdingen() {
+      $("th").each(function (i) {
+        let kol = i;
+        $(this).on("click", function () {
+          var huidigMuseum = musea[huidig];
+          var factor;
+          $(this).toggleClass("sort_asc");
+          $(this).toggleClass("sort_desc");
+          if ($(this).hasClass("sort_desc")) {
+            factor = -1;
+            $(this).find("span:first-child").html("&nbsp;▴");
+          }
+          else {
+            factor = 1;
+            $(this).find("span:first-child").html("&nbsp;▾");
+          }
+          sorteer(kol, factor);
+          verwijderSorteringTableHeadersBehalve(kol);
+          $("#tableBody").html("");
+          for (var j = 0; j < musea.length; j++) {
+            addRow(j, musea[j].stad, musea[j].naam, musea[j].adres);
+          }
+          huidig = musea.indexOf(huidigMuseum);
+          bewerkRij(huidig, kleurRij, "gemarkeerdeRij");
+          enableKnoppen();
+        });
+      });
+    }
+
+    function verwijderSorteringTableHeadersBehalve(kolomNr) {
+      $("th").each(function (i) {
+        if (i != kolomNr) {
+          $(this).removeAttr("class");
+          $(this).find("span:first-child").html("");
+        }
+      });
+    }
+
+    function sorteer(kolomNr, factor) {
+      switch (kolomNr) {
+        case 0: musea.sort((museum1, museum2) => factor * museum1.stad.localeCompare(museum2.stad));
+          break;
+        case 1: musea.sort((museum1, museum2) => factor * museum1.naam.localeCompare(museum2.naam));
+          break;
+        case 2: musea.sort((museum1, museum2) => factor * museum1.adres.localeCompare(museum2.adres));
+          break;
+      }
+    }
+
+    function museaOphalen(url, fie) {
+      $.get(url, function (data) {
+        fie(data);
+        if (!eersteGezet) {
+          bewerkRij(0, kleurRij, "gemarkeerdeRij");
+          eersteGezet = true;
+        }
+        enableKnoppen();
+      });
+    }
+
+    function museaApenTonen(xmlDOM) {
+      $("#txtHintApen").html("");
+      var records = xmlDOM.getElementsByTagName('record');
+      var $records = $(xmlDOM).find("record");
+      showMap("mapApen", $records.first().find("point_lat").text(),
+        $records.first().find("point_lng").text());
+      $records.each(function (i) {
+        var naam = $(this).find("naam").text();
+        var adres = $(this).find("straat").text() + " " +
+          $(this).find("huisnummer").text();
+        var lat = $(this).find("point_lat").text();
+        var long = $(this).find("point_lng").text();
+        addRow(musea.length, "Antwerpen", naam, adres /*, lat, long */);
+        var content = "<strong>" + naam + "</strong><br/>" + adres;
+        addMarker(map["mapApen"], new google.maps.LatLng(lat, long), naam, content);
+        musea.push(new Museum("Antwerpen", naam, adres, lat, long));
+      });
+    }
+
+    function museaBxlTonen(jsonObj) {
+      $("#txtHintBxl").html("");
+      var arr = jsonObj.records;
+      showMap("mapBxl", arr[0].fields.latitude_breedtegraad, arr[0].fields.longitude_lengtegraad);
+      for (var i = 0; i < arr.length; i++) {
+        addRow(musea.length, "Brussel", arr[i].fields.naam_van_het_museum,
+          arr[i].fields.adres /*, 
+        arr[i].fields.latitude_breedtegraad, arr[i].fields.longitude_lengtegraad*/
+        );
+        var title = arr[i].fields.naam_van_het_museum;
+        var content = "<strong>" + title + "</strong><br/>" + arr[i].fields.adres;
+        var lat = arr[i].fields.latitude_breedtegraad;
+        var long = arr[i].fields.longitude_lengtegraad;
+        addMarker(map["mapBxl"], new google.maps.LatLng(lat, long), title, content);
+        musea.push(new Museum("Brussel", arr[i].fields.naam_van_het_museum, arr[i].fields.adres, lat, long));
+      }
+    }
+
+    function addRow(rijIndex, stad, naam, adres /*, lat, long*/) {
+      var table = $("#tableBody");
+      var row = $("<tr></tr>");
+      table.append(row);
+      var cell0 = $("<td></td>").html(stad);
+      row.append(cell0);
+      var cell1 = $("<td></td>").html(naam);
+      row.append(cell1);
+      var cell2 = $("<td></td>").html(adres);
+      row.append(cell2);
+      /*
+      var cell3 = $("<td></td>").html(lat);
+      row.append(cell3);
+      var cell4 = $("<td></td>").html(long);
+      row.append(cell4);
+      */
+      row.on("click", function () {
+        bewerkRij(huidig, ontkleurRij, "gemarkeerdeRij");
+        bewerkRij(rijIndex, kleurRij, "gemarkeerdeRij");
+        huidig = rijIndex;
+        zoomIn(huidig);
+        enableKnoppen();
+      });
+    }
+
+    function showMap(idMap, lat, long) {
+      var googleLatAndLong = new google.maps.LatLng(lat, long);
+      var mapOptions = {
+        zoom: 10,
+        center: googleLatAndLong,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      var mapDiv = document.getElementById(idMap);
+      map[idMap] = new google.maps.Map(mapDiv, mapOptions);
+    }
+
+    function addMarker(map, latlong, title, content) {
+      var markerOptions = {
+        position: latlong,
+        map: map,
+        title: title,
+        clickable: true
+      };
+      var marker = new google.maps.Marker(markerOptions);
+      var infoWindowOptions = {
+        content: content,
+        position: latlong
+      };
+      var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+      google.maps.event.addListener(marker, 'click', function () {
+        infoWindow.open(map);
+      });
+    }
+
+  </script>
+
+</body>
+
+</html>
