@@ -67,9 +67,9 @@
             $tdnaam = $('<td>').text(product.naam);
             $tdprijs= $('<td>').text(product.prijs);
             $tdbutton = $('<td>').html('<button>Verwijderen</button>');
-            $('button', $tdbutton).click({rij:producten.length}, function(evt){
-                producten.splice(evt.data.rij,1);
-                $($('tr', $tabel)[evt.data.rij+1]).remove(); //rekening houden met <tr><th>
+            $('button', $tdbutton).click(producten.length, function(evt){
+                producten.splice(evt.data,1);
+                $($('tr', $tabel)[evt.data+1]).remove(); //rekening houden met <tr><th>
                 berekenTotaal();
             });
             $tr = $('<tr>').append($tdnaam).append($tdprijs).append($tdbutton);

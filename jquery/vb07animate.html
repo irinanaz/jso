@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vallend fruit</title>
+    <style>
+        #container{
+            display: flex;
+            flex: row nowrap;
+            justify-content: space-between;
+        }
+        #container div{
+            width:100px;
+            height: 100px;
+            position: relative;
+        }
+        #container div img{
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+   <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+   <script>
+       $(function(){
+            $('#container div').click(function(){
+                $(this).animate({top: "500px"},1500, 'easeOutBounce', function(){
+                    $(this).css('transform', 'rotate(30deg)');
+                });
+            });
+       });
+    </script>
+</head>
+<body>
+    <div id="container">
+        <div><img src="teacher-apple-clipart-4.png"/></div>
+        <div><img src="teacher-apple-clipart-4.png"/></div>
+        <div><img src="teacher-apple-clipart-4.png"/></div>
+        <div><img src="teacher-apple-clipart-4.png"/></div>
+        <div><img src="teacher-apple-clipart-4.png"/></div>
+        <div><img src="teacher-apple-clipart-4.png"/></div>
+        <div><img src="teacher-apple-clipart-4.png"/></div>
+        <div><img src="teacher-apple-clipart-4.png"/></div>
+        <div><img src="teacher-apple-clipart-4.png"/></div>
+        <div><img src="teacher-apple-clipart-4.png"/></div>
+    </div>
+</body>
+</html>
