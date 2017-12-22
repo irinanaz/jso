@@ -21,9 +21,16 @@
     src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script>
         $(function(){
+            $('rood').hover(function(){
+                $(this).hide(); // constant hover effect op scherm door de verbergen en showen van element
+            },
+                function(){
+                    $(this).show();
+                }
+            );
             //$('#rood').slideDown(5000);
             //$('#foto').show(5000);
-            //$('#rood').show(5000);
+            $('#rood').show(5000);
             //$('#foto').hide();
             //$('#foto').show();
             //$('#rood').fadeIn(2000);
