@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JQuery Ajax client</title>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(function(){
+            $('#btnget').click(function(){
+                $.ajax('http://localhost:8080/namen',{
+                    method: 'GET',
+                    dataType: 'json',
+                }).done(function(data){
+                    console.log(data);
+                }).fail(function(obj, error, msg){
+                    console.dir(msg);
+                })
+            });
+            $('#btnget1').click(function(){
+                $.ajax('http://localhost:8080/namen',{
+                    method: 'GET',
+                    dataType: 'json',
+                    data: {id: 1}
+                }).done(function(data){
+                    console.log(data);
+                }).fail(function(obj, error, msg){
+                    console.dir(msg);
+                })
+            });
+            $('#btngetjson').click(function(){
+                $.getJSON('http://localhost:8080/namen',{
+                    data:{id:2}
+                }).done(function(data){
+                    console.dir(data);
+                }).fail(function(obj, err, msg){
+                    console.log(msg)  ;
+                })
+            });
+            $('#btndelete').click(function(){
+                $.ajax('http://localhost:8080/namen?id=3',{
+                    method: 'DELETE',
+                }).done(function(){
+                    console.log('item is gedelete');
+                }).fail(function(obj, error, msg){
+                    console.log(msg);
+                })
+            });
+            $('#btnpost').click(function(){
+                $.ajax('http://localhost:8080/namen',{
+                    method:'POST',
+                    data:JSON.stringify({id: 4, voornaam: 'Josje', achternaam: 'Huisman'})
+                    
+                }).done(function(){
+                    console.log('item is toegevoegd');
+                }).fail(function(obj, error, msg){
+                    console.log(msg);
+                })
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id='btnget'>Get</button>
+    <button id="btnget1">Get eerste</button>
+    <button id="btngetjson">Get via $.getJSON</button>
+    <button id="btndelete">Delete</button>
+    <button id="btnpost">Post</button>
+</body>
+</html>
