@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #zangeres{
+            display: grid;
+            grid-template-columns: 100px 200px
+        }
+        #zangereserror{
+            grid-column: 2;
+            color: red;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(function(){
+            $('#btnget').click(function(){
+                $.ajax('http://localhost:8080/namen',{
+                    method: 'GET',
+                    dataType: 'json'
+                }).done(function(data){
+                    let $tbody = $('tbody', '#tabel');
+                    //$tbody.html('');
+                    $tbody.empty();
+                    for(let i=0; i<data.length; i++){
+                        console.log(data[i]);
+                        let $rij = $('<tr>');
+                        let $tdId = $('<td>').append(data[i].id);
+                        let $tdVoornaam = $('<td>').text(data[i].voornaam);
+                        let $tdAchternaam = $('<td>').text(data[i].achternaam);
+                        let $button = $('<button>').text('Verwijderen').attr('data-id', data[i].id);
+                        $button.click(function(){
+                            console.dir($(this).data('id'));
+                            deleteZangeres(data[i].id);
+                        })
+                        let $tdbutton = $('<td>').append($button);
+                        $rij.append($tdId).append($tdVoornaam).append($tdAchternaam).append($tdbutton);
+                        //
+                        //alternatief
+                        //
+                        //$rij.html('<td>'+data[i].id + '</td><td>'+data[i].voornaam+'</td><td>'+ data[i].achternaam+'</td>');
+                        $tbody.append($rij);
+                    }
+                }).fail(function(obj, err, msg){
+                    console.dir(msg);
+                })
+            })
+            $('#btngetid').click(function(){
+                let idwaarde = parseInt($('#inputid').val());
+                $.ajax('http://localhost:8080/namen',{
+                    method: 'GET',
+                    dataType: 'json',
+                    data: { id: idwaarde}
+                }).done(function(data){
+                    $('#zangeresid').text(data.id);
+                    $('#zangeresvoornaam').text(data.voornaam);
+                    $('#zangeresachternaam').text(data.achternaam);
+                    $('#zangereserror').text('');
+                }).fail(function(obj, err, msg){
+                    $('#zangereserror').text(msg);
+                });
+            });
+            $('#btndelete').click(function(){
+               deleteZangeres(3);
+            });
+        })
+        function deleteZangeres(id){
+            $.ajax('http://localhost:8080/namen?id='+id,{
+                    method:'DELETE',
+                    dataType: 'json'
+                }).done(function(data){
+                    console.log(data);
+                }).fail(function(obj, err, msg){
+                    console.log(msg);
+                });
+        }
+    </script>
+</head>
+<body>
+    <button id='btnget'>Get data</button>
+    <button id='btndelete'>Delete zangeres</button>
+    <form>
+        <button type="button" id='btngetid'>Get data via id</button>
+        <input type="number" min="0" id="inputid"/>
+    </form>
+    <div id="zangeres">
+        <span>Id:</span><span id="zangeresid"></span>
+        <span>Voornaam:</span><span id="zangeresvoornaam"></span>
+        <span>Achternaam: </span><span id="zangeresachternaam"></span>
+        <span id="zangereserror"></span>
+    </div>
+    <table id='tabel'>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Voornaam</th>
+                <th>Achternaam</th>
+                <th>Actie</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
+</html>
