@@ -44,7 +44,7 @@ function processGet(req, res){
         console.log('zangeres: ' + zangeres);
         if (zangeres !== undefined){
             res.writeHead(200);
-            res.write(JSON.stringify({status: 'element verwijderd'}));
+            
             res.end(JSON.stringify(zangeres));
         }else{
             res.writeHead(404, 'Niet gevonden');
@@ -85,6 +85,7 @@ function processDelete(req, res){
         namen.splice(idIndex, 1);
         
         res.writeHead(200);
+        res.write(JSON.stringify({status: 'element verwijderd'}));
         res.end();
     }else{
         res.writeHead(403, 'niet gevonden');

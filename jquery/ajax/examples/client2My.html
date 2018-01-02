@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(function(){ //deze functie als de pagina volledig geladen is 
+            $('#btnget').click(function(){  //klik event voor de knop
+                $.ajax('http://localhost:8080/namen',{
+                    method:'GET',
+                    dataType: 'json'
+                }).done(function(data){ 
+                    let $tbody = $('tbody','#tabel');
+                     // als file  volledig opgehaald wordt, dan pas functie w uitgevoerd.
+                     // dir drukt de object zelf, log maakt soms een string van object en toont.
+                    $tbody.html("");
+                     // of $tbody.empty();
+                     //  $tbody.detach() zonder parameter verwijdert ook de tag tabel zelf ook. niet dus.werkt als remove.
+                    for(var i=0;i<data.length;i++){
+                        let $rij=$('<tr>');
+                        console.dir(data[i]);
+                        $rij.html('<td>'+data[i].id+'</td><td>'+data[i].voornaam+'</td><td>'+data[i].achternaam+'</td>');
+                        $tbody.append($rij);
+                    }
+            
+
+            }).fail(function(obj,err,msg){ // als aanvraag misloopt
+                  
+                    console.dir(msg);
+                })
+            })
+            $('#btngetid').click(function(){
+                var idIn=parseInt($('#idInput').val());
+                $.ajax('http://localhost:8080/namen',{
+                    method:'GET',
+                    dataType: 'json',
+                    data:{id: idIn}// bepaalde gegevens onder Id.
+                }).done(function(data){
+                    
+                        
+                        
+                        console.dir(data);
+                        $('#res').html(data.id+'\t '+data.voornaam+'\t '+data.achternaam);
+                        
+                    
+                }).fail(function(obj,err,msg){
+                    $('#res').html('geen data gevonden');
+                });
+            });
+            $('#btndelete').click(function(){
+                $.ajax('http://localhost:8080/namen?id=3',{
+                    method:'DELETE',
+                    dataType:'json'
+                }).done(function(data){
+                    console.log(data);
+                }).fail(function(obj, err, msg){
+                    console.log(msg);
+                });
+            });
+        })
+    
+    
+    </script>
+</head>
+<body>
+    <label for ="idInput"></label><input type="number" min="0" id="idInput"/> 
+    <div id="res">&nbsp;
+    </div>
+    <button id="btngetid">Get data by id</button><br/>
+    <button id="btndelete">delete data</button>  
+    <button id="btnget">Get data</button> 
+    <table id="tabel">
+       <tr>
+           <th>Id</th>
+           <th>Voornaam</th>
+           <th>Achternaam</th>
+       </tr>
+   </table>
+</body>
+</html>
