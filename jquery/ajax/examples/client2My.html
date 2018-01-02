@@ -19,10 +19,30 @@
                     $tbody.html("");
                      // of $tbody.empty();
                      //  $tbody.detach() zonder parameter verwijdert ook de tag tabel zelf ook. niet dus.werkt als remove.
-                    for(var i=0;i<data.length;i++){
+                    for(let i=0;i<data.length;i++){
                         let $rij=$('<tr>');
                         console.dir(data[i]);
+                        //$rij.html('<td>'+data[i].id+'</td><td>'+data[i].voornaam+'</td><td>'+data[i].achternaam+'</td>');
+                        let $btnDel=$('<input type="button" value="verwijder"/>');
+                        // let $del =$('<input type="button" value="verwijderen"/>');
                         $rij.html('<td>'+data[i].id+'</td><td>'+data[i].voornaam+'</td><td>'+data[i].achternaam+'</td>');
+                        $btnDel.attr('id',data[i].id);
+                        $rij.append($btnDel);
+                        $btnDel.click(function(e){
+                            deleteZangeres(data[i].id);// samen met let voor i teller in de for lus boven. anders foutive oproep.
+                        /*of deze stuk code */
+                        //     var link='http://localhost:8080/namen?id='+ this.id;
+                        //     $.ajax(link,{
+                        //     method:'DELETE',
+                        //     dataType:'json',
+                        //     data:{id: this.id}
+                        // }).done(function(data){ 
+                        //     console.log(data);
+                        // }).fail(function(obj, err, msg){
+                        //     console.log(msg);
+                        // });
+                        /*tot hier*/
+                    });
                         $tbody.append($rij);
                     }
             
@@ -39,17 +59,22 @@
                     dataType: 'json',
                     data:{id: idIn}// bepaalde gegevens onder Id.
                 }).done(function(data){
-                    
-                        
-                        
-                        console.dir(data);
-                        $('#res').html(data.id+'\t '+data.voornaam+'\t '+data.achternaam);
-                        
-                    
+                    console.dir(data);
+                    $('#res').html(data.id+'\t '+data.voornaam+'\t '+data.achternaam);    
                 }).fail(function(obj,err,msg){
                     $('#res').html('geen data gevonden');
                 });
             });
+            function deleteZangeres(id){
+                $.ajax('http://localhost:8080/namen?id='+id,{
+                    method:'DELETE',
+                    dataType:'json'
+                }).done(function(data){
+                    console.log(data);
+                }).fail(function(obj, err, msg){
+                    console.log(msg);
+                });
+            }
             $('#btndelete').click(function(){
                 $.ajax('http://localhost:8080/namen?id=3',{
                     method:'DELETE',
@@ -70,13 +95,14 @@
     <div id="res">&nbsp;
     </div>
     <button id="btngetid">Get data by id</button><br/>
-    <button id="btndelete">delete data</button>  
+    <button id="btndelete">delete el 3</button>  
     <button id="btnget">Get data</button> 
     <table id="tabel">
        <tr>
            <th>Id</th>
            <th>Voornaam</th>
            <th>Achternaam</th>
+           <th>Actie</th>
        </tr>
    </table>
 </body>
