@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        var laatsteId;
+        $(function(){ //deze functie als de pagina volledig geladen is 
+            $.ajax('http://localhost:8080/namen',{
+                    method:'GET',
+                    dataType: 'json'
+                }).done(function(data){
+                    toonLijst(data);
+                    // laatsteId=data[data.length-1].id;
+                }).fail(function(obj,err,msg){
+                  
+                  console.dir(msg);
+              })
+          
+
+             $('#btnget').click(function(){ 
+                 toonLijst(); //klik event voor de knop
+            //     $.ajax('http://localhost:8080/namen',{
+            //         method:'GET',
+            //         dataType: 'json'
+            //     }).done(function(data){ 
+            //         let $tbody = $('tbody','#tabel');
+            //          // als file  volledig opgehaald wordt, dan pas functie w uitgevoerd.
+            //          // dir drukt de object zelf, log maakt soms een string van object en toont.
+            //         $tbody.html("");
+            //          // of $tbody.empty();
+            //          //  $tbody.detach() zonder parameter verwijdert ook de tag tabel zelf ook. niet dus.werkt als remove.
+            //         for(let i=0;i<data.length;i++){
+            //             let $rij=$('<tr>');
+            //             console.dir(data[i]);
+            //             //$rij.html('<td>'+data[i].id+'</td><td>'+data[i].voornaam+'</td><td>'+data[i].achternaam+'</td>');
+            //             let $btnDel=$('<input type="button" value="verwijder"/>');
+            //             // let $del =$('<input type="button" value="verwijderen"/>');
+            //             $rij.html('<td>'+data[i].id+'</td><td>'+data[i].voornaam+'</td><td>'+data[i].achternaam+'</td>');
+            //             $btnDel.attr('id',data[i].id);
+            //             $rij.append($btnDel);
+                       
+            //             $btnDel.click(function(e){
+            //                 deleteZangeres(data[i].id);
+            //         });
+                 
+            //             $tbody.append($rij);
+            //         }
+
+            
+
+            // }).fail(function(obj,err,msg){ // als aanvraag misloopt
+                  
+            //         console.dir(msg);
+            //     })
+            // })
+            $('#btngetid').click(function(){
+                var idIn=parseInt($('#idInput').val());
+                $.ajax('http://localhost:8080/namen',{
+                    method:'GET',
+                    dataType: 'json',
+                    data:{id: idIn}// bepaalde gegevens onder Id.
+                }).done(function(data){
+                    console.dir(data);
+                    $('#res').html(data.id+'\t '+data.voornaam+'\t '+data.achternaam);    
+                }).fail(function(obj,err,msg){
+                    $('#res').html('geen data gevonden');
+                });
+            });
+            
+            
+            $('#btndelete').click(function(){
+                $.ajax('http://localhost:8080/namen?id=3',{
+                    method:'DELETE',
+                    dataType:'json'
+                }).done(function(data){
+                    console.log(data);
+                }).fail(function(obj, err, msg){
+                    console.log(msg);
+                });
+            });
+               $('#btnpost').click(function(){
+                   
+                    let newId = document.getElementById("newId").value;
+
+                    let newVn = document.getElementById("newVn").value;
+                    let newAn = document.getElementById("newAn").value;
+                    createZangares(newId,newVn,newAn);
+                    $('#newId').val('');
+                    $('#newVn').val('');
+                    $('#newAn').val('');
+                    //     $.ajax('http://localhost:8080/namen',{
+                    //         method: 'POST',
+                    //         data: JSON.stringify({id:4, voornaam:'Josje',achternaam:'Huisman'})
+                    //     }).done(function(data){
+                    //         console.dir(data);
+                    //     }).fail(function(data){
+                    //         console.dir(msg);
+                    //     })
+
+                    })
+
+        })
+        function toonLijst(){
+            let data =dataP;
+            $.ajax('http://localhost:8080/namen',{
+                        method:'GET',
+                        dataType: 'json'
+                    }).done(function(data){ 
+                        let $tbody = $('tbody','#tabel');
+                         // als file  volledig opgehaald wordt, dan pas functie w uitgevoerd.
+                         // dir drukt de object zelf, log maakt soms een string van object en toont.
+                        $tbody.html("");
+                         // of $tbody.empty();
+                         //  $tbody.detach() zonder parameter verwijdert ook de tag tabel zelf ook. niet dus.werkt als remove.
+                        for(let i=0;i<data.length;i++){
+                            let $rij=$('<tr>');
+                            console.dir(data[i]);
+                            //$rij.html('<td>'+data[i].id+'</td><td>'+data[i].voornaam+'</td><td>'+data[i].achternaam+'</td>');
+                            let $btnDel=$('<input type="button" value="verwijder"/>');
+                            // let $del =$('<input type="button" value="verwijderen"/>');
+                            $rij.html('<td>'+data[i].id+'</td><td>'+data[i].voornaam+'</td><td>'+data[i].achternaam+'</td>');
+                            $btnDel.attr('id',data[i].id);
+                            $rij.append($btnDel);
+                           
+                            $btnDel.click(function(e){
+                                deleteZangeres(data[i].id);
+                        });
+                     
+                            $tbody.append($rij);
+        }
+        function deleteZangeres(id){
+                $.ajax('http://localhost:8080/namen?id='+id,{
+                    method:'DELETE',
+                    dataType:'json'
+                }).done(function(data){
+                    console.log(data);
+                }).fail(function(obj, err, msg){
+                    console.log(msg);
+                });
+        }
+        function createZangares(newId,newVn,newAn){
+            console.log(' geklikt');
+            $.ajax('http://localhost:8080/namen',{
+                method: 'POST',
+                data: JSON.stringify({id:newId, voornaam:newVn,achternaam:newAn})
+            }).done(function(data){
+                console.dir(data);
+            }).fail(function(data){
+                console.dir(msg);
+            }); 
+        }
+    
+    </script>
+</head>
+<body>
+    <label for ="idInput"></label><input type="number" min="0" id="idInput"/> 
+    <div id="res">&nbsp;
+    </div>
+    <label for="newId">Geef Id in:</label><input type="number" min="0" id="newId"/><br>
+    <label for="newVn">Geef voornaam in:</label><input type="text" id="newVn"/><br>
+    <label for="newAn">Geef achternaam in:</label><input type="text" id="newAn"/><br>
+    <button id="btnpost">create data</button>
+    <button id="btngetid">Get data by id</button><br/>
+    <button id="btndelete">delete el 3</button>  
+    <button id="btnget">Get data</button> 
+    <table id="tabel">
+       <tr>
+           <th>Id</th>
+           <th>Voornaam</th>
+           <th>Achternaam</th>
+           <th>Actie</th>
+       </tr>
+   </table>
+</body>
+</html>

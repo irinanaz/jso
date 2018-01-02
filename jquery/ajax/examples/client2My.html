@@ -43,6 +43,7 @@
                         // });
                         /*tot hier*/
                     });
+                 
                         $tbody.append($rij);
                     }
             
@@ -85,6 +86,18 @@
                     console.log(msg);
                 });
             });
+               $('#btnpost').click(function(){
+                        $.ajax('http://localhost:8080/namen',{
+                            method: 'POST',
+                            data: JSON.stringify({id:4, voornaam:'Josje',achternaam:'Huisman'})
+                        }).done(function(data){
+                            console.dir(data);
+                        }).fail(function(data){
+                            console.dir(msg);
+                        })
+
+                    })
+
         })
     
     
@@ -94,6 +107,7 @@
     <label for ="idInput"></label><input type="number" min="0" id="idInput"/> 
     <div id="res">&nbsp;
     </div>
+    <button id="btnpost">create data</button>
     <button id="btngetid">Get data by id</button><br/>
     <button id="btndelete">delete el 3</button>  
     <button id="btnget">Get data</button> 
