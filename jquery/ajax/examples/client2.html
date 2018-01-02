@@ -19,35 +19,7 @@
     <script>
         $(function(){
             $('#btnget').click(function(){
-                $.ajax('http://localhost:8080/namen',{
-                    method: 'GET',
-                    dataType: 'json'
-                }).done(function(data){
-                    let $tbody = $('tbody', '#tabel');
-                    //$tbody.html('');
-                    $tbody.empty();
-                    for(let i=0; i<data.length; i++){
-                        console.log(data[i]);
-                        let $rij = $('<tr>');
-                        let $tdId = $('<td>').append(data[i].id);
-                        let $tdVoornaam = $('<td>').text(data[i].voornaam);
-                        let $tdAchternaam = $('<td>').text(data[i].achternaam);
-                        let $button = $('<button>').text('Verwijderen').attr('data-id', data[i].id);
-                        $button.click(function(){
-                            console.dir($(this).data('id'));
-                            deleteZangeres(data[i].id);
-                        })
-                        let $tdbutton = $('<td>').append($button);
-                        $rij.append($tdId).append($tdVoornaam).append($tdAchternaam).append($tdbutton);
-                        //
-                        //alternatief
-                        //
-                        //$rij.html('<td>'+data[i].id + '</td><td>'+data[i].voornaam+'</td><td>'+ data[i].achternaam+'</td>');
-                        $tbody.append($rij);
-                    }
-                }).fail(function(obj, err, msg){
-                    console.dir(msg);
-                })
+               toonLijst();
             })
             $('#btngetid').click(function(){
                 let idwaarde = parseInt($('#inputid').val());
@@ -67,16 +39,74 @@
             $('#btndelete').click(function(){
                deleteZangeres(3);
             });
+            $('#btnpost').click(function(){
+               createZangeres(4, 'Josje', 'Huisman');
+            });
+            $('#btnToevoegen').click(function(){
+                console.log("op toevoegen geklikt");
+                let id = $('#inputId').val();
+                let voornaam = $('#inputVoornaam').val();
+                let achternaam = $('#inputAchternaam').val();
+                createZangeres(id, voornaam, achternaam);
+                $('#inputId').val('');
+                $('#inputVoornaam').val('');
+                $('#inputAchternaam').val('');
+            })
         })
         function deleteZangeres(id){
             $.ajax('http://localhost:8080/namen?id='+id,{
                     method:'DELETE',
                     dataType: 'json'
                 }).done(function(data){
-                    console.log(data);
+                    console.log(data);                   
                 }).fail(function(obj, err, msg){
                     console.log(msg);
+                }).always(function(){
+                    toonLijst();
                 });
+        }
+        function createZangeres(id, voornaam, achternaam){
+            $.ajax('http://localhost:8080/namen',{
+                    method: 'POST',
+                    data: JSON.stringify({id: id, voornaam: voornaam, achternaam: achternaam})
+                }).done(function(data){
+                    console.dir(data);
+                }).fail(function(obj, err, msg){
+                    console.log(msg);
+                }).always(() => toonLijst());
+        }
+        function toonLijst(){
+            console.log('Ik toon de lijst');
+            $.ajax('http://localhost:8080/namen',{
+                    method: 'GET',
+                    dataType: 'json'
+                }).done(function(data){
+                    let $tbody = $('tbody', '#tabel');
+                    //$tbody.html('');
+                    $tbody.empty();
+                    for(let i=0; i<data.length; i++){
+                        console.log(data[i]);
+                        let $rij = $('<tr>');
+                        let $tdId = $('<td>').append(data[i].id);
+                        let $tdVoornaam = $('<td>').text(data[i].voornaam);
+                        let $tdAchternaam = $('<td>').text(data[i].achternaam);
+                        let $button = $('<button>').text('Verwijderen').attr('data-id', data[i].id);
+                        $button.click(function(){
+                            console.dir($(this).data('id'));
+                            deleteZangeres(data[i].id);
+                            
+                        })
+                        let $tdbutton = $('<td>').append($button);
+                        $rij.append($tdId).append($tdVoornaam).append($tdAchternaam).append($tdbutton);
+                        //
+                        //alternatief
+                        //
+                        //$rij.html('<td>'+data[i].id + '</td><td>'+data[i].voornaam+'</td><td>'+ data[i].achternaam+'</td>');
+                        $tbody.append($rij);
+                    }
+                }).fail(function(obj, err, msg){
+                    console.dir(msg);
+                })
         }
     </script>
 </head>
@@ -87,6 +117,7 @@
         <button type="button" id='btngetid'>Get data via id</button>
         <input type="number" min="0" id="inputid"/>
     </form>
+    <button id='btnpost'>Create zangeres</button>
     <div id="zangeres">
         <span>Id:</span><span id="zangeresid"></span>
         <span>Voornaam:</span><span id="zangeresvoornaam"></span>
@@ -103,8 +134,16 @@
             </tr>
         </thead>
         <tbody>
-
+            
         </tbody>
+        <tfoot>
+                <tr>
+                        <td><input type="number" id="inputId"/></td>
+                        <td><input type="text" id="inputVoornaam"></td>
+                        <td><input type="text" id="inputAchternaam"></td>
+                        <td><button type="button" id="btnToevoegen">Toevoegen</button></td>
+                </tr>
+        </tfoot>
     </table>
 </body>
 </html>
