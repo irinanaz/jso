@@ -23,10 +23,7 @@
 
              $('#btnget').click(function(){ 
                  toonLijst(); 
-                  
-            //         console.dir(msg);
-            //     })
-            // })
+           
             $('#btngetid').click(function(){
                 var idIn=parseInt($('#idInput').val());
                 $.ajax('http://localhost:8080/namen',{
@@ -54,24 +51,17 @@
             // });
             //    $('#btnpost').click(function(){
                    
-                    let newId = document.getElementById("newId").value;
+            //         let newId = document.getElementById("newId").value;
 
-                    let newVn = document.getElementById("newVn").value;
-                    let newAn = document.getElementById("newAn").value;
-                    createZangares(newId,newVn,newAn);
-                    $('#newId').val('');
-                    $('#newVn').val('');
-                    $('#newAn').val('');
-                    //     $.ajax('http://localhost:8080/namen',{
-                    //         method: 'POST',
-                    //         data: JSON.stringify({id:4, voornaam:'Josje',achternaam:'Huisman'})
-                    //     }).done(function(data){
-                    //         console.dir(data);
-                    //     }).fail(function(data){
-                    //         console.dir(msg);
-                    //     })
+            //         let newVn = document.getElementById("newVn").value;
+            //         let newAn = document.getElementById("newAn").value;
+            //         createZangares(newId,newVn,newAn);
+            //         $('#newId').val('');
+            //         $('#newVn').val('');
+            //         $('#newAn').val('');
+                    
 
-                    })
+            //         })
 
         })
         function toonLijst(){
@@ -81,21 +71,16 @@
                         dataType: 'json'
                     }).done(function(data){ 
                         let $tbody = $('tbody','#tabel');
-                         // als file  volledig opgehaald wordt, dan pas functie w uitgevoerd.
-                         // dir drukt de object zelf, log maakt soms een string van object en toont.
                         $tbody.html("");
                         for(let i=0;i<data.length;i++){
                             let $rij=$('<tr>');
                             console.dir(data[i]);
-                            //$rij.html('<td>'+data[i].id+'</td><td>'+data[i].voornaam+'</td><td>'+data[i].achternaam+'</td>');
                             let $btnDel=$('<input type="button" value="verwijder"/>');
-                            // let $del =$('<input type="button" value="verwijderen"/>');
                             $rij.html('<td>'+data[i].id+'</td><td>'+data[i].voornaam+'</td><td>'+data[i].achternaam+'</td>');
                             $btnDel.attr('id',data[i].id);
                             $rij.append($btnDel);
-                           
                             $btnDel.click(function(e){
-                                deleteZangeres(data[i].id);
+                            deleteZangeres(data[i].id);
                         });
                      
                             $tbody.append($rij);
@@ -108,6 +93,8 @@
                     console.log(data);
                 }).fail(function(obj, err, msg){
                     console.log(msg);
+                }).always(function(){
+                    toonLijst();
                 });
         }
         function createZangares(newId,newVn,newAn){
@@ -119,7 +106,9 @@
                 console.dir(data);
             }).fail(function(data){
                 console.dir(msg);
-            }); 
+            }).always(()=>toonLijst());
+
+            
         }
     
     </script>
