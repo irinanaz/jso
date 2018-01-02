@@ -13,7 +13,7 @@
                     method:'GET',
                     dataType: 'json'
                 }).done(function(data){
-                    toonLijst(data);
+                    toonLijst();
                     // laatsteId=data[data.length-1].id;
                 }).fail(function(obj,err,msg){
                   
@@ -22,37 +22,7 @@
           
 
              $('#btnget').click(function(){ 
-                 toonLijst(); //klik event voor de knop
-            //     $.ajax('http://localhost:8080/namen',{
-            //         method:'GET',
-            //         dataType: 'json'
-            //     }).done(function(data){ 
-            //         let $tbody = $('tbody','#tabel');
-            //          // als file  volledig opgehaald wordt, dan pas functie w uitgevoerd.
-            //          // dir drukt de object zelf, log maakt soms een string van object en toont.
-            //         $tbody.html("");
-            //          // of $tbody.empty();
-            //          //  $tbody.detach() zonder parameter verwijdert ook de tag tabel zelf ook. niet dus.werkt als remove.
-            //         for(let i=0;i<data.length;i++){
-            //             let $rij=$('<tr>');
-            //             console.dir(data[i]);
-            //             //$rij.html('<td>'+data[i].id+'</td><td>'+data[i].voornaam+'</td><td>'+data[i].achternaam+'</td>');
-            //             let $btnDel=$('<input type="button" value="verwijder"/>');
-            //             // let $del =$('<input type="button" value="verwijderen"/>');
-            //             $rij.html('<td>'+data[i].id+'</td><td>'+data[i].voornaam+'</td><td>'+data[i].achternaam+'</td>');
-            //             $btnDel.attr('id',data[i].id);
-            //             $rij.append($btnDel);
-                       
-            //             $btnDel.click(function(e){
-            //                 deleteZangeres(data[i].id);
-            //         });
-                 
-            //             $tbody.append($rij);
-            //         }
-
-            
-
-            // }).fail(function(obj,err,msg){ // als aanvraag misloopt
+                 toonLijst(); 
                   
             //         console.dir(msg);
             //     })
@@ -72,17 +42,17 @@
             });
             
             
-            $('#btndelete').click(function(){
-                $.ajax('http://localhost:8080/namen?id=3',{
-                    method:'DELETE',
-                    dataType:'json'
-                }).done(function(data){
-                    console.log(data);
-                }).fail(function(obj, err, msg){
-                    console.log(msg);
-                });
-            });
-               $('#btnpost').click(function(){
+            // $('#btndelete').click(function(){
+            //     $.ajax('http://localhost:8080/namen?id=3',{
+            //         method:'DELETE',
+            //         dataType:'json'
+            //     }).done(function(data){
+            //         console.log(data);
+            //     }).fail(function(obj, err, msg){
+            //         console.log(msg);
+            //     });
+            // });
+            //    $('#btnpost').click(function(){
                    
                     let newId = document.getElementById("newId").value;
 
@@ -114,8 +84,6 @@
                          // als file  volledig opgehaald wordt, dan pas functie w uitgevoerd.
                          // dir drukt de object zelf, log maakt soms een string van object en toont.
                         $tbody.html("");
-                         // of $tbody.empty();
-                         //  $tbody.detach() zonder parameter verwijdert ook de tag tabel zelf ook. niet dus.werkt als remove.
                         for(let i=0;i<data.length;i++){
                             let $rij=$('<tr>');
                             console.dir(data[i]);
