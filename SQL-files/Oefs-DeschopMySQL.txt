@@ -1,0 +1,1155 @@
+/*Opgaven SELECT*****************************/
+
+
+use deschop;
+
+select *
+from planten;
+
+select *
+from offertes;
+
+select *
+from leveranciers;
+
+select *
+from bestellingen;
+
+select *
+from bestelregels;
+
+select *
+from plantschema;
+
+-- 1. Toon alle gegevens van de waterplanten, volgens dalende hoogte.
+
+select *
+from PLANTEN 
+where SOORT = 'water'
+order by ART_code asc;
+
+-- 2. Toon de verschillende woonplaatsen (alfabetisch) van onze leveranciers.
+select woonplaats
+from leveranciers
+where woonplaats is not null
+group by woonplaats
+order by woonplaats asc;
+
+select distinct woonplaats
+from leveranciers;
+
+-- 3. Toon een lijst met de verschillende kleuren die in het assortiment voorkomen.
+
+select kleur 
+from planten
+where kleur is not null
+group by kleur
+order by kleur asc;
+
+-- 4. Toon de verschillende plantensoorten waarvoor roodbloeiende planten beschikbaar zijn.
+select soort 
+from planten 
+where kleur='rood'
+group by soort
+order by soort asc;
+
+
+-- 5. Toon alle gegevens betreffende planten die meer dan 12 Euro kosten. In het lijstje mogen geen bomen voorkomen.
+select *
+from planten 
+where prijs>12 and soort!='boom';
+
+-- 6. Toon artikelcode en plantennaam van planten waarvan de derde letter in de naam een ‘n’ is
+
+select art_code, plantennaam
+from planten 
+where plantennaam like '__n%';
+
+
+-- 7. Toon de namen van alle bomen en het aantal maanden dat ze bloeien(bloeien= een kleur hebben)
+select plantennaam,bloeieinde-bloeibegin+1
+from planten
+where soort='boom' and kleur is not null;
+
+-- 8. Toon artikelcode en plantennaam van 1-jarige en 2-jarige planten.
+select art_code, plantennaam
+from planten
+where soort='1-jarig' OR soort='2-jarig';
+
+-- 9. Toon alle gegevens van de planten met ‘kruid’ in de naam, maar zonder de planten die tot de groep kruiden behoren.
+select *
+from planten
+where plantennaam like '%kruid%' or plantennaam like 'Kruid%';
+
+-- 10. Toon de naam van de planten waarvan de naam uit precies 5 letters bestaat.
+select plantennaam
+from planten
+where plantennaam like '_____';
+
+-- 10bis Herhaal voor de planten waarvan de naam uit minstens 5 letters bestaat.
+select plantennaam
+from planten
+where plantennaam like '_____%';
+
+-- 10bisbis En herhaal nog eens voor de planten waarvan de naam uit hoogstens 5 letters bestaat.
+select plantennaam
+from planten
+where plantennaam not like '______%';
+
+
+-- 11. Bepaal de hoogte van de hoogste boom.
+select max(hoogte)
+from planten;
+
+
+-- 12. Bepaal het totale bedrag van de bestellingen bij de leverancier met code ‘035'.
+select sum(bedrag)
+from bestellingen
+where lev_code='035';
+
+/* 13. De plant met artikelcode ‘036’ werd meerdere malen besteld. Bepaal in
+hoeveel bestellingen deze plant voorkomt, de minimale bestelhoeveelheid, de
+maximale en de totale.*/
+select count(bestelnr), min(aantal), max(aantal), sum(aantal)
+from bestelregels
+where art_code = '036';
+
+/*14. Bepaal het aantal offertes voor artikel met code ‘036’ en de minimumprijs
+(excl. korting).*/
+select count(lev_code),min(off_prijs)
+from offertes 
+where art_code='036';
+
+
+/* Opgaven groeperen ******************************************************/
+
+
+-- 1. Toon per plantensoort het aantal planten en de gemiddelde verkoopprijs.
+select count(plantennaam), avg(prijs)
+from planten
+group by soort;
+
+/* 2. Toon een overzicht met de verschillende kleuren voor vaste planten, en per
+kleur telkens de prijs van de goedkoopste plant (voor die kleur vaste planten).
+De prijs van de goedkoopste vaste plant moet bovenaan in de lijst te vinden
+zijn.*/
+select kleur, min(prijs)
+from planten
+where soort='vast'
+group by kleur
+order by min(prijs);
+
+
+/*3. Toon per leverancier (code) het totaal aantal artikelen dat deze aanbiedt
+met een levertijd van hoogstens 10 dagen. Sorteer per leverancierscode.*/
+
+select lev_code, count(art_code)
+from offertes 
+where lev_tijd<=10
+group by lev_code
+order by lev_code asc;
+
+/* 4. Maak een overzicht met per artikelcode de laagste en hoogste offerteprijs.*/
+select art_code, min(off_prijs),max(off_prijs)
+from offertes 
+group by art_code;
+
+
+/*5. Wat is de gemiddelde prijs per plantensoort, voor soorten waarvan er
+minstens 5 planten in het assortiment zitten?*/
+
+select soort, avg(prijs)
+from planten
+group by soort
+having count(art_code)>=5;
+
+/* 6. Toon een lijst waaruit je kan afleiden of het waar is dat planten met korte
+levertijden in het algemeen een hogere gemiddelde offerteprijs hebben. */
+
+select lev_tijd, avg(off_prijs)
+from offertes 
+group by lev_tijd;
+
+
+/*  7. Wat is de laagste prijs per plantensoort van de planten die in mei(5) of
+juni(6) bloeien?*/
+select soort , min(prijs)
+from planten
+where bloeibegin >=5 or bloeieinde <=6
+group by soort;
+
+/* extratjes******************/
+-- aantal kleuren
+select count(distinct kleur)
+from planten;
+-- min alfabetisch max alfabetisch met eigen kolomn hoofding. enkelwoord als naam mag zonder ''.
+select min(plantennaam) AS eerste, max(plantennaam) AS laatste
+from planten;
+
+select min(plantennaam) AS 'eerste naam', max(plantennaam) AS laatste 'laatste naam'
+from planten;
+
+
+
+
+
+/* MariaDB(en MySQL) volgen de regels ivm aggregate functies in de select.
+   Standaard NIET. We dwingen dit af met volgend comando:  */
+   SET sql_mode='only_full_group_by';
+
+-- standaardfuncties opgevraagd worden in de select
+select min(prijs), plantennaam
+from planten
+-- volgend statement veroorzaakt een fout;
+-- standaardfies mogen NIET gebruikt w in de WHERE
+SELECT plantennaam
+from planten
+where hoogte=min(hoogte);
+
+
+
+
+
+
+
+
+/* Als inopdracht willen gegevens PER iets krijgen , dan meestal helpt group by:*/
+/* aantal planten per kleur */
+
+select kleur, count(*)
+from planten
+group by kleur
+order by count(*) desc;
+
+
+-- van de rode en de witte planten:
+-- goedkoopste en duurste prijs per soort
+
+select soort, min(prijs), max(prijs)
+from planten
+where kleur in('rood','wit')
+group by soort;
+-- zelfde als boven maar met de aantal planten per kleur
+select soort, min(prijs), max(prijs), count(*)
+from planten
+where kleur in('rood','wit')
+group by soort;
+
+-- om zelfde maar met aantal minder dan 4 is per group:
+select soort, min(prijs), max(prijs), count(*)
+from planten
+where kleur in('rood','wit') -- hier is geen goede plek want groupen zijn nog niet gemaakt hier.
+group by soort
+having count(*)<=3;
+
+/*Extratjes ******************************/
+select plantennaam, kleur, bloeibegin , 'Cloe' as 'keuze van'
+from planten
+where kleur='wit'
+union
+select plantennaam, kleur, bloeibegin , 'Irina' as 'keuze van'
+from planten
+where bloeibegin=4
+union
+select plantennaam, kleur, bloeibegin , 'Ann' as 'keuze van'
+from planten
+where soort!='boom' and kleur is not null
+order by 4;
+
+select bestellingen.*, leveranciers.lev_naam, leveranciers.adres, leveranciers.woonplaats,leveranciers.korting
+from bestellingen, leveranciers
+where bestellingen.lev_code = leveranciers.lev_code
+order by leveranciers.lev_naam;
+
+
+use deschop;
+select *
+from offertes;
+
+
+
+/* Opgaven joins *********************/
+select b.*, l.lev_naam, l.adres, l. woonplaats, l.korting
+from bestellingen b, leveranciers L
+where b.lev_code = l.lev_code
+and l.woonplaats='Lisse'
+order by l.lev_code;
+/* ---het zelfdde maar met Join : comma maakt alle mogelijke combinaties en Join selecteert unieke combinaties die voldoen.> */
+select b.*, l.lev_naam, l.adres, l. woonplaats, l.korting
+from bestellingen b join leveranciers L
+on b.lev_code = l.lev_code
+where l.woonplaats='Lisse'
+order by l.lev_code;
+
+select b.*, l.lev_naam, l.adres, l. woonplaats, l.korting
+from bestellingen b join leveranciers L
+on b.lev_code = l.lev_code
+join bestelregels r
+on r.bestelnr = b.bestelnr
+where l.woonplaats='Lisse'
+order by l.lev_code;
+
+select L.lev_code, l.lev_naam, b.bestelnr, b.besteldatum
+from leveranciers l Join bestellingen b
+on l.lev_code = b.lev_code;
+
+/* probeer de tabel van links kopellen aan rechtere kolom en als dat niet lukt toon de velden als null*/
+select L.lev_code, l.lev_naam, b.bestelnr, b.besteldatum
+from leveranciers l left Join bestellingen b
+on l.lev_code = b.lev_code;
+
+select *
+from planten;
+-- planten die bloeien in dezelfde maand als daglelie:
+-- self Join = auto Join
+select x.*
+from planten l , planten x
+where l.plantennaam='daglelie'
+and x.bloeibegin=l.bloeibegin
+and x.art_code != l.art_code;
+
+
+/*1. Toon de artikelcode, naam van de plant, naam van de leverancier, levertijd
+en offerteprijs. Sorteer op plantennaam.*/
+
+select p.art_code, p.plantennaam ,l.lev_naam, o.lev_tijd, o.off_prijs
+from planten p, offertes o, leveranciers l
+where p.art_code = o.art_code and o.lev_code=l.lev_code
+order by 1;
+
+/* 2. Toon categorie (in tabel plantschema), plantennaam en prijs voor alle
+planten die in de categorieën 'midden' of 'laag' vallen.  */
+select *
+from plantschema;
+
+select s.categorie,p.hoogte, p.plantennaam, p.prijs
+from plantschema s, planten p
+/* filter voor plantentabel en dan nog resultaten om de naam van categorie te filteren om 2 tabellen te kopellen*/
+where p.hoogte between s.hoogte1 and s.hoogte2 and s.categorie in('laag','midden')
+order by 1; 
+/* 3. In welke plaatsen wonen leveranciers die vaste planten aanbieden? (via
+offerte tabel) */
+
+select distinct l.woonplaats
+from planten p, offertes o, leveranciers l
+where p.soort='vast' and p.art_code=o.art_code and l.lev_code=o.lev_code 
+order by 1;
+
+/*4. Geef een overzicht van alle rode planten die kunnen geleverd worden door
+leveranciers die niet in Aalsmeer gevestigd zijn. Toon hierbij de artikelcode,
+naam van de plant, soort, naam van de leverancier, gemeente. Sorteer op
+soort en plantennaam.*/
+
+select p.art_code, p.plantennaam, p.soort, l.lev_naam, l.woonplaats
+from planten p, offertes o, leveranciers l
+where p.kleur='rood' and p.art_code = o.art_code and o.lev_code=l.lev_code and l.woonplaats!='Aalsmeer' 
+order by 1;
+
+/* 5. Bepaal per plant de laagste offerteprijs. Toon hierbij de artikelcode, naam
+van de plant en offerteprijs. Sorteer op plantennaam.*/
+
+select p.plantennaam, p.art_code, min(o.off_prijs)
+from planten p, offertes o
+where p.art_code=o.art_code 
+group by p.art_code, p.plantennaam 
+order by 1; 
+
+select min(p.plantennaam), p.art_code, min(o.off_prijs)
+from planten p, offertes o
+where p.art_code=o.art_code 
+group by p.art_code
+order by 1; 
+
+/*6. Maak een lijst met plantennaam, hoogte en plantafstand voor de planten:
+berk, beuk en linde*/
+
+select p.plantennaam, p.hoogte, s.afstand
+from planten p, plantschema s
+where p.plantennaam in ('berk', 'beuk', 'linde') and p.hoogte between s.hoogte1 and s.hoogte2
+order by 1;
+
+/*7. Toon een lijst met per bestelnummer het bestelnummer, de naam van de
+leverancier, het totaal aantal planten van de bestelling, het totaalbedrag per
+bestelling en de leveringsdatum. De lijst moet gesorteerd zijn op
+leveringsdatum (vroegste eerst), en bij gelijkheid op bestelnummer.*/
+
+select b.bestelnr, l.lev_naam, sum(r.aantal) as aantal_planten, b.bedrag, b.lev_datum
+from bestellingen b, bestelregels r, leveranciers l
+where b.bestelnr=r.bestelnr and b.lev_code=l.lev_code
+group by b.bestelnr, l.lev_naam, b.bedrag, b.lev_datum
+order by b.lev_datum, b.bestelnr;
+-- alternatief
+select b.bestelnr, min(l.lev_naam), sum(r.aantal) as aantal_planten, min(b.bedrag), min(b.lev_datum)
+from bestellingen b, bestelregels r, leveranciers l
+where b.bestelnr=r.bestelnr and b.lev_code=l.lev_code
+group by b.bestelnr /*, l.lev_naam, b.bedrag, b.lev_datum*/
+order by b.lev_datum, b.bestelnr;
+
+/* 8. Toon een lijst met bestelde planten waarvoor er nu bij dezelfde leverancier
+offertes bestaan die lager zijn dan de destijds gehanteerde bestelprijzen.
+Vermeld enkel de plantennaam en bestelprijs.*/
+
+
+-- kan ook met where opgelost worden maar join is iets duidelijker hier qua verbindingen.
+select p.plantennaam, r.bestelprijs
+from planten p join bestelregels r
+on	  p.art_code = r.art_code 
+join bestellingen b
+on r.bestelnr = b.bestelnr
+join leveranciers lb
+on b.lev_code = lb.lev_code
+join offertes o
+on p.art_code = o.art_code
+join leveranciers lo
+on o.lev_code= lo.lev_code
+where lo.lev_code = lb.lev_code
+and r.bestelprijs > o.off_prijs
+order by 1;
+
+/* 9. Zoek de bestellingen die een besteldatum hebben die gelijk is aan de
+leverdatum van één of meer andere bestellingen.  */
+
+select b1.bestelnr, b1.besteldatum
+from bestellingen b1, bestellingen b2
+where b1.besteldatum = b2.lev_datum;
+
+
+/* 10. Toon een overzicht waaruit blijkt welke bestellingen werden geplaatst met
+een leveringsdatum groter dan ’03-23-1999’. Toon bestelnummer, naam van
+de leverancier, en een kolom met de vermelding ‘te laat’ ofwel geen
+vermelding naargelang toepasselijk is. Sorteer op bestelnummer.  */
+
+select b.bestelnr, l.lev_naam, 'te laat' as extra
+from bestellingen b join leveranciers l
+on b.lev_code = l.lev_code
+where b.lev_datum>'03-23-1999'
+order by 1;
+
+/* 11. Toon een lijst met de namen van alle vaste planten, gevolgd door de
+namen van de vaste planten die later op het jaar (=na juni) beginnen te
+bloeien. */
+
+select plantennaam, 'vast' as extra
+from planten 
+where soort='vast'
+union 
+select plantennaam, 'laatbloeier' as extra
+from planten 
+where soort='vast' and bloeibegin>6;
+
+/*12. Toon een overzicht van de bomen en de plaats waar deze kunnen besteld
+worden (in Aalsmeer of in een andere gemeente). Vermeld artikelcode, naam
+van de boom, leverancierscode en de woonplaats. In een bijkomende kolom
+worden drie sterretjes geplaatst indien het de gemeente ‘Aalsmeer’ betreft.*/
+
+select p.art_code, p.plantennaam, l.lev_code, l.woonplaats
+from planten p left join offertes o
+on p.art_code = o.art_code
+left join leveranciers l
+on o.lev_code=l.lev_code
+where p.soort = 'boom';
+
+select p.art_code, p.plantennaam, l.lev_code, l.woonplaats, '***' as extra
+from planten p join offertes o
+on p.art_code = o.art_code
+join leveranciers l
+on o.lev_code=l.lev_code
+where p.soort = 'boom' and l.woonplaats ='Aalsmeer'
+union 
+select p.art_code, p.plantennaam, l.lev_code, l.woonplaats, ' ' as extra
+from planten p join offertes o
+on p.art_code = o.art_code
+join leveranciers l
+on o.lev_code=l.lev_code
+where p.soort = 'boom' and l.woonplaats !='Aalsmeer'
+order by 1;
+
+/*13. Hoeveel verschillen de gehanteerde bestelprijzen met de huidige
+offerteprijzen bij dezelfde leverancier? Toon telkens bestelnummer, artikelcode
+van de plant en het positieve of negatieve verschil.*/
+
+SELECT DISTINCT
+    r.bestelnr, r.art_code, r.bestelprijs - o.off_prijs
+FROM
+    bestelregels r
+        JOIN
+    bestellingen b ON r.bestelnr = b.bestelnr
+        JOIN
+    leveranciers l ON b.lev_code = l.lev_code
+        JOIN
+    offertes o ON l.lev_code = o.lev_code
+WHERE
+    b.lev_code = o.lev_code
+        AND r.art_code = o.art_code
+ORDER BY 1 , 2;
+
+/******  SUBQUERY  **********************************************/
+-- extratje: gem prijs van gemengde planten (kleur= gemengd)
+
+select avg(prijs)
+from planten
+where kleur='gemengd';
+
+-- extratje: per plantensoort de gem hoogte van die soort
+select soort, avg(hoogte)
+from planten
+group by soort
+order by 2 desc;
+
+-- extratje: lijstje plantensoorten met gem hoogte 1.5.
+select soort, avg(hoogte)
+from planten
+group by soort 
+	having avg(hoogte)>50
+order by 2 ;
+
+-- extratje: soort van africaantje
+select soort 
+from planten
+where plantennaam='afrikaantje';
+
+-- extratje: welke planten horen tot dezelfde soort als africaantje
+SELECT 
+    x.*
+FROM
+    planten x,
+    planten a
+WHERE
+    a.plantennaam = 'afrikaantje'
+        AND x.soort = a.soort;
+
+-- alternatief met supquery:
+SELECT 
+    *
+FROM
+    planten
+WHERE
+    soort = (SELECT 
+            soort
+        FROM
+            planten
+        WHERE
+            plantennaam = 'afrikaantje'); -- binnen select geeft 1 resultaat dus we kunnen gelijksteken gebruiken in lijn3 
+    
+-- namen en prijzen van planten die meer kosten dan de gem.prijs van de rode planten:
+
+SELECT 
+    plantennaam, prijs
+FROM
+    planten
+WHERE
+    prijs > (SELECT 
+            AVG(prijs)
+        FROM
+            planten
+        WHERE
+            kleur = 'rood');
+
+
+select *
+from bestellingen
+where lev_code in (
+		-- meerdere resultaten van binnen select
+		select lev_code
+		from leveranciers
+		where woonplaats='lisse');
+        
+-- hoeveel planten tot dezelfde soort bijhoren als sierui:
+select count(art_code)
+from planten 
+where soort=(
+select soort
+from planten
+where plantennaam ='sierui');
+
+-- woonplaats(en) van leveranciers die de kleinste korting geven 
+select distinct woonplaats
+from leveranciers 
+where korting=(
+	select min(korting)
+	from leveranciers);
+
+-- naam= 'kikkerbeet'
+-- namen van de leveranciers die offerte maakten voor kikkerbeet
+select lev_naam
+from leveranciers 
+where lev_code=(
+	select lev_code
+	from offertes
+	where art_code=(
+		select art_code 
+		from planten
+		where plantennaam='kikkerbeet'));
+        
+-- alternatief:
+select l.lev_naam
+from leveranciers l join offertes o
+on l.lev_code = o.lev_code join planten p
+on p.art_code = o.art_code
+where p.plantennaam = 'kikkerbeet';
+
+-- namen adressen van de leveranciers die niet in de tabel bestellingen voor komen:
+select lev_code, lev_naam, woonplaats ,adres 
+from leveranciers
+where lev_code not in (
+		select lev_code  -- kan ook met distinct , maar dat is langer qua machinetijd 
+		from bestellingen);
+        
+-- alternatief enkel met left of right join:
+select l.lev_naam, l.adres, l.woonplaats
+from leveranciers l left join bestellingen b
+on l.lev_code = b.lev_code
+where b.bestelnr  is Null; -- want join left levert nullen als er geen gegevens zijn in rechtere tabel
+
+-- wat is de afstand tss twee stokroos
+
+select afstand
+from plantschema
+where 
+	(select hoogte
+	from planten
+	where plantennaam='stokroos') between hoogte1 and hoogte2;
+    
+
+
+-- per plantensoort de soort , hoogte, naam van de hoogste plant van die soort
+-- deze zoek eerst de hoogste per soort :
+-- gesynchroniseerde subquery
+select soort , hoogte, plantennaam
+from planten p
+where hoogte = (
+	select max(hoogte)
+    from planten
+    where soort = p.soort)
+order by 1;    
+
+
+/* OEFs SubQuery *****************************************/
+
+/*1. Toon een lijst met naam en prijs van de duurste boom (of bomen).*/
+select plantennaam,prijs
+from planten 
+where prijs=( select max(prijs)
+from planten);
+
+/*2. Toon een lijst met de planten die even goedkoop of goedkoper zijn dan de
+goedkoopste vaste plant. Vermeld naam, prijs en soort.*/
+
+select *
+from planten
+where prijs<=(
+select min(prijs)
+from planten
+where soort='vast');
+
+/*3. Welke planten zijn hoger dan de hoogste vaste plant en tevens goedkoper
+dan de gemiddelde prijs van alle planten?  */
+
+select *
+from planten
+where prijs <=(
+	select avg(prijs)
+	from planten)
+and hoogte >(
+select max(hoogte)
+from planten
+where soort='vast');
+
+/*4. Toon een lijst met de planten die besteld werden bij leverancier “FLORA bv.”.
+Sorteer op artikelcode. Vermeld artikelcode, bestelnummer, aantal stuks,
+bestelprijs, en het totaal bedrag.*/
+
+select art_code,aantal,bestelprijs, aantal*bestelprijs as 'totaal bedrag',bestelnr
+from bestelregels 
+where bestelnr in (
+select bestelnr
+from bestellingen
+where lev_code=(
+	select lev_code
+    from leveranciers 
+    where lev_naam='flora bv.'))
+    order by 1;
+    
+/*5. Toon een lijst met de bestelnummers van de bestellingen waarbij een
+korting van minstens 5% werd toegekend.*/
+
+select bestelnr, lev_code
+from bestellingen
+where lev_code in(
+select lev_code
+from leveranciers 
+where korting>=5);
+
+/*6. Toon een lijst met alle gegevens over de leveranciers waarbij bestellingen
+werden geplaatst met een leveringsdatum vóór 1 april 1999('04-01-1999'). Los
+op met en zonder subvraag.*/
+
+select *
+from leveranciers 
+where lev_code in (
+	select lev_code
+    from bestellingen 
+    where besteldatum < '1999-04-01')
+    order by 1;
+    
+    
+select distinct l.*
+from leveranciers l, bestellingen b
+where b.lev_code=l.lev_code 
+and b.besteldatum < '1999-04-01';
+
+select distinct l.*
+from leveranciers l join bestellingen b
+on b.lev_code=l.lev_code 
+and b.besteldatum < '1999-04-01';
+
+
+/*7. Toon een lijst met voor alle vaste planten de laagste offerteprijzen. Vermeld
+artikelcode, leverancierscode en offerteprijs.*/
+
+
+select o.art_code, o.lev_code, o.off_prijs
+from planten p,offertes o
+where p.art_code=o.art_code
+and p.soort='vast'
+and o.off_prijs =(
+	select min(off_prijs)
+	from offertes
+	where art_code = o.art_code);
+
+
+/*8. Toon een lijst met artikelcode, leveranciersnaam en offerteprijs voor die
+planten waarvoor de offerteprijs in kwestie lager is dan de gemiddelde
+offerteprijs voor die plant. Sorteer op artikelcode.*/
+
+select o.art_code, l.lev_naam, o.off_prijs
+from offertes o join leveranciers l
+on o.lev_code = l.lev_code
+where o.off_prijs < (
+	select avg(off_prijs)
+	from offertes
+	where art_code=o.art_code)
+order by 1;
+
+/* 9. Toon een lijst met planten die werden besteld aan een prijs die hoger is dan
+de maximum offerteprijs die nu voor die plant geldt. Vermeld bestelnummer,
+naam van de leverancier, artikelcode van de plant, naam van de plant en
+bestelprijs.*/
+
+select r.bestelnr, l.lev_naam, r.art_code, p.plantennaam,r.bestelprijs
+from planten p join bestelregels r
+on p.art_code = r.art_code
+join offertes o  
+on p.art_code=o.art_code
+join leveranciers l
+on o.lev_code = l.lev_code
+where bestelprijs > (
+	select max(off_prijs)
+    from offertes
+    where art_code=p.art_code);
+
+
+/*10. Toon de naam (namen) van de leverancier(s) met het grootste assortiment
+planten. */
+
+select lev_naam
+from leveranciers l
+join offertes o on l.lev_code = o.lev_code
+group by lev_naam
+having count(art_code) >= 
+    all (select count(*) from offertes group by lev_code);
+    
+    
+    
+/** Extra *************************************************/
+select *
+from planten
+where kleur='rood';
+
+select *
+from planten
+where kleur='rood' or plantennaam like '%zon%';
+
+-- rode vaste of met 'zon' inde naam (pas op voor AND an OR, AND heeft voorrang:
+select *
+from planten
+where (kleur='rood' and soort='vast') or plantennaam like '%zon%'; 
+
+select max(prijs)
+from planten
+where (kleur='rood' and soort='vast') or plantennaam like '%zon%';
+
+-- van alle planten: gem prijs per kleur:
+select kleur, avg(prijs)
+from planten
+group by kleur;
+
+
+-- geen zonder kleur:
+select kleur, avg(prijs)
+from planten
+group by kleur
+having kleur is not null;
+
+--  of hier mag ook:
+select kleur, avg(prijs)
+from planten
+where kleur is not null
+group by kleur;
+
+-- zelfde maar desc gesoorteerd:
+select kleur, avg(prijs)
+from planten
+group by kleur
+having kleur is not null
+order by 2 desc;
+
+-- van alle groene waterplanten art_code, naam en off_prijs en verschil tss aff en verkoop prijs:
+select p.art_code, p.plantennaam, o.off_prijs, o.off_prijs - p.prijs as verschil
+from planten p join offertes o
+on p.art_code = o.art_code
+where p.kleur='geel' and p.soort='water';
+
+select * from leveranciers;
+
+-- rij tot te voegen :
+-- in de juiste volgeorde en alle ckolommen:
+insert into leveranciers values
+('999', 'SEVORA', 'Plaskyplein 123', 'Brussel', 0.01);
+
+-- bepaalde kolommen en/of willekeurige volgeorde:
+insert into leveranciers
+(lev_naam, woonplaats, lev_code, adres)
+values
+('VDAB4', 'Brussel', '998', 'Sommersstraat 22');
+
+
+create table BOMEN(
+	art_code varchar (3) not null,
+    naam varchar (16) not null,
+    kleur varchar (7),
+    hoogte decimal( 18,2),
+    prijs decimal(18,2) not null
+    );
+
+select * from bomen;
+
+-- om gegevens uit bestaande tabel  voor de nieuwe tabel te verzamellen 
+-- gebruiken we select met lijst van alle kolommen als in  de nieuwe kolom:
+insert into bomen
+	select art_code, plantennaam, kleur, hoogte, prijs
+	from planten
+	where soort='boom';
+
+select * from bomen;
+
+-- zo'n insert kunt geen ORDER BY bevatten!
+insert into bomen
+	select art_code, plantennaam, kleur, hoogte, prijs
+	from planten
+	where kleur = 'bestaat niet';
+    
+    
+-- bestaande rij aan te passe met update:
+-- prijs verhogen met 10%:
+
+update bomen
+set prijs = prijs*1.1;
+
+update bomen
+set prijs = prijs/2
+where kleur='wit';
+
+update bomen 
+set prijs = prijs*0.75, hoogte = hoogte * 1.2
+where kleur='wit';
+
+
+
+-- rijen uit tabel verwijderen:
+-- alles uit tabel en tabel zelf blijft:
+delete from bomen;
+
+-- bepaalde rijen uit tabel:
+delete from leveranciers
+where lev_code in( '999','998');
+
+--  Je kunt enkel uit een tabel rijen verwijderen:
+
+-- als je rijene uit meerede tabellen moet verwijderen , dan je MOET eerst details verwijderen.
+-- bv. eerst bestelregels en dan bestellingen:
+-- eerst met meerpijl en dan met enkelpijl.
+
+-- INDEX
+create index inx_plantennaam on planten (plantennaam);
+
+create unique index idx_art_code_bomen on bomen (art_code);
+
+-- VIEW 
+create view gele_waterplanten as 
+select p.art_code, p.plantennaam, o.off_prijs, o.off_prijs - p.prijs as verschil
+from planten p join offertes o
+on p.art_code = o.art_code
+where p.kleur='geel' and p.soort='water';
+
+-- de naam van een view mag in een select 
+--  gebruikt worden alsof het een echte tabel is:
+select plantennaam, verschil
+from gele_waterplanten
+order by 2;
+
+update planten
+set kleur='geel'
+where plantennaam = 'blaasjeskruid';
+
+
+
+/* MUTAITES  ********************************************/
+
+/* 1. Maak een tabel Boomleveranciers met dezelfde structuur als de tabel
+Leveranciers. Vul deze tabel met de gegevens van de leveranciers die
+bomen kunnen leveren.  */
+
+create table boomleveranciers(
+	lev_code varchar (3) not null,
+    lev_naam varchar (20) not null,
+    adres varchar (25),
+    woonplaats varchar (15),
+    korting decimal( 18,2)
+    );
+    ALTER TABLE boomLEVERANCIERS ADD 
+	CONSTRAINT PK_boomLEVERANCIERS PRIMARY KEY   
+	(
+		LEV_CODE
+	);
+    
+insert into boomleveranciers
+select l.lev_code, l.lev_naam, l.adres, l.woonplaats, l.korting
+from leveranciers l
+join offertes o
+on l.lev_code = o.lev_code
+join planten p
+on o.art_code = p.art_code
+where p.soort='boom'
+group by l.lev_code;
+
+select * from boomleveranciers;
+
+/* 2. Maak een tabel vaste_planten waarin voor alle vaste planten de
+plantennaam, de artikelcode, de naam (of namen) en de woonplaats (of
+woonplaatsen) van de leverancier(s) waarvan een offerte bestaat voor de
+vaste plant bewaard worden.  */
+
+CREATE TABLE vaste_PLANTEN (
+	ART_CODE varchar (3) NOT NULL ,
+	PLANTENNAAM varchar (16) NOT NULL ,
+	lev_code varchar (3) not null,
+    lev_naam varchar (20) not null,
+    woonplaats varchar (15)
+); 
+
+
+ALTER TABLE vaste_PLANTEN ADD 
+	CONSTRAINT PK_vastePLANTEN PRIMARY KEY   
+	(
+		LEV_CODE,
+		ART_CODE
+	);
+insert into vaste_planten
+select p.art_code, p.plantennaam, l.lev_code, l.lev_naam, l.woonplaats
+from planten p join offertes o on p.art_code = o.art_code
+	join leveranciers l on o.lev_code = l.lev_code
+where p.soort='vast'
+order by 1;
+ 
+select * from vaste_planten;
+/* 3. Verwijder voor leverancier met leverancierscode 009 alle offertes voor vaste
+planten.   */
+
+select o.art_code,o.lev_code
+from offertes o 
+join planten p 
+on o.art_code = p.art_code
+where  o.lev_code='014' and p.soort='vast';
+
+delete from offertes
+where art_code in(
+select p.art_code
+from  planten p 
+where p.soort='vast')
+and lev_code  = '014';
+
+/* 4. Maak een tabel goedkoop met per plant de goedkoopste leverancier(s).
+Neem in deze tabel de artikelcode en de plantennaam op, de naam van de
+leverancier en de offerteprijs. */
+	
+CREATE TABLE goodkoop (
+	ART_CODE varchar (3) NOT NULL ,
+	PLANTENNAAM varchar (16) NOT NULL ,
+    lev_naam varchar (20) not null,
+    off_prijs decimal( 18,2)
+); 
+
+
+ALTER TABLE goodkoop ADD 
+	CONSTRAINT PK_vastePLANTEN PRIMARY KEY   
+	(
+		LEV_naam,
+		ART_CODE
+	);
+
+insert into goodkoop
+select o.art_code, p.plantennaam, l.lev_naam, min(o.off_prijs)
+from offertes o join planten p 
+on o.art_code= p.art_code
+join leveranciers l
+on o.lev_code = l.lev_code
+group by o.art_code;
+
+
+/* 5. Op 23 april 1997 werd een nieuwe bestelling geplaatst bij leverancier 007.
+In de tabel bestelregels moeten volgende rijen opgenomen worden:
+Bestelnr Artikelcode Aantal Bestelprijs
+0205 242 10 160
+0205 437 200 20
+0205 082 25 55
+De leverancier geeft 8% korting. Leveringstermijn is 1 week. Voeg de nodige
+gegevens betreffende deze bestelling toe aan de nodige tabellen.
+
+*/
+select * from leveranciers;
+insert into leveranciers 
+values ('007', '', '', '', 8.00);
+
+update leveranciers
+set lev_naam='jamesbond', adres= 'everywhere 7', woonplaats = 'Antwerpen'
+where lev_code='007';
+
+insert into bestellingen 
+ values 
+('0205','007', '1997-04-23','1994-04-30', 235.00);
+
+insert into bestelregels 
+values
+('0205', '437', '200', 200);
+
+insert into bestelregels 
+values
+('0205', '242', '10', 160);
+
+insert into bestelregels 
+values
+('0205', '082', '25', 55);
+
+/*6. Ga na of er offertes en/of bestelregels zijn voor waterplanten. Verwijder
+daarna alle gegevens betreffende waterplanten.*/
+
+select r.bestelnr
+from bestelregels r
+join planten pr
+on r.art_code = pr.art_code
+where pr.soort = 'water';
+
+delete from bestelregels  
+where art_code in(
+select art_code
+from planten 
+where soort = 'water');
+
+
+select o.art_code
+from offertes o 
+join planten po 
+on o.art_code = po.art_code
+where po.soort= 'water';
+
+delete from offertes
+where art_code in(
+select art_code
+from planten 
+where soort= 'water');
+
+
+/* 7. De leveringsdatum bij de leverancier met code 009 is onzeker. Verwijder de
+betreffende leveringsdatums. (Vervang de leveringsdatum voor deze
+leverancier door NULL.)*/
+
+update bestellingen
+set lev_datum = null
+where lev_code='009';
+
+select *
+from bestellingen 
+where lev_code='009';
+
+/**  VIEWS  *********************************************************/
+
+
+
+/*  1. Definieer een view off_lisse waarin alleen offertes van leveranciers uit
+Lisse voorkomen.  */
+
+create view off_lisse as
+select o.lev_code, o.art_code, o.lev_tijd, o.off_prijs
+from offertes o join leveranciers l
+on o.lev_code = l.lev_code
+where l.woonplaats = 'lisse' ;
+
+
+select *
+from off_lisse
+order by 1;
+
+/* 3. Definieer een view vast_laag waarin alle gegevens van alle vaste planten
+uit de categorie “laag” voorkomen.  */
+
+create view vast_laag as
+select p.art_code , p.plantennaam, p.soort, p.kleur, p.hoogte, p.bloeibegin, p.bloeieinde, p.prijs
+from planten p join  plantschema s
+on p.hoogte between s.hoogte1 and s.hoogte2
+where s.categorie='laag' and p.soort='vast';
+
+select * from vast_laag;
+
+
+
+/*4. Definieer een view off_lev014 waarin de offertes van de leverancier met
+code ‘014’ worden opgenomen: artikelcode, plantnaam, offerteprijs en
+onze verkoopprijs. */
+
+create view off_lev014 as
+select o.art_code, p.plantennaam, o.off_prijs, p.prijs as verkoopprijs
+from offertes o join planten p 
+on o.art_code = p.art_code
+where o.lev_code= '014';
+
+select * from off_lev014;
+
+
+/* 5. Definieer een view besteld via welke een overzicht kan worden bekomen
+van de bestelde planten. De kolommen bevatten plantnaam,
+bestelnummer, leverancierscode en artikelcode.  */
+
+create view besteld as
+
+select p.art_code , p.plantennaam, r.bestelnr, b.lev_code
+from planten p join bestelregels r
+on p.art_code =  r.art_code
+join bestellingen b
+on r.bestelnr = b.bestelnr; 
+
+select * from besteld;
+
+/* 6. Definieer een view min_prijs met voor alle planten waarvoor offertes
+werden binnengebracht informatie over de gunstigste offerte. De
+kolommen bevatten: artikelcode, plantnaam, leverancierscode, offerteprijs
+en winst (gebaseerd op verschil tussen verkoopprijs en deze offerte). */
+
+create view min_prijs as
+select o.art_code, p.plantennaam, o.lev_code, min(o.off_prijs), p.prijs - min(o.off_prijs) as winst
+from planten p join offertes o
+on p.art_code = o.art_code
+group by o.art_code
+order by 1;
+
+select * from min_prijs;
