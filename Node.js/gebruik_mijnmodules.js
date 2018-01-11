@@ -1,4 +1,5 @@
 'use strict';
+// Deze file is samen met mijnmodules01...js
 
 /*
 code van voorgedefinieerde functie require:
@@ -7,7 +8,8 @@ code van voorgedefinieerde functie require:
         return module.exports;
     };
 */
-
+// maken een object mod1(eigen naam) die gelijk is aan exports van mijnmodules01.js
+// met bijhorende functie helloInEnglish en helloInDutch.
 var mod1 = require('./mijnmodule01.js');  // !!! ./ moet in path staan
 mod1.helloInEnglish();
 mod1.helloInDutch("Grote smurf");
