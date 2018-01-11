@@ -43,3 +43,23 @@ while(bedrag > 0){
     console.log("saldo na poging tot opname van ", bedrag, ": ", rekening.saldo);
     bedrag -= 10;
 }
+
+var rekening2 = new Rekening(100);
+rekening2.on('saldo_negatief', function(src){
+    console.log("saldo ontoereikend! (Saldo bedraagt ",src.saldo,")");
+});
+console.log("saldo na creatie: ", rekening2.saldo);
+var bedrag  = 20;
+rekening2.stortGeld(bedrag);
+console.log("saldo na storting van ", bedrag, ": ", rekening2.saldo);
+bedrag = 10;
+rekening2.haalGeldAf(bedrag);
+console.log("saldo na opname van ", bedrag, ": ", rekening2.saldo);
+bedrag = 150;
+rekening2.haalGeldAf(bedrag);
+console.log("saldo na opname van ", bedrag, ": ", rekening2.saldo);
+while(bedrag > 0){
+    rekening2.haalGeldAf(bedrag);
+    console.log("saldo na poging tot opname van ", bedrag, ": ", rekening2.saldo);
+    bedrag -= 10;
+}
