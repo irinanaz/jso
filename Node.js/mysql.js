@@ -19,7 +19,6 @@ connection.query('SELECT * from planten', function(err, rows, fields) { // coman
   }
   else{
     console.log('Error while performing query.');
-	}
+  }
+  connection.end();
 });
-
-connection.end(); // belangrijk te sluiten - aantal gebruikers beperkt voor DB

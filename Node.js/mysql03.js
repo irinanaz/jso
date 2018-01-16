@@ -22,9 +22,15 @@ function insertRecord(row, callback) {
 
 		} else {
 			callback(null, result);
+<<<<<<< HEAD
 		}connection.end();
 	});
 	
+=======
+		}
+		connection.end();
+	});
+>>>>>>> 39ad9fe5611d228b6cae9aba17a47aa6e33980f5
 }
 // een rij toe voegen: params moeten overeen komen met kolomnamen in DB:
 var row = { lev_code: '997', lev_naam: 'GROTE SMURF 2', adres: 'Paddenstoel 1', woonplaats: 'Smurfendorp', korting: 0 };

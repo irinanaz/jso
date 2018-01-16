@@ -25,10 +25,9 @@ function insertRecords(rows, callback) {
 			callback(err, results);
 		} else {
 			callback(null, results);
-		} 
+		}
 		connection.end();
 	});
-	
 }
 // HOOFDPROGRAMMA:
 // controleren op voorhand dat in tabel zitten geen gegevens met deze lev_codes:

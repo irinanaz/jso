@@ -21,7 +21,6 @@ connection.query("SELECT * from planten WHERE kleur='"+kleur+"'", function(err, 
   }
   else{
     console.log('Error while performing query.');
-	}
+  }
+  connection.end();
 });
-
-connection.end();

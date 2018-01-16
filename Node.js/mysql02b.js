@@ -22,6 +22,5 @@ connection.query('SELECT ?? from ?? WHERE ?? = ?', identifiers, function (err, r
   else {
     console.log('Error while performing query.');
   }
+  connection.end();
 });
-
-connection.end();
