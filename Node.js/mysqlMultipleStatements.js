@@ -12,22 +12,23 @@ function insertRecords(rows, callback) {
 		password: 'root',
 		database: 'deschop',
 		port: 3307,
-		/* !!! */ multipleStatements: true
+		multipleStatements: true  /* !!! - verplicht om meerdere statements te sturen*/
 	});
 
-	connection.connect();
+	connection.connect();// connectie opennen
 	var sql = '';
 	for(var i=0; i < rows.length; i++){
-		sql += 'INSERT INTO leveranciers SET ?;'
+		sql += 'INSERT INTO leveranciers SET ?;' // string met meerdere commandos 
 	}
 	connection.query(sql, rows, function (err, results) {
 		if (err) {
 			callback(err, results);
 		} else {
 			callback(null, results);
-		}
+		} 
+		connection.end();
 	});
-	connection.end();
+	
 }
 
 var row1 = { lev_code: '998', lev_naam: 'GROTE SMURF', adres: 'Paddenstoel 1', woonplaats: 'Smurfendorp', korting: 0 };

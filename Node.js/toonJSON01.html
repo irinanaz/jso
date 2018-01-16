@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="lijstPlanten"></div>
+
+    <!-- <button type="button" id="btn">Change Content</button> -->
+    <script>
+    $(function(){
+        $(document).ready(function(){
+            $.ajax('http://127.0.0.1:1337.planten.json',{
+                //method: 'GET',
+                dataType: 'json',
+            }).done(function(data){
+                //console.log(data[0]);
+                let $ul = $('<ul>'); // maak nieuw li element
+                $('#lijstPlanten').append($ul);
+                
+                for (var i=1; i<data.data.length; i++){
+                    var plant = data.data[i]
+                    var $li =$('<li>');
+
+                    $li.text(plant.plantennaam);
+                    $('ul').append($li);
+                }
+            }).fail(function(obj, error, msg){
+                console.dir(msg);
+            })
+        });
+    });
+    
+    </script>
+    <!-- <script>
+
+        function loadDoc() {
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+              document.getElementById("lijstPlanten").innerHTML = xhttp.responseText;
+            }
+          };
+          xhttp.open("GET", "//localhost:1337/toonJsonNAAM.html", true);
+          xhttp.send();
+        }
+    </script> -->
+</body>
+
+</html>
