@@ -30,11 +30,12 @@ function insertRecords(rows, callback) {
 	});
 	
 }
-
+// HOOFDPROGRAMMA:
+// controleren op voorhand dat in tabel zitten geen gegevens met deze lev_codes:
 var row1 = { lev_code: '998', lev_naam: 'GROTE SMURF', adres: 'Paddenstoel 1', woonplaats: 'Smurfendorp', korting: 0 };
 var row2 = { lev_code: '997', lev_naam: 'SMURFIN', adres: 'Vliegenzwam 86', woonplaats: 'Smurfendorp', korting: 0 };
 var row3 = { lev_code: '996', lev_naam: 'BABYSMURF', adres: 'De kleine paddenstoel', woonplaats: 'Smurfendorp', korting: 0 };
-var rows = [row1, row2, row3];
+var rows = [row1, row2, row3];  // array
 insertRecords(rows, function (err, results) {
 	if (err) {
 		console.log('Error while performing query.');
