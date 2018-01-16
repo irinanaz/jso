@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="nl">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+    <h2>Geef de informatie over uw favoriete reisbestemming in:</h2>
+    <form action="http://127.0.0.1:8083/process_get" method="get">
+        <label for="idNaam">Naam: </label><input type="text" id="idNaam" name="naam"/><br/>
+        <label for="idGeslacht">Geslacht:</label></br>
+        <input type="radio" id="idGMan" name="geslacht" value="m"><label for="idGMan" >mannelijk</label><br/>
+        <input type="radio" id="idGVr" name="geslacht" value="v"><label for="idGVr">vrouwelijk</label><br/>
+        <label for="idBestemming">bestemming</label>
+        <select id="idBestemming" name="bestemming">
+            <option value="De zee" selected>De zee</option>
+            <option value="Bergen">Bergen</option>
+        </select><br/>
+        <input id="idLid" type="checkbox" name="lid" value="lid" checked /><br/>
+        <input type="submit" id="idSubmit" value ="Registreer"/>
+    </form>
+    </body>
+</html>

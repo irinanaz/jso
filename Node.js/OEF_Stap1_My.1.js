@@ -32,7 +32,7 @@ http.createServer(function handler(req, res) {  // eigen namen : req en res -->r
 console.log('Server running at http://192.168.23.155:1337/'); // asynchronisch verder
 
 
-// un listen(1337, '127.0.0.1');
+// lijn30:   .listen(1337, '127.0.0.1');
 // moeten we server bepalen :
 // om eigen server te zoeken moeten we comandprompt gebruiken:
 // open cmp --> ipconfig 

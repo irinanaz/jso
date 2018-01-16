@@ -6,6 +6,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="css/style.css" rel="stylesheet">
     </head>
+    <script>
+    function loadDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                document.getElementById("demo").firstChild.innerHTML = xhttp.responseText;
+            }
+        };
+        xhttp.open("GET", "//192.168.23.104:1337/", true);
+        xhttp.send();
+    }
+    </script>
     <body>
     <h2>File Oef Stap2</h2>
     <input type="button" id="btn" value = "btn" />

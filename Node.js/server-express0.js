@@ -20,7 +20,8 @@ app.get('/*.html', function(request, response){
 // request method=GET
 // path: eender wat, maar eindigt niet op .html
 app.get('/*', function(request, response){
-    // request.query : querystring
+    // request.query : querystring:
+    // postman: http://127.0.0.1:8083/elkefilenaamnothtml?voornaan=Irina&naam=Nazarkova
     var voornaam = request.query.voornaam;
     var naam = request.query.naam;
     console.log("naam en voornaam uit de querystring: %s %s", naam, voornaam);

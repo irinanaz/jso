@@ -20,22 +20,25 @@ app.get('/process_get', function(req, res) {
 		first_name : req.query.first_name,
 		last_name : req.query.last_name
 	};
-	console.log(response);
-	res.end(JSON.stringify(response));
+	console.log(response); // response : 
+	res.end(JSON.stringify(response));   // maak een string van en stuur las response naar client
 });
 
 app.post('/process_post', function(req, res) {
 	console.log("post");
 	// Prepare output in JSON format
 	var response = {
-		first_name : req.body.first_name,
+		// bij POST wordten de waarden/strings van de formvelden 
+		// niet automatisch naar in Query-string te staan
+		// lijn 7 tem 10 om via POST req.body te gebruiken
+		first_name : req.body.first_name,  
 		last_name : req.body.last_name
 	};
 	console.log(response);
 	res.end(JSON.stringify(response));
 });
 
-var server = app.listen(8081, function() {
+var server = app.listen(8083, function() {
 	var host = server.address().address;
 	var port = server.address().port;
 	console.log("Example app listening at http://%s:%s", host, port);
