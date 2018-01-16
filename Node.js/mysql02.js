@@ -21,6 +21,5 @@ connection.query('SELECT ??, ?? from ??', identifiers, function (err, rows, fiel
   else {
     console.log('Error while performing query.');
   }
+  connection.end();
 });
-
-connection.end();

@@ -22,15 +22,9 @@ function updateRecord(row, callback) {
 
 			} else {
 				callback(null, result);
-<<<<<<< HEAD
-			}connection.end();
-		});
-	
-=======
 			}
 			connection.end();
 		});
->>>>>>> 39ad9fe5611d228b6cae9aba17a47aa6e33980f5
 }
 
 var row = ['Grote Vliegenzwam', 'Smurfenstad', '997']; 
