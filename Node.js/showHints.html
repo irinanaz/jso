@@ -7,7 +7,7 @@
 
 <form action=""> 
 First name: <input type="text" id="txt1" onkeyup="showHint(this.value)">
-</form>
+</form> <!-- this. verwijst naar huidige element, vanwaar die opgeroepen wordt -->
 
 <p>Suggestions: <span id="txtHint"></span></p> 
 
@@ -27,3 +27,5 @@ function showHint(str) {
 
 </body>
 </html>
+
+<!-- samen met nameHintService.js  -->

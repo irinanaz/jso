@@ -3,6 +3,7 @@
  */
 
 /* UPDATE */
+var toetsenbord = require('readline-sync');
 
 function updateRecord(row, callback) {
 	var mysql = require('mysql');
@@ -11,23 +12,24 @@ function updateRecord(row, callback) {
 		user: 'root',
 		password: 'root',
 		database: 'deschop',
-		port: 3307
+		port: 3306
 	});
 
 	connection.connect();
-	connection.query('UPDATE leveranciers SET adres = ?, woonplaats = ? WHERE lev_code = ?',
+	// select * from leveranciers where lev_code ='007';
+	connection.query('delete from ?? WHERE ?? = ?',
 		row, function (err, result) {
 			if (err) {
 				callback(err, result);
 
 			} else {
 				callback(null, result);
-			}connection.end();
+			} connection.end();  // op het zelfde nieveau met if
 		});
 	
 }
-
-var row = ['Grote Vliegenzwam', 'Smurfenstad', '997']; 
+var levcodeToDELETE = toetsenbord.question("Geef een code van de leverancier te verwijderen in: ");
+var row = ['leveranciers', 'lev_code', levcodeToDELETE];  // invoer:  997
 updateRecord(row, function (err, result) {
 	if (err) {
 		console.log('Error while performing query.');
