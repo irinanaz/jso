@@ -15,3 +15,7 @@ var server = app.listen(8081, function () {
   console.log("Example app listening at http://%s:%s", host, port);
 
 });
+
+// Om niet de elke keer een path in te tikken kunnen we een defoult stukje path 
+// voorzien met methode static - zie lijn 4.
+// op lijn 6 komt een request zonder path - static zorgt voor een juiste path automatisch.
