@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Restaurants</title>
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+
+<body>
+    <h1>Overzicht restaurants</h1>
+    <table id="scholen">
+        <th><td>Name</td><td>Address</td><td>Cuisine</td></th>
+    </table>
+    
+    <script>
+    $(document).ready(function(){
+        // $.ajax({
+        //     // publieke open dataset opvragen
+        //     url: "http://datasets.antwerpen.be/v4/gis/volwassenonderwijs.json",
+        //     dataType:"json",   //parse returned JSON
+        //     success: function(json){
+        //         $.each( json.data, function(k,v){
+        //             $("#scholen").append("<li>"+v.naam+"</li>")
+        //         });
+        //     },
+        //     error: function(XMLHttpRequest, textStatus, errorThrown) {
+        //             alert("Status: " + textStatus); 
+        //             alert("Error: " + errorThrown); 
+                
+        //     }
+        // });
+
+        $.ajax({
+            // zelfgeschreven service oproepen (cross domain)
+            url: "http://127.0.0.1:1337/restaurants.json",
+            contentType: "application/json",
+            crossDomain:true,
+            //method:"GET",
+            dataType:"json",   //parse returned JSON
+            success: function(json){
+                $.each( json.data, function(k,v){
+                    let $tr = $('<tr>');
+    
+                    let $tdName = $('<td>').text(v.name);
+                    let $tdAddress = $('<td>').text(v.addres.straat + v.address.building + v.borough);
+                    let $tdCuisine = $('<td>').text(v.cuisine);
+                    
+                    
+                    $tr.append($tdItem);
+                    $tr.append($tdPrijs);
+                    $tr.append($tdDel);
+                    $('#idItems').append($tr);
+                    $('#txtNaam').val('');
+
+    
+                });
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus); 
+                    alert("Error: " + errorThrown); 
+                
+            }
+        });
+    });
+</script>
+</body>
+
+</html>
