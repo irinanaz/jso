@@ -8,7 +8,7 @@
 
 <body>
     <h1>Overzicht restaurants</h1>
-    <table id="scholen">
+    <table id="restos">
         <th><td>Name</td><td>Address</td><td>Cuisine</td></th>
     </table>
     
@@ -46,11 +46,11 @@
                     let $tdCuisine = $('<td>').text(v.cuisine);
                     
                     
-                    $tr.append($tdItem);
-                    $tr.append($tdPrijs);
-                    $tr.append($tdDel);
-                    $('#idItems').append($tr);
-                    $('#txtNaam').val('');
+                    $tr.append($tdName);
+                    $tr.append($tdAddress);
+                    $tr.append($tdCuisine);
+                    $('#restos').append($tr);
+                   // $('#txtNaam').val('');
 
     
                 });
