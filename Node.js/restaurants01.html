@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
 
 <head>
     <title>Restaurants</title>
@@ -65,4 +66,37 @@
 </script>
 </body>
 
+=======
+<head>
+<title>oefening NodeJS - MongoDB (1)</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+    <h1>Overzicht restaurants</h1>
+    <div id="melding"></div>
+    <table id='restoTable'></table>
+</body>
+<script >
+    var velden = ['name', 'cuisine', 'borough'];
+
+    $(document).ready( function(){
+      $('#melding').html("Even geduld aub. De restaurantgegevens worden opgehaald...");
+      $.getJSON("http://localhost:8888/restaurants", function(docs){
+          $('#melding').html("");
+          $.each(docs, (i, restaurant) => {
+              $('#restoTable').append(maakRijString(restaurant, velden));
+          });
+      });
+    });
+
+    function maakRijString(restaurant, velden){
+        var result = "<tr>";
+        $.each(velden, (i, veldnaam) => {
+            result += "<td>" + restaurant[veldnaam] + "</td>";
+        });
+        result += "</tr>";
+        return result;
+    }
+</script>
+>>>>>>> ead5ce85740258fc5938160d9b024de8ab675876
 </html>
