@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+<!-- <head>
     <title>Restaurants</title>
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
@@ -14,21 +14,7 @@
     
     <script>
     $(document).ready(function(){
-        // $.ajax({
-        //     // publieke open dataset opvragen
-        //     url: "http://datasets.antwerpen.be/v4/gis/volwassenonderwijs.json",
-        //     dataType:"json",   //parse returned JSON
-        //     success: function(json){
-        //         $.each( json.data, function(k,v){
-        //             $("#scholen").append("<li>"+v.naam+"</li>")
-        //         });
-        //     },
-        //     error: function(XMLHttpRequest, textStatus, errorThrown) {
-        //             alert("Status: " + textStatus); 
-        //             alert("Error: " + errorThrown); 
-                
-        //     }
-        // });
+
 
         $.ajax({
             // zelfgeschreven service oproepen (cross domain)
@@ -62,9 +48,9 @@
             }
         });
     });
-</script>
+</script> -->
 </body>
-<!-- 
+
 <head>
 <title>oefening NodeJS - MongoDB (1)</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -81,19 +67,19 @@
       $('#melding').html("Even geduld aub. De restaurantgegevens worden opgehaald...");
       $.getJSON("http://localhost:8888/restaurants", function(docs){
           $('#melding').html("");
-          $.each(docs, (i, restaurant) => {
-              $('#restoTable').append(maakRijString(restaurant, velden));
-          });
+          $.each(docs, (i, restaurant) => { // of kan een anonieme functie staan
+              $('#restoTable').append(maakRijString(restaurant, velden)); 
+          });          // om willekeurige # en velden in tabel te kunnen zetten
       });
     });
 
     function maakRijString(restaurant, velden){
         var result = "<tr>";
-        $.each(velden, (i, veldnaam) => {
-            result += "<td>" + restaurant[veldnaam] + "</td>";
+        $.each(velden, (i, veldnaam) => {  // om willekeurige # en velden in tabel te kunnen zetten
+            result += "<td>" + restaurant[veldnaam] + "</td>"; // om tabel veld dinamisch te kunnen krijgen
         });
         result += "</tr>";
         return result;
     }
-</script> -->
+</script>
 </html>
