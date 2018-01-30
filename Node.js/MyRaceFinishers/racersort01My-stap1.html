@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+</body>
+
+<head>
+<title>oefening NodeJS - MongoDB (1)</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="jquery.idTabs.min.js" ></script>
+</head>
+<body>
+    <h1>Add new racer:</h1>
+    <div id="melding">Even geduld aub.</div>
+    <table id='racersTable'></table>
+    <form  method='post' action='http://127.0.0.1:1337/racerNew'> 
+        <label for="txtFirstName">Name:</label><input type="text" id="txtFirstName" name="txtFirstName"><br>
+        <label for="txtName">Firstname:</label><input type="text" id="txtName" name="txtName"><br>
+        <label for="idGender">Gender:</label>
+        
+            <input type="radio" value='man' name='idGender'>man</br>
+            <input type="radio" value='woman' name='idGender'>woman</br>
+        
+        <label for="nmbHours">Hours:</label><input type="number" id="nmbHours" name="nmbHours" step="1" min="0"><br>
+        <label for="nmbMinutes">Minutes:</label><input type="number" id="nmbMinutes" name="nmbMinutes" step="1" min="0"><br>
+        <input  type="submit" id="btnInsert" value="Insert" /><br>
+    </form>
+
+
+
+<script >
+    var velden = ['voornaam','naam','gender', 'uren', 'minuten'];
+    // var gender = 'man';
+    
+    $(document).ready(sortRacersTOut);
+// SORTEREN -------------------------------------------------
+    function sortRacersTOut(){
+        $('#racersTable').html("");
+        $('#melding').html("Even geduld aub. De restaurantgegevens worden opgehaald...");
+        $.getJSON("http://localhost:8888/racers", function(docs){
+          $('#melding').html("");
+          $.each(docs, (i, racer) => {
+            $('#racersTable').append(maakRijString(racer, velden));
+            
+          });
+        });
+        //setTimeout(sortRacersTOut,10000);
+      }
+
+// tabel vullen -------------------------------------------------
+      function maakRijString(racer, velden){
+        var result = "<tr>";
+        $.each(velden, (i, veldnaam) => {
+            result += "<td>" + racer[veldnaam] + "</td>";
+        });
+        result += "</tr>";
+        return result;
+        
+    }
+    
+</script>
+</body>
+</html>

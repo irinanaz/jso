@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+</body>
+
+<head>
+<title>oefening NodeJS - MongoDB (1)</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="http://www.sunsean.com/idTabs/jquery.idTabs.min.js"></script>
+</head>
+<body>
+    <h1>Racers Titel</h1>
+    <div id="melding">Even geduld aub.</div>
+    <div id="meldingRefresh">Refreshing every 10sec automatically.</div>
+ <div id="usual1" class="usual"> 
+        <ul> 
+          <li><a id="lnkAll" href="#tab1" class="selected">Alle racers</a></li> 
+          <li><a id="lnkM"   href="#tab2">Mannen</a></li> 
+          <li><a id="lnkV"   href="#tab3">Vrouwen</a></li> 
+          <li><a id="lnkN"   href="#tab4">Nieuwe Racer</a></li> 
+        </ul> 
+        <div id="tab1"><ul id='racersTable'></ul></div> 
+        <div id="tab2"><ul id='racersTableM'></div> 
+        <div id="tab3"><ul id='racersTableV'></div> 
+        <div id="tab4"><form  method='post' action='http://127.0.0.1:1337/racerNew'> 
+            <label for="txtFirstName">Name:</label><input type="text" id="txtFirstName" name="txtFirstName"><br>
+            <label for="txtName">Firstname:</label><input type="text" id="txtName" name="txtName"><br>
+            <label for="idGender">Gender:</label>
+            
+                <input type="radio" value='man' name='idGender'>man</br>
+                <input type="radio" value='woman' name='idGender'>woman</br>
+            
+            <label for="nmbHours">Hours:</label><input type="number" id="nmbHours" name="nmbHours" step="1" min="0"><br>
+            <label for="nmbMinutes">Minutes:</label><input type="number" id="nmbMinutes" name="nmbMinutes" step="1" min="0"><br>
+            <input  type="submit" id="btnInsert" value="Insert" /><br>
+        </form></div>
+    </div> 
+       
+      <script type="text/javascript"> 
+        $("#usual1 ul").idTabs(); 
+      </script> 
+
+
+
+
+
+
+<script >
+    
+    $(document).ready(sortRacersTOut);
+    $('#lnkAll').click(sortRacersTOut);
+    $('#lnkM').click(sortRacersTOutM);
+    $('#lnkV').click(sortRacersTOutV);
+    
+// SORTEREN -------------------------------------------------
+    function sortRacersTOut(){
+        $('#racersTable').html("");
+        $('#melding').html("Even geduld aub. De restaurantgegevens worden opgehaald...");
+        $.getJSON("http://localhost:8888/racers", function(docs){
+          $('#melding').html("");
+          $.each(docs, (i, racer) => {
+            $('#racersTable').append(maakRijString(racer));
+            
+          });
+        });
+        setTimeout(sortRacersTOut,10000);
+    }
+// SORTEREN MANNEN -------------------------------------------------
+function sortRacersTOutM(){
+    $('#racersTableM').html("");
+    $('#melding').html("Even geduld aub. De restaurantgegevens worden opgehaald...");
+    $.getJSON("http://localhost:8888/racersMannen", function(docs){
+      $('#melding').html("");
+      $.each(docs, (i, racer) => {
+        $('#racersTableM').append(maakRijString(racer));
+        
+      });
+    });
+    setTimeout(sortRacersTOut,10000);
+}   
+
+// SORTEREN VROUWEN -------------------------------------------------
+function sortRacersTOutV(){
+    $('#racersTableV').html("");
+    $('#melding').html("Even geduld aub. De restaurantgegevens worden opgehaald...");
+    $.getJSON("http://localhost:8888/racersVrouwen", function(docs){
+      $('#melding').html("");
+      $.each(docs, (i, racer) => {
+        $('#racersTableV').append(maakRijString(racer));
+        
+      });
+    });
+    setTimeout(sortRacersTOut,10000);
+}
+
+// tabel vullen -------------------------------------------------
+      function maakRijString(racer){
+        var result = '<li> Racer:' + racer["voornaam"]+' '+racer["naam"] +': time ' + racer["uren"] + ':' +racer["minuten"]+'</li>';
+        
+        return result;
+        
+    }
+    
+</script>
+</body>
+</html>
