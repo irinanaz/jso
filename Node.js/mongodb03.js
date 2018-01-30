@@ -37,3 +37,20 @@ function updateDB() {  //veld, oldData, newData
 updateDB()
 console.log("********** wat denk je hiervan ? **********");
 //toonRestaurants({$gte:""});   // NoSQL injection
+
+
+
+
+
+//  versie van ANN
+
+// mongoClient.connect(url, function (err, client) {
+//   console.log("Connected successfully to server");
+//   var db = client.db('test');
+//   var collection = db.collection('restaurants');
+//   // update some documents
+//   collection.updateMany({ borough: "Missing" }, { $set: { borough: "unknown" } }, function (err, r) {
+//     console.log("%s restaurants are updated", r.modifiedCount);
+//     client.close();
+//   });
+// });
