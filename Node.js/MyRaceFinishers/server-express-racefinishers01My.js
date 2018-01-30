@@ -31,6 +31,7 @@ app.post('/addRunner', function (req, res) {
 
 
 app.post('/racerNew', insertRacersDB);
+//app.post('/rasersInsert', insertRacersDB);
 app.get('/racersVrouwen', sorteerRacersVDB);
 app.get('/racersMannen', sorteerRacersMDB);
 app.get('/racers', sorteerRacersDB);
@@ -90,9 +91,9 @@ function insertRacersDB(request, response) {  //veld, oldData, newData
       });
     });
   }
-function refreshForm(request,response){
-    
-}
+// function refreshForm(request,response){
+
+// }
 
 
 

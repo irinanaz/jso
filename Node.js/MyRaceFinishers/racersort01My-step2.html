@@ -21,7 +21,7 @@
         <div id="tab1"><ul id='racersTable'></ul></div> 
         <div id="tab2"><ul id='racersTableM'></div> 
         <div id="tab3"><ul id='racersTableV'></div> 
-        <div id="tab4"><form  method='post' action='http://127.0.0.1:1337/racerNew' id="myForm"> 
+        <div id="tab4"><form  method='post' action='http://127.0.0.1:1337/racerNew'> 
             <label for="txtFirstName">Name:</label><input type="text" id="txtFirstName" name="txtFirstName"><br>
             <label for="txtName">Firstname:</label><input type="text" id="txtName" name="txtName"><br>
             <label for="idGender">Gender:</label>
@@ -31,7 +31,7 @@
             
             <label for="nmbHours">Hours:</label><input type="number" id="nmbHours" name="nmbHours" step="1" min="0"><br>
             <label for="nmbMinutes">Minutes:</label><input type="number" id="nmbMinutes" name="nmbMinutes" step="1" min="0"><br>
-            <input  type="button" id="btnInsert" value="Insert"  /><br>
+            <input  type="submit" id="btnInsert" value="Insert" /><br>
         </form></div>
     </div> 
        
@@ -46,36 +46,12 @@
 
 <script >
     
-    $(document).ready(sortRacersAll);
+    $(document).ready(sortRacersTOut);
     $('#lnkAll').click(sortRacersTOut);
     $('#lnkM').click(sortRacersTOutM);
     $('#lnkV').click(sortRacersTOutV);
-    $('#btnInsert').click( function(){
-        $('#melding').html("Even geduld aub. De gegevens worden bewaard...");
-        $.post("http://localhost:8888/racerNew/", $('form#myForm').serialize(), function(data) {
-            $('#melding').html("Toegevoegd");
-       
-            $("#txtFirstName").val('');
-		    $("#txtName").val('');
-		    $("#idGender").val('');
-		    $("#nmbHours").val('');
-		    $("#nmbMinutes").val('');
-        }); 
-      });
-    
+    //$('#lnkN').click(sortRacersTOutM);
 // SORTEREN -------------------------------------------------
-function sortRacersAll(){
-    $('#racersTable').html("");
-    $('#melding').html("Even geduld aub. De restaurantgegevens worden opgehaald...");
-    $.getJSON("http://localhost:8888/racers", function(docs){
-      $('#melding').html("");
-      $.each(docs, (i, racer) => {
-        $('#racersTable').append(maakRijString(racer));
-        
-      });
-    });
-    //setTimeout(sortRacersTOut,10000);
-}
     function sortRacersTOut(){
         $('#racersTable').html("");
         $('#melding').html("Even geduld aub. De restaurantgegevens worden opgehaald...");
