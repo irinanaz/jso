@@ -15,8 +15,10 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-
+// om alle sorten files te kunnen aanvragen - dat moet 
+app.get(['/*.htm*', '/*.css', '/scripts/*.js'], function (req, res) {
+    res.sendFile(path.join(__dirname + url.parse(req.url).pathname));
+});
 
 
 
