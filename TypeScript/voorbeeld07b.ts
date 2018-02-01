@@ -49,3 +49,5 @@ console.log("rekening van Joske:")
 console.log(rekeninga);
 console.log("rekening van Jeanne:")
 console.log(rekeningb);
+
+console.log(rekeningb.getSaldo()); // getSaldo is methode dus ()

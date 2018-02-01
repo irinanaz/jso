@@ -1,12 +1,12 @@
 /* readonly prop */
 
 class Cirkel{
-    readonly straal: number;
-    constructor(straal){
-        this.straal = straal;
+    readonly straal: number;   // in constructor kunt een waarde krijgen, maar niet veranderd w via methode
+    constructor(straal1){
+        this.straal = straal1;
     }
-    oppervlakte(): number{
-        //this.straal += 1;  // compileerfout
+    oppervlakte(): number{  // methode 
+        this.straal += 1;  // compileerfout - want hier staat readonly bij definitie
         return Math.PI * this.straal * this.straal;
     } 
 }

@@ -19,13 +19,13 @@ function toonPersoon(persoon: Persoon): void{
 let persoon1: Persoon = {voornaam: "Nicole", naam: "Josy", partner: {voornaam:"Hugo", naam:"Sigal"}};
 toonPersoon(persoon1);
 
-let persoon2: Persoon = {voornaam:"Jorge", naam:"Bergoglio", jaarBenoeming: 2013};
+let persoon2: Persoon = {voornaam:"Jorge", naam:"Bergoglio", jaarBenoeming: 2013};// hier Kan je geen nieuwe eigenschappen maken
 toonPersoon(persoon2);
 
 let artikel = {code:"123", prijs: 2.3, omschrijving:"mini-baguette smos kaas"};
-toonPersoon(artikel);  // compileerfout
+toonPersoon(artikel);  // compileerfout - artikel is geen type Persoon
 
 // object literals worden anders behandeld:
 // een object literal als argument mag enkel de props uit de interface hebben
 toonPersoon({voornaam: "Johan", naam: "Bonny"});
-toonPersoon({voornaam: "Julius", naam: "Caesar", jaarOverlijden:"48 AC"});  // compileerfout
+toonPersoon({voornaam: "Julius", naam: "Caesar", jaarOverlijden:"48 AC"});  // compileerfout - geen type Persoon

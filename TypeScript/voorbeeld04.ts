@@ -5,13 +5,13 @@
 // juistere/meer gedetailleerde codecompletion toe
 
 let smurf: any = "grote smurf";  // any => no typechecking on smurf
-smurf = 10;
+// smurf = 10;
 
 let groteSmurf = smurf.toUpperCase();   // ok voor compiler
-console.log(groteSmurf);  // kan fout lopen tijdens uitvoering
+console.log(groteSmurf);  // kan fout lopen tijdens uitvoering - op lijn 8 wordt any een getal
 
 // type assertion - manier 1
-let safeGroteSmurf = (<string>smurf).toUpperCase();
+let safeGroteSmurf = (<string>smurf).toUpperCase(); // om terug een string maken - gegarandeerd
 console.log(safeGroteSmurf);
 
 // type assertion - manier 2
