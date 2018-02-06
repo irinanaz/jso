@@ -1,10 +1,10 @@
-/* interface */
+/* interface */ // een abstracte klasse met alleen abstracte parameters en methodes
 /* een interface is een opsomming van velden en methodes
  die per definitie abstract en public zijn */
 interface Registreerbaar {
-    id: string;
+    id: string;    // parameter abstract public
     registratieDatum: Date;
-    registreer(): void;
+    registreer(): void;  // methode abstract public
 }
 
 // een niet-abstracte klasse die een interface implementeert moet 
