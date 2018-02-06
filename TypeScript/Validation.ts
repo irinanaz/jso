@@ -6,3 +6,5 @@
 export interface StringValidator {
     isAcceptable(s: string): boolean;
 }
+
+/* + file ZipCodeValidator.ts */

@@ -108,10 +108,10 @@ werknemers.push(new Vast("Jan", "Fam",1110, 25));
 werknemers.push(new Vast("Jean", "Pin", 1113, 27));
 werknemers.push(new VerkoopPerc("Choe","Praline" , 1114, 250));
 werknemers.push(new VerkoopPerc("Gil", "Mils", 1115, 500));
-werknemers.push(new VastPerUur("Rode","Kapje",1112, 35, 35));
+werknemers.push(new VastPerUur("Rood","Kapje",1112, 35, 35));
 werknemers.push(new VastPerUur("Blauw","Kapje", 1122, 35, 43));
-werknemers.push(new VerkoopVastPerc("Groene","Kapje",1144, 15, 500));
-werknemers.push(new VerkoopVastPerc("Gele","Kapje", 2200, 15, 500));
+werknemers.push(new VerkoopVastPerc("Groen","Kapje",1144, 15, 500));
+werknemers.push(new VerkoopVastPerc("Geel","Kapje", 2200, 15, 500));
 for(let werknemer of werknemers){
     let bonus = 1;
     if (werknemer instanceof VerkoopVastPerc ) {

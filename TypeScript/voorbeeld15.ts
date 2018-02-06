@@ -67,3 +67,12 @@ for (let registratie of registraties) {
     console.log("\n*** Bezig met verwerking van " + registratie.id + " ***");
     registratie.registreer();
 }
+
+class BootStaanplaats implements Registreerbaar{
+    id: string;
+    registratieDatum: Date;
+    registreer(): void {
+        throw new Error("Method not implemented.");
+    }
+    
+}
