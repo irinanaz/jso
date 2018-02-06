@@ -1,7 +1,11 @@
 /* super, polymorfisme */
 
 class Animal {
-    constructor(public name: string) {  }
+    // v1
+    // constructor(public name: string) {  }
+
+    // v2
+    constructor(public name: string, public domestic:boolean = false) {  }
 }
 
 class Rhino extends Animal {
@@ -26,4 +30,5 @@ console.log(animal, rhino, employee);
 // Rhino { name: 'Rhino' } Rhino { name: 'Rhino' } Employee { name: 'Bob' }
 
 // waar een object van de basisklasse verwacht wordt
-// animal = employee; // compileerfout;
+// animal = employee; // ok als Employee alle velden en methods heeft die Animal heeft (v1);
+// anders compileerfout (v2)

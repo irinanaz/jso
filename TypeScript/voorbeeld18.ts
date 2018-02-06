@@ -1,13 +1,14 @@
-/* iterators */
+/* gebruik van modules */
+/* wat een module exporteert, kan een andere module importeren om het te gebruiken */
 
-let getallen: number[] = [1,2,3,4,5,6,7,8,9];
+import { StringValidator } from "./Validation";
+import { ZipCodeValidator } from "./ZipCodeValidator";
 
-// toon waarden in getallen
-for(let getal of getallen){
-    console.log(getal);
-}
-
-// toon indexen/keys in getallen
-for(let getal in getallen){
-    console.log(getal);
-}
+let myStringValidator: StringValidator;   // import nodig
+myStringValidator = new ZipCodeValidator();  // import nodig
+let zipCode: string = "2660";
+console.log("%s is%s a valid Belgian zipcode", zipCode, 
+    myStringValidator.isAcceptable(zipCode) ? "": " not");
+zipCode = "abcd";
+console.log("%s is%s a valid Belgian zipcode", zipCode, 
+    myStringValidator.isAcceptable(zipCode) ? "": " not");
