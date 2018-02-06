@@ -4,7 +4,8 @@
 <form>
   <h2>twoway binding</h2>
   <p><strong>let op!  element moet een name hebben voor twoway binding</strong></p>
-  <label for="txtVoornaam">Voornaam: </label><input type="text"  id="txtVoornaam" [(ngModel)]="voornaam" name="txtVoornaam" ><br/>
+  <label for="txtVoornaam">Voornaam: </label>
+  <input type="text"  id="txtVoornaam" [(ngModel)]="voornaam" name="txtVoornaam" ><br/>
   <label for="txtNaam">Naam: </label><input type="text"  id="txtNaam" [(ngModel)]="naam" name="txtNaam" >
   <h2>property binding</h2>
   <span [textContent]="voornaam"></span>
