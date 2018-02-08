@@ -1,0 +1,17 @@
+
+
+<h1>Oef Notitie in Angular 4</h1>
+<form>
+   
+  <label for="txtBericht">Uw bericht: </label><br>
+  <textarea rows="4" cols="50"  id="txtBericht" [(ngModel)]="bericht" name="txtBericht" maxlength="100"> </textarea><br/>
+ 
+  <button (click)="klikBewaren()" [disabled]="bericht==''">Bewaren</button>  <!--of zo met functie-->
+  <button (click)="klikWissen()" [disabled]="activeerKnop()">Wis</button> 
+  
+  <span> Aantal beschikbare charachters: {{ beschikbareCharakters() }}</span>
+  
+</form>
+
+
+<!-- of voor een <textarea  #naamText> een naam geven -->

@@ -1,0 +1,22 @@
+* {
+    box-sizing: border-box;
+    padding :10px;
+}
+
+input { 
+   
+    padding :10px;
+}
+label {grid-column-start: 1;
+    
+   
+}
+form {
+    
+    display: grid;
+    width: 800px;
+    grid-template-columns: 1fr 1fr;
+    margin: 10px auto;
+}
+h1{
+text-align: center;}

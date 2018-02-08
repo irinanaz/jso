@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule} from '@angular/forms';
+import { FormsModule} from '@angular/forms'; // nodig om met deforms te werken
 
 import { AppComponent } from './app.component';
 import { VbDatabindingComponent} from './voorbeelden/vbdatabinding/vbdatabinding.component';
@@ -10,7 +10,8 @@ import { VbDatabindingComponent} from './voorbeelden/vbdatabinding/vbdatabinding
     AppComponent,VbDatabindingComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [VbDatabindingComponent]

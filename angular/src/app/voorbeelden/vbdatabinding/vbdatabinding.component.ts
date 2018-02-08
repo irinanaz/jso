@@ -27,3 +27,4 @@ export class VbDatabindingComponent implements OnInit {
   }
 
 }
+
