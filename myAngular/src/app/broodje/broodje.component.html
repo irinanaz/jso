@@ -1,0 +1,19 @@
+<h2>Broodjes Oefening</h2>
+<form #f="ngForm">
+  <label for="txtBroodje">Type Broodje: </label> 
+  <select *ngIf = "broodjesKaart.length>0" id="txtBroodje" name="naambroodje" [(ngModel)]="broodje">
+    <option *ngFor= "let br of broodjesKaart" [ngValue]="br">{{ br.naam }}</option>
+</select>
+
+
+
+<label for="txtAantal"> Aantal: </label>
+<input type="number"  id="txtAantal" [(ngModel)]="aantal" name="txtAantal" ><br/>
+<button (click)="bestellen()">Bestellen</button> 
+</form>
+<div *ngIf="leeftijd < 18">Kom binnen enkele jaren nog eens terug</div>
+
+<table *ngIf="bestelling.length > 0">
+    <hr></hr>
+    <li  *ngFor="let piraat of piraten">{{ piraat }}</li>
+</table>
