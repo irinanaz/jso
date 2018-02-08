@@ -14,6 +14,6 @@
 <div *ngIf="leeftijd < 18">Kom binnen enkele jaren nog eens terug</div>
 
 <table *ngIf="bestelling.length > 0">
-    <hr></hr>
+    <hr><td>Naam van de broodje</td><td>Aantal</td><td>Prijs</td></hr>
     <li  *ngFor="let piraat of piraten">{{ piraat }}</li>
 </table>
