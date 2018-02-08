@@ -1,0 +1,11 @@
+<div style="text-align:center">
+  <h1>{{ title }}</h1>
+  <textarea #txt [(ngModel)]="message" cols="40" rows="10" maxlength="100" (focus)="txt.setSelectionRange(0,0);"></textarea>
+  <p>
+    <button (click)="save(); txt.focus();" [disabled]="isMessageEmpty()">Bewaar</button>
+    <button (click)="clear(); txt.focus();" [disabled]="isMessageEmpty()">Wis</button>
+  </p>
+  <p>Aantal beschikbare karakters:
+    <span>{{ left() }}</span>
+  </p>
+</div>
