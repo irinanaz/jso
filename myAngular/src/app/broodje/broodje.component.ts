@@ -12,14 +12,14 @@ export class BroodjeComponent implements OnInit {
   broodje: Broodje;
   broodjesKaart = new Array <Broodje> ( {naam: 'Kaas', prijs: 2.5} , {naam:'Hesp',prijs:2.8});
   bestellijn: Bestellijn;
-  bestelling: Bestelling;
+  bestelling: Bestelling = new Bestelling();
  
   bestellen (){
     let bestellijn = new Bestellijn(this.broodje, this.aantal);
     console.log(this.broodje, this.aantal);
-    let bestelling = new Bestelling;
-    bestelling.voegLijnToe(bestellijn);
-    console.log(bestelling.totaalprijs);
+    //let bestelling = new Bestelling;
+    this.bestelling.voegLijnToe(bestellijn);
+    console.log(this.bestelling.totaalprijs);
   }
 
   

@@ -13,7 +13,11 @@
 </form>
 <div *ngIf="leeftijd < 18">Kom binnen enkele jaren nog eens terug</div>
 
-<table *ngIf="bestelling.length > 0">
-    <hr><td>Naam van de broodje</td><td>Aantal</td><td>Prijs</td></hr>
-    <li  *ngFor="let piraat of piraten">{{ piraat }}</li>
+<table *ngIf="bestelling.bestelling.length > 0">
+    <tr><td>Naam van de broodje</td><td>Aantal</td><td>Prijs</td></tr>
+    <tr *ngFor= "let br of bestelling.bestelling" >
+    <td>{{ br.naam.naam }}</td>
+    <td>{{ br.naam.prijs }}</td>
+    <td>{{ br.aantal }}</td></tr>
+
 </table>
