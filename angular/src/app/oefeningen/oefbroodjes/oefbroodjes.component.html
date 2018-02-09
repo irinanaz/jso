@@ -1,0 +1,27 @@
+<div>
+  <h1>{{ title }}</h1>
+  <label>type:
+    <select [(ngModel)]="gekozenBroodje">
+      <option *ngFor="let b of broodjes" [ngValue]="b">{{b.naam}}</option>
+    </select>
+  </label>
+  <label>aantal:
+    <input type="number" [(ngModel)]="aantal">
+  </label>
+  <input type="button" value="Bestellen" (click)="bestel();">
+  <div *ngIf="bestelling.bestellijnen.length > 0">
+  <table>
+    <tr>
+      <th>naam</th>
+      <th>prijs</th>
+      <th>aantal</th>
+    </tr>
+    <tr *ngFor="let b of bestelling.bestellijnen">
+      <td>{{b.broodje.naam}}</td>
+      <td>{{b.broodje.prijs | currency:'EUR': 2}}</td>
+      <td>{{b.aantal}}</td>
+    </tr>
+  </table>
+  De totaalprijs is {{totaalprijs() |currency:'EUR':2}}
+</div>
+</div>
