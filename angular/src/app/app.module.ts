@@ -9,6 +9,7 @@ import { VbForComponent } from './voorbeelden/vbfor/vbfor.component';
 import { VbPipesComponent } from './voorbeelden/vbpipes/vbpipes.component';
 import { VbForuitbrComponent } from './voorbeelden/vbfor/vbforuitbr.component';
 import { OefBroodjesComponent } from './oefeningen/oefbroodjes/oefbroodjes.component';
+import { OefHogerLagerComponent } from './oefeningen/oefhogerlager/oefhogerlager.component';
 // TODO: alle componenten die in deze module gedefinieerd zijn importeren
 
 @NgModule({
@@ -20,6 +21,7 @@ import { OefBroodjesComponent } from './oefeningen/oefbroodjes/oefbroodjes.compo
     VbPipesComponent,
     VbForuitbrComponent,
     OefBroodjesComponent,
+    OefHogerLagerComponent
     // TODO: alle componenten die in deze module gedefinieerd zijn hier importeren
   ],
   imports: [
@@ -29,7 +31,6 @@ import { OefBroodjesComponent } from './oefeningen/oefbroodjes/oefbroodjes.compo
   providers: [],
   // TODO: in bootstrap array (enkel) alle componenten opsommen
   // die horen bij user defined tags die in index.html gebruikt worden
-  bootstrap: [OefBroodjesComponent]
-  
+  bootstrap: [OefHogerLagerComponent]
 })
 export class AppModule { }

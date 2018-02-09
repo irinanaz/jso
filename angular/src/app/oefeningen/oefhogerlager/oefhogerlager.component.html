@@ -1,0 +1,20 @@
+<div>
+  <h1>{{ title }}</h1>
+  <form #frmHiLo="ngForm">
+    <!-- ngForm voor form validation --> 
+    <label for="gok">Uw gok (1-100): </label>
+    <input #nr type="number" min="1" max="100" name="gok" required [(ngModel)]="gok" placeholder="uw gok" (focus)="nr.select();" #txtGok="ngModel">
+    <!-- name nodig bij invoer veld voor ngModel!! -->
+    <span style="color:red" *ngIf="txtGok.dirty  && txtGok.invalid">
+        <span *ngIf="txtGok.errors.required">Vul een getal in aub</span>
+      </span>
+    <em>
+    <p>Angular adds classNames to an element depending on the elements state ((in)valid, dirty, ...)</p>
+    <p>Angular added following classNames to nr: {{nr.className}}</p>
+    </em>
+    <input type="submit" value="gok" [disabled]="geraden() || !frmHiLo.form.valid" (click)="verwerkGok();nr.focus();" />
+    <input type="submit" value="opnieuw" (click)="reset();nr.focus();nr.value='';" />
+    <p>{{ tip }}</p>
+    <p>Aantal beurten: {{ aantalBeurten() }}</p>
+  </form>
+</div>
