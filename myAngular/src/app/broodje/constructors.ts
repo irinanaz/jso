@@ -7,19 +7,26 @@ export class Broodje  {
 }
 export class Bestellijn  {
 
-    constructor (public naam: Broodje, public aantal: number){
-        
+    constructor (public type: Broodje, public aantal: number){
     }
+    totaalPrijsperLijn (): number {
+        return this.type.prijs * this.aantal;
+       }
 }
 export class Bestelling  {
     
-    bestelling = new Array <Bestellijn> ();
+    bestellingArray = new Array <Bestellijn> ();
      
     voegLijnToe(newBestellijn): void {
-        this.bestelling.push(newBestellijn);
+        this.bestellingArray.push(newBestellijn);
         console.log(newBestellijn);  
       }
-    totaalprijs(newBestellijn): number {
-       return newBestellijn.prijs * newBestellijn.aantal;
-      }
+    get totaalprijs(): number {
+        let totaal = 0;
+        for ( let i: number = 0; i< this.bestellingArray.length ; i++ ){
+             totaal += this.bestellingArray[i].type.prijs * this.bestellingArray[i].aantal;
+            }
+        return totaal;
+        }
+    
 }

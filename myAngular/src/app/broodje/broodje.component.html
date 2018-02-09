@@ -13,11 +13,15 @@
 </form>
 <div *ngIf="leeftijd < 18">Kom binnen enkele jaren nog eens terug</div>
 
-<table *ngIf="bestelling.bestelling.length > 0">
+<table *ngIf="bestelling.bestellingArray.length > 0">
     <tr><td>Naam van de broodje</td><td>Aantal</td><td>Prijs</td></tr>
-    <tr *ngFor= "let br of bestelling.bestelling" >
-    <td>{{ br.naam.naam }}</td>
-    <td>{{ br.naam.prijs }}</td>
-    <td>{{ br.aantal }}</td></tr>
+    <tr *ngFor= "let br of bestelling.bestellingArray" >
+    <td>{{ br.type.naam }}</td>
+    <td>{{ br.aantal }}</td>
+    <td>{{ br.type.prijs | currency:"EUR" }}</td>
+    </tr>
 
 </table>
+<div >
+    Totaal te betalen:&nbsp;{{ bestelling.totaalprijs | currency:"EUR"}}
+</div>
