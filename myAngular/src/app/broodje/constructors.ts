@@ -17,12 +17,12 @@ export class Bestelling  {
     
     bestellingArray = new Array <Bestellijn> ();
      
-    voegLijnToe(newBestellijn): void {
+    voegLijnToe(newBestellijn: Bestellijn): void {
         this.bestellingArray.push(newBestellijn);
-        console.log(newBestellijn);  
+        // console.log(newBestellijn);  
       }
     get totaalprijs(): number {
-        let totaal = 0;
+        let totaal: number = 0;
         for ( let i: number = 0; i< this.bestellingArray.length ; i++ ){
              totaal += this.bestellingArray[i].type.prijs * this.bestellingArray[i].aantal;
             }

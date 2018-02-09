@@ -18,10 +18,10 @@
     <tr *ngFor= "let br of bestelling.bestellingArray" >
     <td>{{ br.type.naam }}</td>
     <td>{{ br.aantal }}</td>
-    <td>{{ br.type.prijs | currency:"EUR" }}</td>
+    <td>{{ br.type.prijs | currency:"EUR":2 }}</td>
     </tr>
 
 </table>
 <div >
-    Totaal te betalen:&nbsp;{{ bestelling.totaalprijs | currency:"EUR"}}
+    Totaal te betalen:&nbsp;{{ bestelling.totaalprijs | currency:"EUR":2}}
 </div>
