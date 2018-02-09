@@ -7,6 +7,8 @@ import { Vb00Component } from './vb00/vb00.component';
 import { Oef00Component } from './oef00/oef00.component'; 
 import { OefnotitieComponent } from './oefnotitie/oefnotitie.component'; 
 import { BroodjeComponent} from './broodje/broodje.component';
+import { HogerlagerComponent } from './hogerlager/hogerlager.component';
+
 
 @NgModule({
   declarations: [
@@ -14,13 +16,14 @@ import { BroodjeComponent} from './broodje/broodje.component';
     Vb00Component,
     Oef00Component, 
     OefnotitieComponent,
-    BroodjeComponent
+    BroodjeComponent,
+    HogerlagerComponent
   ],
   imports: [
     BrowserModule,
     FormsModule
   ],
   providers: [],
-  bootstrap: [BroodjeComponent] // namen van alle zelfgeschreven componenten
+  bootstrap: [HogerlagerComponent] // namen van alle zelfgeschreven componenten die in index.html w momenteel gebruikt
 })
 export class AppModule { }

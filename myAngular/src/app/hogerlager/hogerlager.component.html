@@ -1,0 +1,17 @@
+<p>
+  {{title}} werkt!
+</p>
+<form #frmGokken ="ngForm">
+  <label for="idGetal">Uw gok (1-100):</label>
+  <input type="number" min="1" max = "100" name="getal" [(ngModel)] = "uwGokgetal"  #gokVeld ="ngModel" required number>
+  <input type="submit"(click)="doeGok(); nr.focus();" [disabled]="geraden()||!frmGokken.form.valid" #nr />
+  <input type="reset" [disabled]="!frmGokken.form.valid" (click)="reset();nr.focus();"/>
+  <span  *ngIf="gokVeld.dirty && gokVeld.invalid">
+      <span *ngIf="gokVeld.errors.required">Getal moet ingevuld worden</span>
+      
+      <span *ngIf="gokVeld<1">Dat is geen positief getal</span>
+  </span>
+</form>
+<div>{{uwGokgetal}} </div>
+
+<div>{{ bericht }}</div>
