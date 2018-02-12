@@ -22,6 +22,10 @@ import { Vbrouting0Component } from './voorbeelden/vbrouting/vbrouting0.componen
 import { VbroutingComponent } from './voorbeelden/vbrouting/vbrouting.component';
 import { VbHttpComponent } from './voorbeelden/vbhttp/vbhttp.component';
 import { VbRoutingModule } from './voorbeelden/vbrouting/vbrouting.module';
+import { HeroesService } from './oefeningen/oefheroes/heroes.service';
+import { HeroesComponent } from './oefeningen/oefheroes/heroes/heroes.component';
+import { HeroesAllComponent } from './oefeningen/oefheroes/heroes-all/heroes-all.component';
+import { HeroDetailComponent } from './oefeningen/oefheroes/hero-detail/hero-detail.component';
 // TODO: alle componenten die in deze module gedefinieerd zijn importere
   // zie vbrouting.module.ts
 /*const appRoutes: Routes = [  // aapRoutes- eigen naam van klasse Route
@@ -43,7 +47,7 @@ import { VbRoutingModule } from './voorbeelden/vbrouting/vbrouting.module';
   },
   { 
     path: '',   // start path
-    redirectTo: '/vb01',  // REDIRECT
+    redirectTo: '/vb02',  // REDIRECT
     //  A redirect route requires a pathMatch property to tell the router 
     //   how to match a URL to the path of a route. The router throws an error 
     //   if you don't. 
@@ -64,19 +68,22 @@ import { VbRoutingModule } from './voorbeelden/vbrouting/vbrouting.module';
     PageNotFoundComponent,
     Vbrouting0Component,
     VbroutingComponent,
-    VbroutingReqparamComponent
+    VbroutingReqparamComponent,
     // TODO: alle componenten die in deze module gedefinieerd zijn hier importeren
+    HeroDetailComponent,
+    HeroesComponent,
+    HeroesAllComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,  //  nodig om 2 way binding te kunnen doen
     HttpClientModule,
-    //RouterModule.forRoot( appRoutes ), // die eigen naam hier moet ook geimporteerd zijn
-    VbRoutingModule
+    // RouterModule.forRoot( appRoutes ),
+//    VbRoutingModule
   ],
-  providers: [CurrencyService],
+  providers: [HeroesService],
   // TODO: in bootstrap array (enkel) alle componenten opsommen
   // die horen bij user defined tags die in index.html gebruikt worden
-  bootstrap: [VbroutingComponent]
+  bootstrap: [HeroesAllComponent]
 })
 export class AppModule { }
