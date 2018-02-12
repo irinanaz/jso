@@ -1,16 +1,16 @@
 <h1>{{title}}</h1>
 
-<form  >
-<input #txtBaseAantal="ngModel" required type="number" min="0" [()] name="aantal" [(ngModel)] = "aantalBase">
+<form #frmMunt="ngForm" >
+<input #txtBaseAantal="ngModel" required type="number" min="0"  name="aantal" [(ngModel)] = "aantalBase">
 
-<select [(ngModel)]="keuzeBase">
-  <option *ngFor="let b of baseList" [ngValue]="b">{{b.base}}</option>
+<select [(ngModel)]="baseMunt" name="baseMunt">
+  <option *ngFor="let b of dropLijst" [ngValue]="b">{{b}}</option>
 </select>
-<input type="button" value="Converteren" (click)="converteer();">
-<select [(ngModel)]="keuzeConvert">
-    <option *ngFor="let c of convertList" [ngValue]="c">{{c.base}}</option>
+
+<select [(ngModel)]="resultMunt" name="resultMunt">
+    <option *ngFor="let b of dropLijst" [ngValue]="b">{{r}}</option>
 </select>
-<input #txtResult="ngModel"  [()] name="result" [(ngModel)] = "result" disabled>
+<button (click)="convert()" [disabled]="baseMunt==resultMunt || aantalBase==0">Converteren</button> 
+<input #txtResult="ngModel" type="number" name="aantalResult" [(ngModel)] = "aantalResult" disabled>
 
 </form>
-<p>bron: <a href="http://datasets.antwerpen.be/v4/gis/secundaireschool.json">http://datasets.antwerpen.be/v4/gis/secundaireschool.json</a></p>

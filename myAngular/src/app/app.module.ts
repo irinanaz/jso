@@ -28,10 +28,10 @@ import { OefServiceComponent03 } from './oefservice/oefservice03.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule, 
-    OefMuntenService03
+    HttpClientModule
+    
   ],
-  providers: [],
+  providers: [OefMuntenService03],
   bootstrap: [OefServiceComponent03] // namen van alle zelfgeschreven componenten die in index.html w momenteel gebruikt
 })
 export class AppModule { }

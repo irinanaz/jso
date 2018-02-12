@@ -9,26 +9,35 @@ import { OefMuntenService03 } from './oefservice03';
 })
 export class OefServiceComponent03 implements OnInit {
   title: 'Currency convertor';
-  dropLijst: any [];
+  private dropLijst: any [];
+  aantalBase: number=0;
+  aantalResult : number;
+  baseMunt: string;
+  resultMunt : string;
+  baseLink: string = 'https://api.fixer.io/latest'
+  constructor(private muntenService: OefMuntenService03) {
+    
+   }
 
-
-
-  constructor(private scholenService: OefMuntenService03) { }
+  convert(){
+    this.muntenService.getMunten(this.baseLink+'?base='+this.baseMunt).subscribe(
+        data => {
+        this.aantalResult = data["rates"][this.resultMunt] * this.aantalBase;
+    });
+  }
 
   ngOnInit() {
-    //scholenService.getScholen geeft een Observable terug
-    // door in te schrijven (subscribe) op de observable,
-    // zal de bijhorende callback uitgevoerd worden als 
-    // dat resultaat verandert
-    // this.scholenService.getScholen().subscribe(
-    //   data => {
-    //     this.scholen = [];
-    //     data["data"].forEach(element => {
-    //       this.scholen.push(new Munt(
-    //         // element.naam, element.straat + " " + element.huisnummer,
-    //         // element.postcode, element.district
-    //       ));
-    //     });
-    //   });
+ 
+    this.muntenService.getMunten(this.baseLink).subscribe(
+      data => {
+        this.dropLijst = ['EUR'];
+        for (let rate in data["rates"]){     //enkele de index   
+          this.dropLijst.push(rate);
+          this.dropLijst.sort();
+          this.baseMunt="EUR";
+          this.resultMunt="EUR";
+          console.log(rate);
+        };
+      });
   }
 }
