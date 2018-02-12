@@ -13,23 +13,29 @@ import { OefHogerLagerComponent } from './oefeningen/oefhogerlager/oefhogerlager
 import { OefCurrencyconvertorComponent } from './oefeningen/oefcurrencyconvertor/oefcurrencyconvertor.component';
 import { CurrencyService } from './oefeningen/oefcurrencyconvertor/currency.service';
 import { HttpClientModule } from '@angular/common/http';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router'; // verplicht twee
 import { VbDatabindingComponent } from './voorbeelden/vbdatabinding/vbdatabinding.component';
 import { VbIfComponent } from './voorbeelden/vbif/vbif.component';
 import { VbroutingReqparamComponent } from './voorbeelden/vbrouting/vbrouting-reqparam.component';
 import { PageNotFoundComponent } from './voorbeelden/vbrouting/page-not-found.component';
 import { Vbrouting0Component } from './voorbeelden/vbrouting/vbrouting0.component';
 import { VbroutingComponent } from './voorbeelden/vbrouting/vbrouting.component';
+import { VbHttpComponent } from './voorbeelden/vbhttp/vbhttp.component';
+import { VbRoutingModule } from './voorbeelden/vbrouting/vbrouting.module';
 // TODO: alle componenten die in deze module gedefinieerd zijn importere
   // zie vbrouting.module.ts
-const appRoutes: Routes = [
+/*const appRoutes: Routes = [  // aapRoutes- eigen naam van klasse Route
   {
-    path: 'vb01',
-    component: VbDatabindingComponent
+    path: 'vb01', //path van request// geen slash!!!
+    component: VbDatabindingComponent  // component die dan getoont moet worden
   },
   {
     path: 'vb02',
     component: VbIfComponent
+  },
+  {
+    path: 'vb03',
+    component: VbHttpComponent
   },
   {
     path: 'routing/:id',
@@ -44,15 +50,16 @@ const appRoutes: Routes = [
     pathMatch: 'full'  // whole URL must match
   },
   { 
-    path: '**', 
-    component: PageNotFoundComponent 
+    path: '**', // enderwat - vse ravno chto
+    component: PageNotFoundComponent // vermelden in declaration
   } 
-];
+];*/
 
 @NgModule({
   declarations: [
     VbDatabindingComponent,
     VbIfComponent,
+    VbHttpComponent,
     OefCurrencyconvertorComponent,
     PageNotFoundComponent,
     Vbrouting0Component,
@@ -64,11 +71,12 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,  //  nodig om 2 way binding te kunnen doen
     HttpClientModule,
-    RouterModule.forRoot( appRoutes ),
+    //RouterModule.forRoot( appRoutes ), // die eigen naam hier moet ook geimporteerd zijn
+    VbRoutingModule
   ],
   providers: [CurrencyService],
   // TODO: in bootstrap array (enkel) alle componenten opsommen
   // die horen bij user defined tags die in index.html gebruikt worden
-  bootstrap: [Vbrouting0Component]
+  bootstrap: [VbroutingComponent]
 })
 export class AppModule { }

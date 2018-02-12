@@ -6,7 +6,7 @@ import { VbDatabindingComponent } from '../vbdatabinding/vbdatabinding.component
 import { VbIfComponent } from '../vbif/vbif.component';
 import { VbroutingReqparamComponent } from './vbrouting-reqparam.component';
 import { PageNotFoundComponent } from './page-not-found.component';
-
+import { VbHttpComponent } from '../vbhttp/vbhttp.component';
 const appRoutes: Routes = [
   {
     path: 'vb01',
@@ -15,6 +15,10 @@ const appRoutes: Routes = [
   {
     path: 'vb02',
     component: VbIfComponent
+  },
+  {
+    path: 'vb03',
+    component: VbHttpComponent
   },
   {
     path: 'routing/:id',

@@ -1,0 +1,20 @@
+<h1> {{ title }}</h1>
+<input type ="checkbox" id="idBesch" name="enkelBesch" [(ngModel)]="enkelBesch" [checked]="enkelBesch"><label for="ibBeschikbaar">Enkel beschikbare heroes</label>
+<!-- <table *ngIf="heroes.length > 0">
+  
+  <tr *ngFor= "let hero of heroes ">
+  <td>{{ hero.idHero  }}</td>
+  <td>{{ hero.naam  }}</td>
+  
+  </tr>
+
+</table> -->
+
+
+<div *ngIf="heroes && heroes.length > 0">
+  <ul *ngFor= "let hero of heroes ">
+  <li *ngIf="hero.beschikbaar==true && enkelBesch==true" >{{ hero.idHero  }}  {{ hero.naam  }}</li>
+  <li *ngIf=" enkelBesch==false" >{{ hero.idHero  }}  {{ hero.naam  }}</li>
+  </ul>
+  <div  *ngIf="heroes.length > 3">{{melding}}</div>
+</div>

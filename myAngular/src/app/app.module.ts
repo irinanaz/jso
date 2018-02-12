@@ -12,7 +12,9 @@ import { HogerlagerComponent } from './hogerlager/hogerlager.component';
 import { OefHttpComponent } from './oefhttp/oefhttp.component';
 import { OefMuntenService03 } from './oefservice/oefservice03';
 import { OefServiceComponent03 } from './oefservice/oefservice03.component';
-
+import { HerodetailComponent } from './herodetail/herodetail.component';
+import { HeroesComponent } from './heroes/heroes.component';
+import {HeroesService01} from './heroes/heroesservice01'
 
 @NgModule({
   declarations: [
@@ -23,7 +25,10 @@ import { OefServiceComponent03 } from './oefservice/oefservice03.component';
     BroodjeComponent,
     HogerlagerComponent,
     OefHttpComponent,
-    OefServiceComponent03
+    OefServiceComponent03,
+    HerodetailComponent,
+    HeroesComponent
+
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,7 @@ import { OefServiceComponent03 } from './oefservice/oefservice03.component';
     HttpClientModule
     
   ],
-  providers: [OefMuntenService03],
-  bootstrap: [OefServiceComponent03] // namen van alle zelfgeschreven componenten die in index.html w momenteel gebruikt
+  providers: [OefMuntenService03, HeroesService01],
+  bootstrap: [HeroesComponent] // namen van alle zelfgeschreven componenten die in index.html w momenteel gebruikt
 })
 export class AppModule { }
