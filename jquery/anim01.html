@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Animatiemenu</title>
+    <style>
+        ul{
+            list-style: none;
+            width:100px;
+            text-align: center;
+        }
+        ul > li{
+            background-color: black;
+            color: white;
+            position: relative;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+/*         $(function(){
+            $('ul li').hover(function(){
+                console.log('h');
+                $(this).animate({left: 20}, 'fast')
+            },function(){
+                $(this).animate({left: 0}, 'fast')
+            });
+        });
+ */        $(function(){
+            $('ul li').hover(function(){
+                console.log('h');
+                $(this).stop().animate({left: 20}, 'fast')
+            },function(){
+                $(this).stop().animate({left: 0}, 'fast')
+            });
+        });
+    </script>
+</head>
+<body>
+    <ul>
+        <li>menu item 1</li>
+        <li>menu item 2</li>
+        <li>menu item 3</li>
+        <li>menu item 4</li>
+        <li>menu item 5</li>
+        <li>menu item 6</li>
+    </ul>
+</body>
+</html>

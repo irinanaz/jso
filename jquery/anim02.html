@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Image rotator</title>
+    <style>
+        .container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+
+        #slider img {
+            position: absolute;
+            display: none;
+            border-radius: 3px;
+        }
+
+        #prev,
+        #next {
+            position: absolute;
+            bottom: 10px;
+            padding: 5px 10px;
+            color: #000;
+            background: #FFF;
+            border-radius: 3px;
+            text-decoration: none;
+            opacity: 0.7;
+        }
+
+        #prev:hover,
+        #next:hover {
+            opacity: 1;
+            cursor: pointer;
+        }
+
+        #prev {
+            left: 10px;
+        }
+
+        #next {
+            right: 10px;
+        }
+
+        #pagination {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            text-align: center;
+        }
+
+        #pagination a {
+            padding: 2px 5px;
+            color: #000;
+            background: #FFF;
+            border-radius: 3px;
+            text-decoration: none;
+            opacity: 0.7;
+        }
+
+        #pagination a:hover {
+            opacity: 1;
+            cursor: pointer;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(function () {
+            setup();
+        })
+        var activeSlide = 0;
+        var speed = 2000;
+        var fade = 1000;
+        var timer = setInterval(rotate, speed);
+        var numSlides;
+        var image;
+        var pause;
+        var paging = "";
+        function setup() {
+            image = $("#slider img");
+            numSlides = image.length;
+            image.eq(activeSlide).show();
+            for (var page = 0; page < numSlides; page++) {
+                paging += "<a rel=\"" + (page + 1) + "\">" + (page + 1) + "</a>\n";
+            }
+            $("#pagination").html(paging);
+            $("#slider, #prev, #next, #pagination").hover(function () {
+                clearInterval(timer);
+                pause = true;
+            }, function () {
+                timer = setInterval(rotate, speed);
+                pause = false;
+            });
+            $("#prev").click(function (event) {
+                activeSlide--;
+                rotate();
+                event.preventDefault();
+            });
+
+            $("#next").click(function (event) {
+                activeSlide++;
+                rotate();
+                event.preventDefault();
+            });
+            $("#pagination a").click(function (event) {
+                event.preventDefault();
+                activeSlide = $(this).attr("rel") - 1;
+                rotate();
+            });
+        }
+        function rotate() {
+            if (!pause == true) {
+                activeSlide++;
+            }
+
+            if (activeSlide == numSlides) {
+                activeSlide = 0;
+            }
+            if (activeSlide < 0) {
+                activeSlide = numSlides - 1;
+            }
+            image.not(activeSlide).fadeOut(fade);
+            image.eq(activeSlide).fadeIn(fade);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div id="slider">
+            <img src="http://placekitten.com/200/200?image=1">
+            <img src="http://placekitten.com/200/200?image=2">
+            <img src="http://placekitten.com/200/200?image=3">
+            <img src="http://placekitten.com/200/200?image=4">
+            <img src="http://placekitten.com/200/200?image=5">
+            <img src="http://placekitten.com/200/200?image=6">
+            <img src="http://placekitten.com/200/200?image=7">
+        </div>
+        <a id="prev">prev</a>
+        <a id="next">next</a>
+        <div id="pagination"></div>
+    </div>
+</body>
+
+</html>

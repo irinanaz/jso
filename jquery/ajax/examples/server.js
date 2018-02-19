@@ -44,7 +44,6 @@ function processGet(req, res){
         console.log('zangeres: ' + zangeres);
         if (zangeres !== undefined){
             res.writeHead(200);
-            
             res.end(JSON.stringify(zangeres));
         }else{
             res.writeHead(404, 'Niet gevonden');
@@ -67,9 +66,7 @@ function processPost(req, res){
        res.end();
     });
 }
-function processPut(req, res){
-    res.write('Dit is een put');
-}
+
 function processDelete(req, res){
     console.log('DELETE request');
     var query = querystring.parse(url.parse(req.url).query);
@@ -83,9 +80,8 @@ function processDelete(req, res){
     var idIndex = namen.findIndex(el => el.id == id);
     if (idIndex != -1){
         namen.splice(idIndex, 1);
-        
         res.writeHead(200);
-        res.write(JSON.stringify({status: 'element verwijderd'}));
+        res.write(JSON.stringify({status: 'element verwijderd'}));        
         res.end();
     }else{
         res.writeHead(403, 'niet gevonden');

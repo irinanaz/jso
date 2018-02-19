@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Enkele prenten</title>
+    <style>
+        .media{
+            overflow: hidden;
+            visibility:hidden;
+        }
+        .media_object{
+            float: left;
+            position: relative;
+        }
+        .media_object > figcaption {
+            position: absolute;
+            bottom: 0.5em;
+            left: 0.5em;
+            color:aliceblue;
+            padding: 5px;
+            opacity: 0.8;
+            background-color:#555;
+        }
+        .media_tekst{
+            margin: 16px;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        let apikey="y4eOHCLJKGQryc30VjP1lQtivo7fghwzd6URMnK3";
+        $(function(){
+            $('#datum').val(convertToYYYYMMDD(new Date()));
+            let $media = $('.media');
+        $('#btn').click(function(){
+            let datum = $('#datum').val();
+            $media.css('visibility', 'hidden');
+            $.getJSON('https://api.nasa.gov/planetary/apod',{api_key:apikey,date:datum,hd:false}
+                    ).done(function(data){
+                        let $figure = $('#foto').find('.media_object');
+                        $figure.html('');
+                        if (data.url.startsWith('https://www.youtube.com')) {
+                            let $iframe = $('<iframe>').attr({src: data.url, width:'640px',height:'360px'});
+                            $figure.append($iframe);
+                        }else{
+                            let $img = $('<img>').attr({title: data.title, alt:data.title, src:data.url});
+                            $figure.append($img);
+                        }
+                        let $figcaption= $('<figcaption>').text(data.title);
+                        if (data.copyright) {
+                            $figcaption.html($figcaption.html() + ' (&copy; '+data.copyright+')');
+                        }
+                        $figure.append($figcaption);
+                        let $media_tekst = $('#foto').find('.media_tekst');
+                        $media_tekst.text(data.explanation);
+                        $media.css('visibility', 'visible');
+                    }).fail(function(obj, status, e){
+                        $('body').text(e);
+                    })
+                });
+        });
+        function convertToYYYYMMDD(datum){
+            let jaar = datum.getFullYear().toString();
+            let maand = (datum.getMonth() + 1).toString();
+            if (maand.length == 1) maand = '0' + maand;
+            let dag = datum.getDate().toString();
+            if (dag.length == 1) dag = '0' + dag;
+            return jaar + '-' + maand + '-' + dag;
+        }
+    </script>
+</head>
+<body>
+    <form class="form">
+        <label>Datum: </label>
+        <input type="date" id="datum"></form>
+        <input type="button" id="btn" value="filter">
+    </form>
+    <div id="foto" class="media">
+        <figure class="media_object"><img><figcaption></figcaption>
+        </figure>
+        <div class="media_tekst">
+        </div>
+    </div>
+</body>
+</html>

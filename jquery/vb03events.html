@@ -13,9 +13,14 @@
         $(function(){ //aangeraden voor jonge, hippe mensen
             console.log($('h1').text());
         });
-        /*$(() => { //aangeraden voor jonge, hippe mensen die willen opscheppen
+        /*$(() => { //aangeraden voor jonge, hippere mensen
           console.log($('h1').text());
         });*/
+        $(function(){
+            $('h1').click(function(){
+                console.log($(this));
+            });
+        });
         $(function(){
             $('#btn').click(function(){ //de functie wordt uitgevoerd wanneer er geklikt wordt op de knop
                 alert('Wie heb ik aan de lijn, hallo, hallo?');
@@ -34,7 +39,11 @@
                 let naam = $('#txtNaam').val();
                 let $li = $('<li>').text(naam);
                 $('#namen').append($li);
+<<<<<<< HEAD
                 $('#txtNaam').val(''); // om input leeg te maken
+=======
+                $('#txtNaam').val('');
+>>>>>>> 10ac3980364e43c4b98d486fad80f662a90331f3
             });
         });
         $(function(){
@@ -46,8 +55,12 @@
                 $(this).css('background-color', 'white');
             });
         });
+<<<<<<< HEAD
 /* als je enkele dom moet hebben om verder te gaan:
 document.addEventListener("DOMContentLoaded,function(){    }");*/
+=======
+        
+>>>>>>> 10ac3980364e43c4b98d486fad80f662a90331f3
     </script>
 </head>
 <body>

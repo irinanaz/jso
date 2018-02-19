@@ -1,0 +1,30 @@
+{
+  "name": "gulpvoorbeeld",
+  "version": "0.0.1",
+  "description": "Werken met Gulp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/betavzw/jsonj2017.git"
+  },
+  "keywords": [
+    "Gulp",
+    "Sass"
+  ],
+  "author": "Jef",
+  "license": "Beerware",
+  "bugs": {
+    "url": "https://github.com/betavzw/jsonj2017/issues"
+  },
+  "homepage": "https://github.com/betavzw/jsonj2017#readme",
+  "devDependencies": {
+    "browser-sync": "^2.23.6",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0",
+    "node-sass": "^4.7.2"
+  }
+}

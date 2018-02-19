@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Webservice test</title>
+</head>
+
+<body>
+    <h1>Test webservice</h1>
+    <div id="resultaat"></div>
+    <button id="BtnKlik">Klik hier</button>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script>
+        /*jQuery.ajax({
+            url: 'node/138?_format=hal_json',
+            method: 'GET',
+            success: function (node) {
+                console.log($('#resultaat'));
+              $('#resultaat').text(node.title[0].value);
+            }
+          });*/
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log("document is geladen");
+            let btn = document.getElementById("BtnKlik");
+            console.log(btn);
+            /*btn.onclick = function(){
+                console.log("Gebruiker klikt op knop");
+                let xreq = new XMLHttpRequest();
+                xreq.open('GET', 'node/1?_format=hal_json', true);
+                xreq.onload=function(){
+                    if (this.status == 200){
+                       let resultaat = document.getElementById("resultaat");
+                       let response = JSON.parse(xreq.responseText);
+                       document.getElementById("resultaat").innerText = response.title[0].value;
+                    }else{
+                        console.log(Error(xreq.responseText));
+                    }
+                };
+                xreq.error=function(data){
+                    console.log(xreq.responseText);
+                }
+                xreq.send();
+                
+            };*/
+            function getCsrfToken(callback) {
+                jQuery
+                    .get('rest/session/token')
+                    .done(function (data) {
+                        var csrfToken = data;
+                        callback(csrfToken);
+                    });
+            }
+
+            function postNode(csrfToken, node) {
+                jQuery.ajax({
+                    url: 'http://dev-betabakker.pantheonsite.io/entity/node?_format=hal_json',
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/hal+json',
+                        'X-CSRF-Token': csrfToken
+                    },
+                    data: JSON.stringify(node),
+                    success: function (node) {
+                        console.log(node);
+                    }
+                });
+            }
+
+            var newNode = {
+                _links: {
+                    type: {
+                        href: 'http://dev-betabakker.pantheonsite.io/rest/type/node/article'
+                    }
+                },
+                type: {
+                    target_id: 'article'
+                },
+                title: {
+                    value: 'Example node title'
+                }
+            };
+
+            /*getCsrfToken(function (csrfToken) {
+                postNode(csrfToken, newNode);
+            });*/
+            btn.onclick = function () {
+                fetch('rest/session/token', {
+                    credentials: "include"
+                })
+                    .then(function (csrfToken) {
+                        return csrfToken.text();
+                    }).then(function (csrfToken) {
+                        console.log(csrfToken);
+                        fetch('entity/node?_format=hal_json', {
+                            method: 'POST',
+                            credentials: "include",
+                            headers: {
+                                'Content-Type': 'application/hal+json',
+                                'X-CSRF-Token': csrfToken
+                            },
+                            body: JSON.stringify(newNode)
+                        }).then(function (response) {
+                            return response.json();
+                        })
+                            .then(function (resjson) {
+                                console.log(resjson);
+                            })
+                    })
+            }
+            /*btn.onclick = function () {
+                fetch('node/1?_format=hal_json')
+                    .then(function (res) {
+                        if (res.ok) {
+                            console.log(JSON.parse(res));
+                            return res.json();
+                        }
+                        throw new Error(res.statusText);
+                    })
+                    .then(function (resjson) {
+                        let p = document.getElementById("resultaat");
+                        p.innerHTML = resjson.title[0].value;
+                    }).catch(function (reason) {
+                        console.log("reden" + reason);
+                    });
+            };*/
+        });
+
+    </script>
+</body>
+
+</html>

@@ -20,6 +20,20 @@
             max-width: 100%;
             height: auto;
         }
+        @keyframes rotatie{
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(30deg);
+            }
+        }
+        .rotatie{
+            transform-origin: 80% bottom;
+            animation-name: rotatie;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+        }
     </style>
    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -28,7 +42,7 @@
        $(function(){
             $('#container div').click(function(){
                 $(this).animate({top: "500px"},1500, 'easeOutBounce', function(){
-                    $(this).css('transform', 'rotate(30deg)');
+                    $(this).addClass('rotatie');
                 });
             });
        });

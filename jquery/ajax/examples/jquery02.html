@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        img{
+            width:200px;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        let apikey="y4eOHCLJKGQryc30VjP1lQtivo7fghwzd6URMnK3";
+        let position= {};
+        $(function(){
+            $('#btn').click(function(){
+                selectedDatum = $('#datums').val();
+                $.getJSON('https://api.nasa.gov/planetary/earth/imagery',{api_key:apikey,
+                lat:position.coords.latitude,lon:position.coords.longitude, date:selectedDatum}
+                    ).done(function(data){
+                        $('#image').attr('src', data.url);
+                        $('#error').html('');
+                    }).fail(function(obj, status, e){
+                        $('#error').html(e);
+                    });
+            });
+        });
+        navigator.geolocation.getCurrentPosition(function(pos){
+            position = pos;
+            //$.getJSON('https://api.nasa.gov/planetary/earth/assets',{api_key:apikey,
+            //    lat:51.18,lon:4.34}
+            $.getJSON('https://api.nasa.gov/planetary/earth/assets',{api_key:apikey,
+                lat:position.coords.latitude,lon:position.coords.longitude}
+                    ).done(function(data){
+                        let results = data.results;
+                        results.sort((item1, item2) => -item1.date.localeCompare(item2.date))
+                        let options = results.map(item => item.date.substr(0, 10));
+                        let optionstring = "";
+                        options.forEach(element => {
+                            optionstring += '<option>'+element+'</option>';
+                        });
+                        $('#datums').html(optionstring);
+                    }).fail(function(obj, status, e){
+                        $('body').html(e);
+                    });
+        });
+    </script>
+    
+</head>
+<body>
+    <form>
+        <select id="datums">
+        </select>
+        <input type='button' id='btn' value="Toon image">
+        <span id="error"></span>
+        <img id="image">
+    </form>
+</body>
+</html>

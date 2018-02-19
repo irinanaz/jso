@@ -11,14 +11,15 @@
 <body>
     <ul>
         <li class="active">Eerste</li>
-        <li>Tweede</li>
+        <li datetime="2018-01-01">Tweede</li>
     </ul>
     <p id="start">Dit is de start</p>
     <p>Dit is de laatste paragraaf op
         <time datetime="2017-01-01">1/01/2017</time>
     </p>
+    <p>Nee dit is de laatste paragraaf</p>
     <script>
-        console.dir(jQuery); //jQuery object
+        //console.dir(jQuery); //jQuery object
         //console.dir($);        //verkorte versie jQuery object
 
         //console.log($('ul').html()); //innerHTML van ul
@@ -27,7 +28,7 @@
         //console.log($('p').text()); // textContent van alle p-elementen
         //console.log($('p').html()); // innerHTML van EERSTE p-elementen
         //$('p').text('vervangen'); // vervangt text van ELK p-element 
-        //$('p').each((index, el) => console.log($(el).html())); // http://api.jquery.com/each/
+        //$('p').each(function(index, el) { console.log($(el).html())}); // http://api.jquery.com/each/
         //console.log($('#start').text()); // innerHTML van p#start
         //console.log($('.active').text()); //textContent van alle elementen met class .active
         //console.log($('[datetime]').text()); // textContent van alle elementen met datetime attribuut
@@ -37,11 +38,16 @@
         //console.log($('ul').find('li').text()); //textContent van alle li in ul
         //console.log($('ul>li').text()); //textContent van alle li in ul
         //console.log($('li', 'ul').text());//textContent van alle li in een ul-context (omgeving)
+<<<<<<< HEAD
         //console.log($('p:contains("laatste")').text()); //alle alleen p-elementen met tekst "laatste".p kan weg om alle elementen met contains.
         /*let $li = $('li'); // jQuery objecten
+=======
+        //console.log($('p:contains("laatste")').text()); // p-element met tekst "laatste"
+        let $li = $('li'); // jQuery objecten
+>>>>>>> 10ac3980364e43c4b98d486fad80f662a90331f3
         let liElement = $li[0]; // eerste li als DOM-object
         console.log(liElement.innerHTML);
-        console.log($(liElement).html()); // en terug een jQUery element*/
+        console.log($(liElement).html()); // en terug een jQUery element
     </script>
 </body>
 </html>
