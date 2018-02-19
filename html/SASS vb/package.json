@@ -1,0 +1,22 @@
+{
+  "name": "sassvb",
+  "version": "0.0.1",
+  "description": "Enkele sass voorbeelden",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sass",
+    "npm"
+  ],
+  "author": "Irina",
+  "license": "Beerware ",
+  "devDependencies": {
+    "browser-sync": "^2.23.6",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0"
+  }
+}

@@ -1,0 +1,30 @@
+@mixin sample{
+    font-size: 12px;
+}
+@mixin grey-border($width: 1px, $type:solid, $color: $dark-base){
+    border: $width $type $color;
+}
+@mixin arrow ($direction, $size, $color) {
+    @if $direction == up {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-bottom: $size solid $color;
+    } @else if $direction == down {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-top: $size solid $color;
+    } @else if $direction == right {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+    } @else if $direction == left {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-right:$size solid $color;
+    }
+    }
+    .lees-meer {
+    &:before {
+    @include arrow (right, 3px, black);
+    }
+    }
