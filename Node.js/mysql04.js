@@ -27,7 +27,8 @@ function updateRecord(row, callback) {
 		});
 }
 
-var row = ['Grote Vliegenzwam', 'Smurfenstad', '997']; 
+var row = ['Grote Vliegenzwam', 'Smurfenstad', '997'];
+ 
 updateRecord(row, function (err, result) {
 	if (err) {
 		console.log('Error while performing query.');

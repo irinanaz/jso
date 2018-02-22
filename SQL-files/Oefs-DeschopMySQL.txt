@@ -1153,3 +1153,39 @@ group by o.art_code
 order by 1;
 
 select * from min_prijs;
+
+
+select plantennaam from planten;
+
+
+create database takenlijst;
+USE takenlijst;
+CREATE TABLE USER (
+	ID integer NOT NULL AUTO_INCREMENT,
+    USERNAME varchar (15) NOT NULL,
+	WACHTWOORD varchar (15) NOT NULL,
+    FIRSTNAME varchar (15) NOT NULL,
+    LASTNAME varchar (15) NOT NULL
+);
+
+CREATE TABLE CATEGORIE (
+	ID integer NOT NULL,
+    CATNAME varchar (15) NOT NULL,
+    CATID integer NOT NULL,
+    OMSCHRIJVING varchar (15) NOT NULL
+);
+
+CREATE TABLE TAAK (
+	TITEL integer NOT NULL,
+    CATNAME varchar (15) NOT NULL,
+    CATID integer NOT NULL,
+    OMSCHRIJVING varchar (15) NOT NULL
+);
+
+select * from user;
+
+
+
+
+
+
