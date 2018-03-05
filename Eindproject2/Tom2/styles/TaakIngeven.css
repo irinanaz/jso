@@ -1,0 +1,26 @@
+
+form {border-radius: 5px;
+    padding: 5px 5px 5px 30px;}
+
+fieldset {
+    width: 400px;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: right;
+}
+legend {
+    background-color: #efefef;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    padding: 10px 20px;
+    text-align: left;
+    text-transform: uppercase;
+}
+.opslCat{
+    visibility:hidden;
+}
+.opslTaak{
+    visibility:hidden;
+}
+.zichtbaar{visibility: visible;}

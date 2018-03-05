@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mijnenveger</title>
+    <style>
+    html{background-color: black;}
+    body{height:100vh;}
+    header{text-align: center;color:beige;height:64px;width:100%} 
+    footer{text-align: center;color:beige;height:24px;width:100%}
+    #menu,#mv,#Tom,#mm{margin:0 auto;}
+    .right{float:right;}
+    .left{float:left;}
+        
+        
+    #mvWrapper{background-color: crimson;box-shadow: black 4px 4px 2px 2px;display:inline-block;padding:8px;
+        border-bottom:2px solid darkred;border-right:2px solid darkred;border-top:2px solid red;border-left:2px solid red;}
+    #speelveld{border-bottom:2px solid red;border-right:2px solid red;border-top:2px solid darkred;border-left:2px solid darkred;
+    position:relative;background-color: lightgrey;margin:0 auto;}
+    #bericht{position:absolute;z-index: 98;width:100%;height:100%;}
+    #invoer{position:absolute;z-index: 99;width:116%;height:122%;color:beige;font-size:1.2em;margin:-2px 0 0 -20px;}
+    #invoer p{margin:16px 16px 2px;text-align: center;}
+    #invoer input{width:120px;margin:0 88px;text-align: center;}
+    #start{margin:20px 96px;}
+    #tekst{color:beige;text-shadow: 3px 3px 3px black;font-size: 2em;margin-top:28px;}
+    .none{display:none}
+    .pauze{background-color: rgba(0,0,0,0.9);}
+    .win{background-color: rgba(0,0,0,0.3);}
+    .blokje{width:20px;height:26px;background-color:beige;border:1px solid green;box-shadow:black 2px 2px 1px 1px; 
+    position:absolute;margin:1px;font-size:24px;font-weight: 900;padding-left:6px;}
+    .blokje:hover{background-color: palegoldenrod;box-shadow:black 1px 1px 0px 1px;}
+    .leeg{width:22px;height:30px;background-color:lightgrey;border:1px solid grey;box-shadow: none;
+    position:absolute;margin:0;font-size:24px;font-weight: 900;padding-left:8px;}
+    .explo{background:radial-gradient(lightcoral,red,darkred,black); }
+    .r0{color:lightgrey;}
+    .r1{color:green;}
+    .r2{color:red;}
+    .r3{color:black;}
+    .bgc0{background-color:rgb(250,200,200); }
+    .bgc1{background-color:rgb(250,150,150); }
+    .bgc2{background-color:rgb(250,100,100); }
+    .bgc3{background-color:rgb(250,50,50); }
+    h3,p {text-align: center;}
+    h3 b{border-radius:25%;box-shadow:black 1px 1px;margin:0 4px 0 3px;padding:2px;
+        border-bottom:2px solid darkred;border-right:2px solid darkred;border-top:2px solid red;border-left:2px solid red;}
+    .btn{background-color: crimson;box-shadow: black 4px 4px 2px 2px;padding:8px;margin:8px 16px;color:beige;text-shadow: 1px 1px 1px black;display:inline-block;text-align: center;
+        border-bottom:2px solid darkred;border-right:2px solid darkred;border-top:2px solid red;border-left:2px solid red;}
+    .btn:hover,h3 b:hover{box-shadow:none;cursor:pointer;}
+    thead{color:beige;text-shadow: 1px 1px 1px black;}
+    table{background-color: crimson;box-shadow: black 4px 4px 2px 2px;display:inline-block;padding:4px;
+        border-bottom:2px solid darkred;border-right:2px solid darkred;border-top:2px solid red;border-left:2px solid red;border-spacing:0px;}
+    td{border:1px solid black;padding:2px;text-align: center;}
+    #klok{font-size: 2em;background-color: lightgray;margin:2px;padding:4px;float:right;
+        border-bottom:2px solid grey;border-right:2px solid grey;border-top:2px solid white;border-left:2px solid white;}
+    #titel{display:inline-block;text-shadow: 3px 3px 2px black;color:beige;margin:4px 16px 16px 8px;}
+    #pauze,#reset{display:inline-block;font-size: 1.5em;background-color: lightgray;margin:4px;padding:3px 7px 5px;box-shadow: black 4px 4px 2px 2px;
+        border-bottom:2px solid grey;border-right:2px solid grey;border-top:2px solid white;border-left:2px solid white;}
+    #reset{float:right;padding:3px 12px 5px;}
+    #pauze:hover,#reset:hover{background-color: silver;box-shadow: black 1px 1px 2px;cursor:pointer;}
+    
+    .mainpart{max-width:1280px;min-width:640px;background-color: black;
+        display:grid;grid-gap:2px;}
+    .main{display:grid;grid-template-columns:auto auto;}
+    #mv{grid-template-columns:320px auto 320px;}
+    #field{margin:10px 0;}
+    #scores, #main{border-radius:16px;display:grid;background-color: beige;margin:4px;padding:8px 4px;justify-content: center;}
+    .info{border-radius:16px;background-color: beige;margin:4px;padding:8px 4px;}
+    #score{height:160px;margin-bottom:24px;}
+       
+    @media screen and (max-width: 1279px) {
+    #mv{display:grid;grid-template-columns:auto 360px}
+    #info{grid-column-start: 1;grid-column-end: 3;}
+    }
+    @media screen and (max-width: 959px) {
+    #mv,.mainpart{display:grid;grid-template-columns:auto}
+    #info{grid-column-start: 1;grid-column-end: 2;}
+    #scores{grid-template-columns:auto auto;justify-content: space-around;}
+    }
+
+    </style>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        
+        function menu(){}
+        
+        var usernameS="Erwin"//test usernameS
+
+        // *** speelveld ***
+        var x=8;//aantal kolommen
+        var y=8;//aantal rijen
+        var b=10;//aantal bommen
+        var bom=new Array(0);//plaats van bom
+        var gb=new Array(0);//plaats gecheckt zonder bom
+        var p=new Array(x*y);for(var i=0;i<p.length;i++){p[i]=0;};//array posities
+        var dr=new Array(0);//array data records
+        var sec=0,min=0;//tijd
+        var tijd=0;//interval
+        var totaal=0;
+        var stop=false;//pauze
+        var m=6,step=4;//instellingen slider grid (m=min)
+        
+        function reset(){
+        ci();//clear alle intervals
+        x=8;y=8;
+        sec=0;min=0;
+        totaal=0;
+        m=6,step=4;
+        gb=new Array(0);
+        bom=new Array(0);
+        p=new Array(x*y);for(var i=0;i<p.length;i++){p[i]=0;};
+        dr=new Array(0);
+        frame(x,y);
+        eigenrecords();
+        }
+
+        function ci(){
+            for(var i=0;i<2000;i++){clearInterval(i);}
+            console.log(tijd);}
+
+        function invoer(){
+            b=$('#b').val()*1;x=$('#x').val()*1;y=$('#y').val()*1;
+            p=new Array(x*y);for(var i=0;i<p.length;i++){p[i]=0;};
+            bommen(b);
+            $('#field').html("<div id='mvWrapper'><h1 id='titel'>MijnenVeger</h1><div id='klok'>00:00</div><div id='speelveld' style='width:"+(x*32)+"px;height:"+(y*32)+"px;'></div><div id='pauze' onclick='pauze()'>pauze</div><div id='reset' onclick='reset()'>reset</div></div>");
+            var html="<div id='bericht' class='none'><p id='tekst'></p></div>";
+            for(var j=0;j<y;j++){
+                for(var i=0;i<x;i++){
+                    html+="<div class='blokje' id='"+((j==0?0:j*x)+i)+"' onclick='klikLinks(event,"+((j==0?0:j*x)+i)+")' oncontextmenu='klikRechts(event,"+((j==0?0:j*x)+i)+")' style='left:"+(i*32)+"px;top:"+(j*32)+"px;'></div>"
+                }
+            }
+            $('#speelveld').html(html);
+            $('#invoer').addClass('none');
+        }
+
+        function frame(x,y){
+            $('#field').html("<div id='mvWrapper'><h1 id='titel'>MijnenVeger</h1><div id='klok'>00:00</div><div id='speelveld' style='width:"+(x*32)+"px;height:"+(y*32)+"px;'></div><div id='pauze' onclick='pauze()'>pauze</div><div id='reset' onclick='reset()'>reset</div></div>");
+            var html="<div id='invoer' class='pauze'>";
+            html+="<p>breedte: <b id='xx'>8</b></p><input id='x' type='range' onchange='slider()' min='4' max='18' step='2' value='8'>";
+            html+="<p>hoogte: <b id='yy'>8</b></p><input id='y' type='range' onchange='slider()' min='4' max='18' step='2' value='8'><br>";
+            html+="<p>bommen: <b id='bb'>10</b></p><input id='b' type='range' onchange='slider()' min='6' max='18' step='4' value='10'><br>";
+            html+="<button id='start' onclick='invoer()'>start de game</button>";
+            html+="</div>";
+            $('#speelveld').html(html);
+        }
+        function slider(){
+            x=$('#x').val();y=$('#y').val();
+            $('#xx').text(x);
+            $('#yy').text(y);
+            m=Math.floor(Math.sqrt(x*y)-2);step=Math.floor((x*y)/16);
+            $('#b').attr('min', m).attr('max', m+(3*step)).attr('step',step);
+            $('#bb').text($('#b').val());
+            b=$('#b').val()*1;x=$('#x').val()*1;y=$('#y').val()*1;
+            records();
+        }
+
+        function klikLinks(event,xy){
+            if(sec==0 && min==0){tijd=setInterval(klok,1000);}
+            if($.inArray(xy, bom) !== -1){
+                $('#'+xy).removeClass().addClass('leeg explo');
+                showBom();$('#tekst').text('VERLOREN!').css('margin-left',(-95+(x*16))+'px');
+            }
+            else{geenBom(xy)}
+        }
+
+        function klikRechts(event,xy){
+            event.preventDefault();
+            if(sec==0 && min==0){tijd=setInterval(klok,1000);alert(tijd);}
+            if($('#'+xy).hasClass('blokje')){
+            $('#'+xy).removeClass('r'+p[xy]).addClass('r'+(p[xy]>2?p[xy]=0:p[xy]+=1)).text(p[xy]==1?"v":p[xy]==2?"?":"");
+            }
+        }
+
+        function geenBom(xy){
+            $('#'+xy).removeClass().addClass("leeg o");totaal++;
+            var a=0;var aa=0;
+            for(var j=-1*x;j<2*x;j+=x){
+                for(var i=xy%x==0?0:-1;i<((xy+1)%x==0?1:2);i++){var z=(xy+j)+i;
+                    if(z>=0 && z<x*y){
+                        if($.inArray(z, bom) !== -1){a++}
+                        else if(!$('#'+z).hasClass('o') && $.inArray(z, gb) == -1){gb.push(z);aa++}
+                    }
+                } 
+            }
+            $('#'+xy).text(""+a==0?"":a).css("color", "rgb("+(0+(60*(a==0?1:a>4?4.2:a)))+","+(255-(60*(a==0?1:a>4?4.2:a)))+",0)");
+            if(a>0){for(var i=0;i<aa;i++){gb.pop();}};
+            if(gb.length>0){let next=gb[0];gb.splice(0,1);geenBom(next);}
+            if(totaal==(x*y)-b){$.when( showBom() ).done(function() {$('#tekst').text('GEWONNEN!').css('margin-left',(-95+(x*16))+'px');gewonnen();});}
+        }
+
+        function bommen(b){
+            while(bom.length<b){
+                var x=Math.floor(Math.random()*p.length);
+                if($.inArray(x, bom) == -1){bom.push(x)};
+            };alert(bom);
+        }
+
+        function showBom(){
+            ci();
+            for(bb in bom){$('#'+bom[bb]).addClass("r3").text("x");}
+            $('#bericht').removeClass().addClass('win');
+        }
+
+        function klok(){
+            sec++;if(sec>59){sec=0;min++;}
+            $('#klok').text((min<10?"0"+min:min)+":"+(sec<10?"0"+sec:sec));
+        }
+
+        function pauze(){
+            if(!$('#bericht').hasClass('win')){
+                if(!stop){$('#pauze').text('continue');stop=true;ci();
+                $('#bericht').removeClass().addClass('pauze');$('#tekst').text('PAUZE').css('margin-left',(-50+(x*16))+'px');}
+                else{$('#pauze').text('pauze');stop=false;tijd=setInterval(klok,1000);
+                $('#bericht').removeClass().addClass('none');}
+            }
+        }
+
+        function gewonnen(){
+            var id=((b-m==0?0:(b-m)/step)<<6)+(((x/2)-2)<<3)+((y/2)-2)+1;
+            $.post( "http://127.0.0.1:1337/zetScore", { name: usernameS, id: id, score: (min*100)+sec }, function(data){
+                alert(data);
+                $.when( eigenrecords() ).done(function() {records();});    
+            } );
+        }
+        function eigenrecords(){
+            $.get( "http://127.0.0.1:1337/haalEigenRecords", { name: usernameS }, function(data){if(data.length>0){
+                var html="";var tel=0;dr=[];
+                $.each( data, function(k,v){
+                var br=Math.floor((v.id-1)/64);
+                var xr=(Math.floor(((v.id-1)%64)/8)*2)+4;
+                var yr=Math.floor(((v.id-1)%8)*2)+4;
+                var bt=(Math.floor((xr*yr)/16)*br)+Math.floor(Math.sqrt(xr*yr)-2);
+                html+="<tr class='bgc"+br+"'><td>"+xr+"x"+yr+"</td><td>"+bt+"</td><td>"+(v.speler1!=usernameS?'--':maaktijd(v.score1))+"</td><td>"+(v.speler2!=usernameS?'--':maaktijd(v.score2))+"</td><td>"+(v.speler3!=usernameS?'--':maaktijd(v.score3))+"</td></tr>";
+                tel++;if(tel==8){dr.push(html);tel=0;html="";}
+                });
+                if(tel>0){dr.push(html)}; 
+                maaklijst(0);
+                }else{$('#eigenscore').html('<h3>Nog geen eigen records!</h3>');}},"json");
+        }
+        function records(){
+            var id=((b-m==0?0:(b-m)/step)<<6)+(((x/2)-2)<<3)+((y/2)-2)+1;
+            $.get( "http://127.0.0.1:1337/haalRecords", { id: id }, function(data){if(data.length>0){
+            $('#score').html('<table><thead><tr><td colspan="3"><h3>Scores bij '+x+'x'+y+' grid en '+b+' bommen</h3></td></tr><tr><td>Nr</td><td>naam</td><td>tijd</td></tr></thead>'+
+                '<tbody class="bgc0"><tr><td>1</td><td>'+data[0].speler1+'</td><td>'+maaktijd(data[0].score1)+'</td></tr><tr><td>2</td><td>'+data[0].speler2+'</td><td>'+maaktijd(data[0].score2)+'</td></tr><tr><td>3</td><td>'+data[0].speler3+'</td><td>'+maaktijd(data[0].score3)+'</td></tr></tbody></table>');    
+            }else{$('#score').html('<h3>Nog geen record data van deze grid!</h3>');}},"json");
+        }
+        function maaktijd(st){
+            return ((st-st%100)/100==0?"00":(st-st%100)/100<10?"0"+(st-st%100)/100:(st-st%100)/100)+":"+(st%100<10?"0"+st%100:st%100);
+        }
+        function maaklijst(deel){
+            $('#eigenscore').html("<table><thead><tr><td colspan='5'><h3>Uw behaalde scores: <b onclick='maaklijst("+(deel==0?dr.length-1:deel-1)+")'>< </b>blad "+(deel+1)+"<b onclick='maaklijst("+(deel==dr.length-1?0:deel+1)+")'> ></b></h3></td></tr><tr><td>grid</td><td>bommen</td><td>1</td><td>2</td><td>3</td></tr></thead><tbody>"+dr[deel]+"</tbody></table>");
+        }
+    
+    $(function(){
+        
+        frame(x,y);
+        eigenrecords();
+        records();
+        
+
+    });
+
+    </script>
+</head>
+<body>
+    
+    
+    <div id="mv" class="mainpart">
+        <div id="info" class="info">
+            <div class="btn right" onclick="menu()">MENU</div>
+            <h3>Spelinformatie</h3>
+            <p>Hier komt nog een heleboel spelinformatie. Hoe moet je het spel spelen en hoe gebruik je de score tabellen.</p>
+        </div>
+        <div id="main"><div id="field"></div></div>
+        <div id="scores">
+            <div id="score"></div>
+            <div id="eigenscore"></div>
+        </div>
+    </div>
+
+    
+    
+</body>
+</html>

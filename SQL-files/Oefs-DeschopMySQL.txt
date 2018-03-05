@@ -1158,15 +1158,18 @@ select * from min_prijs;
 select plantennaam from planten;
 
 
-create database takenlijst;
+drop database takenlijst;
 USE takenlijst;
 CREATE TABLE USER (
 	ID integer NOT NULL AUTO_INCREMENT,
     USERNAME varchar (15) NOT NULL,
 	WACHTWOORD varchar (15) NOT NULL,
     FIRSTNAME varchar (15) NOT NULL,
-    LASTNAME varchar (15) NOT NULL
+    LASTNAME varchar (15) NOT NULL,
+    PRIMARY KEY (id)
 );
+
+CREATE UNIQUE INDEX IDX_USERNAME ON USER (USERNAME);
 
 CREATE TABLE CATEGORIE (
 	ID integer NOT NULL,
@@ -1184,8 +1187,12 @@ CREATE TABLE TAAK (
 
 select * from user;
 
+select * from user 
+where username='GabyVDV';
 
+select * from user where username = 'rerr';
 
+select wachtwoord from user where username = 'irina';
 
-
+delete from USER ;
 

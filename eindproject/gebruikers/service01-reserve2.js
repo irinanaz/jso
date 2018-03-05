@@ -258,12 +258,12 @@ app.post('/addUser', function (req, res) {
 app.get(['/categorienamen'], function (req, res) {
     var connection = maakConnectie();
     connection.query(
-        "SELECT CATNAME,CATID,ID FROM CATEGORIE ORDER BY CATNAME ;",
+        "SELECT CATNAME,CATID FROM CATEGORIE ORDER BY CATNAME ;",
         function (err, rows, fields) {
             if (!err) {
                 var result = [];
                 for(var i=0; i<rows.length; i++){
-                        result.push({CATNAME: rows[i].CATNAME, CATID: rows[i].CATID, ID: rows[i].ID });
+                        result.push({CATNAME: rows[i].CATNAME, CATID: rows[i].CATID});
                 }
                 res.send({status: 200, result: result});
             }
@@ -276,9 +276,9 @@ app.get(['/categorienamen'], function (req, res) {
         });
 });
 
-app.post('/addCat/:userid', function (req, res) {
+app.post('/addCat', function (req, res) {
     var identifiers = [];
-    identifiers.push(req.params.userid);            // ID van IRINA ipv 1 OK
+    identifiers.push(1); // nog te bewerken
     identifiers.push(req.body.catTitel);
     identifiers.push(req.body.catLijst1);
 
@@ -293,7 +293,8 @@ app.post('/addCat/:userid', function (req, res) {
             if (!err) {
                 connection.query(
                     "SELECT CATNAME, CATID FROM CATEGORIE WHERE ID = ? ORDER BY CATNAME ;",
-                    [req.params.userid],            // ID van IRINA ipv 1 OK
+                    // TODO: id op vorige lijn vervangen
+                    [1],
                     function (err, rows, fields) {
                         if (!err) {
                             var result = [];
@@ -338,16 +339,15 @@ app.post('/addTaak', function (req, res) {
             connection.end();
         });
 });
-
 app.get(['/catWeergeven'], function (req, res) {
     var connection = maakConnectie();
     connection.query(
-        "SELECT c.ID, c.CATID, c.CATNAME, s.PARENTCATIDC, t.TAAKID, t.PARENTCATIDT, t.TITEL, t.TAAKOMSCHR FROM CATEGORIE c LEFT OUTER JOIN SUBCATEGORIE s ON s.SUBCATID = c.CATID LEFT OUTER JOIN TAAK t ON t.PARENTCATIDT = c.CATID ORDER BY ID,CATNAME;",
+        "SELECT c.CATID, c.CATNAME, s.PARENTCATIDC, t.PARENTCATIDT, t.TITEL, t.TAAKOMSCHR FROM CATEGORIE c LEFT OUTER JOIN SUBCATEGORIE s ON s.SUBCATID = c.CATID LEFT OUTER JOIN TAAK t ON t.PARENTCATIDT = c.CATID ORDER BY CATNAME;",
         function (err, rows, fields) {
             if (!err) {
                 var result = [];
                 for(var i=0; i<rows.length; i++){
-                        result.push({ID: rows[i].ID, CATID: rows[i].CATID, CATNAME: rows[i].CATNAME, PARENTCATIDC: rows[i].PARENTCATIDC, TAAKID: rows[i].TAAKID, PARENTCATIDT: rows[i].PARENTCATIDT, TITEL: rows[i].TITEL, TAAKOMSCHR: rows[i].TAAKOMSCHR });
+                        result.push({CATID: rows[i].CATID, CATNAME: rows[i].CATNAME, PARENTCATIDC: rows[i].PARENTCATIDC, PARENTCATIDT: rows[i].PARENTCATIDT, TITEL: rows[i].TITEL, TAAKOMSCHR: rows[i].TAAKOMSCHR });
                 }
                 res.send({status: 200, result: result});
             }
@@ -365,7 +365,6 @@ app.get(['/catWeergeven'], function (req, res) {
 // mijnenveger gets ------------------------------------------------------------------
 
 app.get('/haalEigenRecords', function(req, res) {
-    console.log( "haaleigenrecords: ");
 	console.log(req.query.name);
 	var connection = maakConnectie();
 	var identifiers = req.query.name;
@@ -379,13 +378,12 @@ app.get('/haalEigenRecords', function(req, res) {
 });
 
 app.get('/haalRecords', function(req, res) {
-    console.log( "haal records: ");
 	console.log(req.query.id);
 	var connection = maakConnectie();
 	var identifiers = req.query.id;
 	connection.query('SELECT * FROM scores WHERE id='+identifiers, function (err, rows, fields) {
-    if (!err) { console.log('Top3: '); console.log(rows);
-        var result = JSON.stringify(rows); console.log('Top3: '); console.log(result);
+    if (!err) {console.log(rows);
+        var result = JSON.stringify(rows);console.log(result);
         res.send(result);}
     else {console.log('Error while performing query hr.');}
     connection.end();
@@ -426,13 +424,12 @@ app.post('/zetScore', function(req, res) {
                 connection.query('UPDATE scores SET speler3="'+naam+'", score3='+score+' WHERE id='+id, function (err, rows, fields) {
                 if (!err) {res.send("updated 3e");}
                 else {console.log('Error while performing update 3e.');}
-                connection.end();
             }); }
             else{res.send("geen update");}
-            
+            connection.end();
         }    
         else {console.log('Error while performing select.');}
-        
+        connection.end();
         });
 });
 

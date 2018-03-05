@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="styles/TaakIngeven.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="TaakIngeven.js"></script>
+    <title>Taken Lijst</title>
+</head>
+
+<body>
+    <div>
+        <h1>Taken invoeren</h1>
+        <form action="addCat" id="addCat" name="addCat" onsubmit="return false;">
+            <fieldset>
+                <legend>Nieuwe categorie aanmaken</legend>
+                <label>Selecteer een categorie of subcategorie:</label>
+                <select id="catLijst1" name="catLijst1">
+                </select>
+                <br/>
+                <label>Naam van de categorie:
+                    <input type="text" id="catTitel" name="catTitel" />
+                </label>
+                <br/>
+                <input type="button" value="categorie aanmaken" id="catMaken" />
+                <p id="opslCat" class="opslCat">De categorie werd opgeslagen.</p>
+            </fieldset>
+        </form>
+        <form action="addTaak" id="addTaak" name="addTaak" onsubmit="return false;">
+            <fieldset>
+                <legend>Taak ingeven</legend>
+                <label>Selecteer een categorie of subcategorie:</label>
+                <select id="catLijst2" name="catLijst2">
+                </select>
+                <br/>
+                <label>Titel van de taak:
+                    <input type="text" name="taakTitel" />
+                </label>
+                <br/>
+                <label>Beschrijving van de taak:
+                    <textarea name="taakOmschr" id="taakOmschr" cols="60" rows="4"></textarea>
+                </label>
+                <br/>
+                <input type="submit" value="taak aanmaken" id="taakMaken" />
+                <p id="opslTaak" class="opslTaak">De taak werd opgeslagen.</p>
+            </fieldset>
+        </form>
+    </div>
+    <div>
+        <h1>Taken Lijst</h1>
+        <div id="takenLijst">
+            
+        </div>
+
+    </div>
+</body>
+
+</html>

@@ -16,6 +16,10 @@ import { AlertService, AuthenticationService, UserService } from './_services/in
 import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
+import { MijnenvegerComponent } from './mijnenveger/mijnenveger.component';
+import { TakenlijstComponent } from './takenlijst/takenlijst.component';
+import { MymenuComponent } from './mymenu/mymenu.componen;
+import { OpmaakComponent } from './opmaak/opmaak.component't';
 
 @NgModule({
     imports: [
@@ -29,7 +33,11 @@ import { RegisterComponent } from './register/index';
         AlertComponent,
         HomeComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        MijnenvegerComponent,
+        TakenlijstComponent,
+        MymenuCompone,
+        OpmaakComponentnt
     ],
     providers: [
         AuthGuard,
