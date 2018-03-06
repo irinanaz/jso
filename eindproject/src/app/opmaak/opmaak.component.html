@@ -1,8 +1,5 @@
-<p>
-  opmaak works!
-</p>
 <h1 [style.color]="getColor(myColor)" [style.background]="getColor(colorBG)" >{{title}}</h1>
-<form #f="ngForm"  [ngStyle]="{'background-image': 'url(' + bgSelected.filelink + ')'}">
+<form #f="ngForm"  [ngStyle]="{'background-image': 'url(' + bgSelected.filelink + ')', 'background-size':'cover','background-repeat':'no-repeat;'}">
   <div  >
     <label for="idColor">Favorite color: {{myColor}}</label> 
     <input type="color" id="idColor" name="nameColor" [(ngModel)]="myColor"  >

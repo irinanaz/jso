@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Opmaakbg,OpmaakFnt, bgKAART, fontKAART } from '../_models/opmaakbg';
+import { AppComponent } from '../app.component';
 
 // import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
@@ -24,7 +25,7 @@ export class OpmaakComponent implements OnInit {
   myColor: string = defColor;
   myFont: string = defFont;
 
-  constructor() { 
+  constructor( private parentComponent: AppComponent) { 
     
   } 
   // styleAanpassen(){
@@ -47,6 +48,7 @@ export class OpmaakComponent implements OnInit {
       myFont : this.myFont
     }
     localStorage.setItem('currentStyle', JSON.stringify(currentStyle));
+    this.parentComponent.achtergrondkleur = this.colorBG;
   }
   styleHalen(){
     let currentStyle = JSON.parse(localStorage.getItem('currentStyle'));

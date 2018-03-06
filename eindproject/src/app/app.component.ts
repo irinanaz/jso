@@ -9,5 +9,6 @@ import * as $ from 'jquery';
 })
 
 export class AppComponent {
+    achtergrondkleur: string;
     
  }

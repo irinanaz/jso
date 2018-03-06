@@ -1,7 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
 
-/* html{background-color: black;}
-body{height:100vh;}
+.mainwrapper {
+    max-width:960px;
+    margin:0 auto;
+    padding-top: 60px;
+}
+h1,h2,h3{
+    font-family: 'Indie Flower', cursive;
+}
+input, textarea, select, button {
+    
+  
+    -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+       -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
+            box-sizing: border-box;
+  }
+
+body{
+    margin: 0px;
+    height:100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.btnLarge {
+    padding: 8px 14px;
+    border: 2px solid #66cc00;
+    color:#66cc00;
+}
+/*
 header{text-align: center;color:beige;height:64px;width:100%} 
 */
 footer{text-align: center;color:beige;height:24px;width:100%} 
