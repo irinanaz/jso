@@ -21,7 +21,7 @@
       "styles": ["./app/mijnenveger/mijnenveger.css",
         "styles.css"
       ],
-      "scripts": ["./app/takenlijst/TaakIngeven.js","./app/mijnenveger/mijnenveger1.js"],
+      "scripts": ["./app/takenlijst/TaakIngeven.js","./app/mijnenveger/mijnenveger1.js", "./app/opmaak/opmaak.js"],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

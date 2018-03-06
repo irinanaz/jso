@@ -18,8 +18,8 @@ import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { MijnenvegerComponent } from './mijnenveger/mijnenveger.component';
 import { TakenlijstComponent } from './takenlijst/takenlijst.component';
-import { MymenuComponent } from './mymenu/mymenu.componen;
-import { OpmaakComponent } from './opmaak/opmaak.component't';
+import { MymenuComponent } from './mymenu/mymenu.component';
+import { OpmaakComponent } from './opmaak/opmaak.component';
 
 @NgModule({
     imports: [
@@ -36,8 +36,8 @@ import { OpmaakComponent } from './opmaak/opmaak.component't';
         RegisterComponent,
         MijnenvegerComponent,
         TakenlijstComponent,
-        MymenuCompone,
-        OpmaakComponentnt
+        MymenuComponent,
+        OpmaakComponent
     ],
     providers: [
         AuthGuard,
