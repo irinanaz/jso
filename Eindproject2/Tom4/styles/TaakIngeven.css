@@ -1,0 +1,104 @@
+body{--kleur0:#fff;--kleur1:#eee;--kleur2:#ddd;--kleur3:#bbb;--kleur4:#888;--kleur5:#666;--kleur6:#444;--kleur7:#333;--kleur8:rgba(100,100,100,0.4);--kleur9:#eee;}
+
+form {
+    border-radius: 5px;
+    padding: 5px 5px 5px 30px;
+}
+
+form>fieldset * {
+margin-bottom: 4px;
+}
+
+fieldset {
+    max-width: 400px;
+    background-color:var(--kleur1);
+    border: 1px solid var(--kleur4);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: right;
+}
+
+legend {
+    background-color:var(--kleur2);
+    border: 1px solid var(--kleur5);
+    border-radius: 10px;
+    padding: 10px 20px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.opslCat {
+    visibility: hidden;
+}
+
+.opslTaak {
+    visibility: hidden;
+}
+
+.zichtbaar {
+    visibility: visible;
+}
+
+#takenLijst fieldset>fieldset {
+    cursor:pointer;
+    display: none;
+    margin-left: 8px;
+}
+#takenLijst fieldset {
+    padding:4px 12px;
+    text-align: left;
+    position: relative;
+    max-width:700px;
+}
+
+#takenLijst legend {
+    cursor: pointer;
+    margin-left: 18px;
+    display:inline-block;
+}
+
+#takenLijst legend:hover {
+    background-color:var(--kleur8);
+}
+
+i{font-size: 14px;margin:-4px 0 0 8px;color:var(--kleur7);}
+
+.edit {
+    background-color: var(--kleur7);
+    color:var(--kleur1);
+    border-radius: 8%;
+    position: absolute;
+    left: 8px;
+    padding: 4px;
+    margin-top:-35px;
+    cursor: pointer;
+    font-size: 12px;
+    z-index:99;
+}
+
+.edit:hover {
+    background-color: var(--kleur8);
+    border:1px solid var(--kleur7);
+}
+
+.edit button{margin:0 4px;}
+
+#wrapper{display: grid;grid-template-columns: auto auto;background-color: var(--kleur0);}
+@media screen and (max-width: 1023px) {
+    #wrapper{grid-template-columns: auto}
+}
+
+.hc>legend{border-color: var(--kleur4);background-color: var(--kleur1);}
+.hc{background-color: var(--kleur0);border-left: 1px solid var(--kleur4);border-top: none;
+    border-right: none;
+    border-bottom: none;}
+.hc:last-child{border-left:none }
+.sc>legend{border-color: var(--kleur5);background-color: var(--kleur2);}
+.sc{background-color: var(--kleur0);border-left: 1px solid var(--kleur5);border-top: none;
+    border-right: none;
+    border-bottom: none;}
+.sc:last-child{border-left:none }
+.t>legend{border-color: var(--kleur6);background-color: var(--kleur3);
+    border-radius: 3px;padding: 5px 20px;}
+.t{background-color: var(--kleur9);border: 1px solid var(--kleur6);}
+input, textarea, option{background-color: var(--kleur0);}

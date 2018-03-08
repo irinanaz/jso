@@ -1,40 +1,80 @@
-
+body {--kleur0:#fff;--kleur1:#eee;--kleur2:#ddd;--kleur3:#bbb;--kleur4:#888;--kleur5:#666;--kleur6:#444;--kleur7:#333;--kleur8:rgba(100,100,100,0.4);--kleur9:#eee;
+    margin: 0px;
+    height:100vh;
+    font-family: 'Roboto', '"Roboto", sans-serif';
+}
+#appCont   {
+    height:100vh;
+    position: fixed;
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+    background-repeat:no-repeat;
+}
 .mainwrapper {
-    max-width:960px;
+    max-width:1100px;
     margin:0 auto;
     padding-top: 60px;
+    background-color:rgba(0,0,0,.1);
+    text-align: center;
 }
-h1,h2,h3{
+/* h1,h2,h3{
     font-family: 'Indie Flower', cursive;
-}
+} */
 input, textarea, select, button {
-    
-  
+    padding: 6px;
+    border: 1px solid #ccc;
     -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
        -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
             box-sizing: border-box;
+    margin:6px;
   }
 
-body{
-    margin: 0px;
-    height:100vh;
-    font-family: Arial, Helvetica, sans-serif;
-}
+
 .btnLarge {
     padding: 8px 14px;
     border: 2px solid #66cc00;
+    color:white;
+    background-color:#333;
+    margin: 5px; 
+    font-size:14px;
+    text-decoration:none;
+}
+.btnSmall{
+    padding: 2px 6px;
+    border: 2px solid #66cc00;
     color:#66cc00;
+    margin: 5px; 
+    font-size:12px;
+    text-decoration:none;
+    border: 2px solid #66cc00;
+    
+}
+#appContainer{
+    height:100vh;
+    background-image: url('/app/opmaak/opmaakimages/bgdefault/png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+    background-repeat:no-repeat;
+    
 }
 /*
 header{text-align: center;color:beige;height:64px;width:100%} 
 */
+
+/* accordion**********************/
+
+/*****************************/
 footer{text-align: center;color:beige;height:24px;width:100%} 
 #menu,#mv,#Tom,#mm{margin:0 auto;}
 .right{float:right;}
 .left{float:left;}
     
-    
-#mvWrapper{background-color: crimson;box-shadow: black 4px 4px 2px 2px;display:inline-block;padding:8px;
+    /*hier*/
+#mvWrapper{background-color: crimson; box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);display:inline-block;padding:8px;
     border-bottom:2px solid darkred;border-right:2px solid darkred;border-top:2px solid red;border-left:2px solid red;}
 #speelveld{border-bottom:2px solid red;border-right:2px solid red;border-top:2px solid darkred;border-left:2px solid darkred;
 position:relative;background-color: lightgrey;margin:0 auto;}
@@ -43,43 +83,45 @@ position:relative;background-color: lightgrey;margin:0 auto;}
 #invoer p{margin:16px 16px 2px;text-align: center;}
 #invoer input{width:120px;margin:0 88px;text-align: center;}
 #start{margin:20px 96px;}
-#tekst{color:beige;text-shadow: 3px 3px 3px black;font-size: 2em;margin-top:28px;}
+#tekst{color:beige;font-size: 2em;margin-top:28px;}
 .none{display:none}
 .pauze{background-color: rgba(0,0,0,0.9);}
 .win{background-color: rgba(0,0,0,0.3);}
-.blokje{width:20px;height:26px;background-color:beige;border:1px solid green;box-shadow:black 2px 2px 1px 1px; 
+.blokje{width:20px;height:26px;background-color:beige;border:1px solid green; box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1); 
 position:absolute;margin:1px;font-size:24px;font-weight: 900;padding-left:6px;}
-.blokje:hover{background-color: palegoldenrod;box-shadow:black 1px 1px 0px 1px;}
+.blokje>i{font-size:18px;}
+.blokje:hover{background-color: palegoldenrod; box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1)}
 .leeg{width:22px;height:30px;background-color:lightgrey;border:1px solid grey;box-shadow: none;
 position:absolute;margin:0;font-size:24px;font-weight: 900;padding-left:8px;}
 .explo{background:radial-gradient(lightcoral,red,darkred,black); }
 .r0{color:lightgrey;}
-.r1{color:green;}
-.r2{color:red;}
+.r1, .r1>i{color:green;}
+.r2, .r2>i{color:red;}
 .r3{color:black;}
 .bgc0{background-color:rgb(250,200,200); }
 .bgc1{background-color:rgb(250,150,150); }
 .bgc2{background-color:rgb(250,100,100); }
 .bgc3{background-color:rgb(250,50,50); }
 h3,p {text-align: center;}
-h3 b{border-radius:25%;box-shadow:black 1px 1px;margin:0 4px 0 3px;padding:2px;
+h3 b{border-radius:25%; margin:0 4px 0 3px;padding:2px;
     border-bottom:2px solid darkred;border-right:2px solid darkred;border-top:2px solid red;border-left:2px solid red;}
-.btn{background-color: crimson;box-shadow: black 4px 4px 2px 2px;padding:8px;margin:8px 16px;color:beige;text-shadow: 1px 1px 1px black;display:inline-block;text-align: center;
+.btn{background-color: crimson; box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);padding:8px;margin:8px 16px;color:beige;display:inline-block;text-align: center;
     border-bottom:2px solid darkred;border-right:2px solid darkred;border-top:2px solid red;border-left:2px solid red;}
 .btn:hover,h3 b:hover{box-shadow:none;cursor:pointer;}
-thead{color:beige;text-shadow: 1px 1px 1px black;}
-table{background-color: crimson;box-shadow: black 4px 4px 2px 2px;display:inline-block;padding:4px;
-    border-bottom:2px solid darkred;border-right:2px solid darkred;border-top:2px solid red;border-left:2px solid red;border-spacing:0px;}
+thead{color:beige;}
+table{background-color: crimson;display:inline-block;padding:4px;
+    border-bottom:1px solid darkred;border-right:1px solid darkred;border-top:1px solid red;border-left:1px solid red; }
 td{border:1px solid black;padding:2px;text-align: center;}
 #klok{font-size: 2em;background-color: lightgray;margin:2px;padding:4px;float:right;
     border-bottom:2px solid grey;border-right:2px solid grey;border-top:2px solid white;border-left:2px solid white;}
-#titel{display:inline-block;text-shadow: 3px 3px 2px black;color:beige;margin:4px 16px 16px 8px;}
-#pauze,#reset{display:inline-block;font-size: 1.5em;background-color: lightgray;margin:4px;padding:3px 7px 5px;box-shadow: black 4px 4px 2px 2px;
-    border-bottom:2px solid grey;border-right:2px solid grey;border-top:2px solid white;border-left:2px solid white;}
+#titel{display:inline-block;color:beige;margin:4px 16px 16px 8px;}
+#pauze,#reset{display:inline-block;font-size: 1.5em;background-color: lightgray;margin:4px;padding:3px 7px 5px;box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
+    border-bottom:2px solid grey;border-right:1px solid grey;border-top:1px solid white;border-left:1px solid white;}
 #reset{float:right;padding:3px 12px 5px;}
-#pauze:hover,#reset:hover{background-color: silver;box-shadow: black 1px 1px 2px;cursor:pointer;}
+#pauze:hover,#reset:hover{background-color: silver;box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);cursor:pointer;}
+#bommen p{margin:4px 0 0 0;}
 
-.mainpart{max-width:1280px;min-width:640px;background-color: black;
+.mainpart{padding-top: 60px;max-width:960px;min-width:640px; background-color:rgba(0,0,0,.1);
     display:grid;grid-gap:2px;}
 .main{display:grid;grid-template-columns:auto auto;}
 #mv{grid-template-columns:320px auto 320px;}
@@ -88,13 +130,147 @@ td{border:1px solid black;padding:2px;text-align: center;}
 .info{border-radius:16px;background-color: beige;margin:4px;padding:8px 4px;}
 #score{height:160px;margin-bottom:24px;}
    
-@media screen and (max-width: 1279px) {
-#mv{display:grid;grid-template-columns:auto 360px}
-#info{grid-column-start: 1;grid-column-end: 3;}
-}
-@media screen and (max-width: 959px) {
-#mv,.mainpart{display:grid;grid-template-columns:auto}
-#info{grid-column-start: 1;grid-column-end: 2;}
-#scores{grid-template-columns:auto auto;justify-content: space-around;}
+
+
+/*style Takenlijst *************************************************************/
+
+form {
+    border-radius: 5px;
+    padding: 5px 5px 5px 5px;
+    background-color:rgba(0,0,0,.1);
 }
 
+form>fieldset * {
+margin-bottom: 4px;
+}
+
+fieldset {
+    max-width: 380px;
+    background-color:var(--kleur1);
+    border: 1px solid var(--kleur4);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: right;
+}
+
+legend {
+    background-color:var(--kleur2);
+    border: 1px solid var(--kleur5);
+    border-radius: 10px;
+    padding: 10px 20px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.opslCat {
+    visibility: hidden;
+}
+
+.opslTaak {
+    visibility: hidden;
+}
+
+.zichtbaar {
+    visibility: visible;
+}
+
+#takenLijst fieldset>fieldset {
+    cursor:pointer;
+    display: none;
+    margin-left: 8px;
+}
+#takenLijst fieldset {
+    padding:4px 12px;
+    text-align: left;
+    position: relative;
+    max-width:460px;
+}
+
+#takenLijst legend {
+    cursor: pointer;
+    margin-left: 18px;
+    display:inline-block;
+}
+
+#takenLijst legend:hover {
+    background-color:var(--kleur7);
+}
+
+i{font-size: 14px;margin:-4px 0 0 8px;color:var(--kleur7);}
+
+.edit {
+    background-color: var(--kleur7);
+    color:var(--kleur1);
+    border-radius: 8%;
+    position: absolute;
+    left: 8px;
+    padding: 4px;
+    margin-top:-35px;
+    cursor: pointer;
+    font-size: 12px;
+    z-index:99;
+}
+
+.edit:hover {
+    background-color: var(--kleur8);
+    border:1px solid var(--kleur7);
+}
+
+.edit button{margin:0 4px;}
+
+#wrapper{max-width: 960px;display: grid;grid-template-columns: auto auto;
+    justify-content: flex-start;
+    margin: 0 auto; padding: 2%;}
+.myColLijst{
+    margin-left: 20px;
+    
+}
+#takenLijst{
+    padding: 10px;
+    background-color:rgba(0,0,0,.1);
+    border-radius: 5px;
+    padding: 5px 5px 5px 5px;
+    width:100%;
+}
+
+.hc>legend{border-color: var(--kleur4);background-color: var(--kleur1);}
+.hc{background-color: var(--kleur0);border-left: 1px solid var(--kleur4);border-top: none;
+    border-right: none;
+    border-bottom: none;}
+.hc:last-child{border-left:none }
+.sc>legend{border-color: var(--kleur5);background-color: var(--kleur2);}
+.sc{background-color: var(--kleur0);border-left: 1px solid var(--kleur5);border-top: none;
+    border-right: none;
+    border-bottom: none;}
+.sc:last-child{border-left:none }
+.t>legend{border-color: var(--kleur6);background-color: var(--kleur3);
+    border-radius: 3px;padding: 5px 20px;}
+.t{background-color: var(--kleur9);border: 1px solid var(--kleur6);max-width: 360px;}
+input, textarea, option{background-color: var(--kleur0);}
+
+
+
+@media screen and (max-width: 1279px) {
+    #mv{display:grid;grid-template-columns:auto 360px}
+    #info{grid-column-start: 1;grid-column-end: 3;}
+    }
+/* @media screen and (max-width: 1123px) {
+        #wrapper{grid-template-columns: auto}
+    } */
+    
+       
+ @media screen and (max-width: 959px) {
+    #mv,.mainpart{display:grid;grid-template-columns:auto}
+    #info{grid-column-start: 1;grid-column-end: 2;}
+    #scores{grid-template-columns:auto auto;justify-content: space-around;}
+    
+    /*takenlijst*/
+ }
+ @media screen and (max-width: 659px) {
+    #wrapper{grid-template-columns: auto}
+
+    
+    }
+
+    
+    

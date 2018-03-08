@@ -1,35 +1,39 @@
 <h1 [style.color]="getColor(myColor)" [style.background]="getColor(colorBG)" >{{title}}</h1>
-<form #f="ngForm"  [ngStyle]="{'background-image': 'url(' + bgSelected.filelink + ')', 'background-size':'cover','background-repeat':'no-repeat;'}">
+<form #f="ngForm" [ngStyle]="{'background-color': colorBG}">
   <div  >
     <label for="idColor">Favorite color: {{myColor}}</label> 
     <input type="color" id="idColor" name="nameColor" [(ngModel)]="myColor"  >
+    <button (click)="colorReset()">Clear color</button> 
   </div>
   <div>
     <label for="idBGColor">Background color: {{colorBG}}</label> 
     <input type="color" id="idBGColor" name="nameBGColor" [(ngModel)]="colorBG" >
+    <button (click)="bgcolorReset()">Clear background color</button>
   </div>
   <div>
     <label for="idFont">Lettertype:  {{myFont}}</label> 
     <select *ngIf = "fontKaart.length>0" id="idFontBroodje" name="nameFont" [(ngModel)]="myFont">
       <option *ngFor= "let fnt of fontKaart" [ngValue]="fnt" value='{{ fnt.fntlink }}'>{{ fnt.fntname }}</option>
+      <button (click)="fontReset()">Reset font</button>
     </select>
   </div>
   <div>
-    <label for="idBG">Background image: <!-- {{bgSelected.sfeername}}, {{bgSelected.filename}},{{bgSelected.filelink}}--></label> 
+    <label for="idBG">Background image: <!-- {{bgSelected.sfeername}}, {{bgSelected.filename}},{{bgSelected.filelink}}--></label>
+    <button (click)="imageReset()">Set no image</button> 
     <div *ngIf = "bgKaart.length>0" id="idBG" name="nameBG"  class="bg-selector">
       <div *ngFor= "let bg of bgKaart" class="bg-item">
         <input id='{{ bg.sfeername }}' type="radio" name="sfeername"/>
-        <label class='{{ bg.maakKlasse}}' for='{{ bg.sfeername }}' (click)="bgSelected = bg"></label>
+        <label class='{{ bg.maakKlasse}}' for='{{ bg.sfeername }}' (click)="bgSelected = bg; setPreview()"></label>
       </div>
 
     </div>
   </div>
   <div>
     <button (click)="styleBewaren()">Bewaren</button>
-  </div> 
-  <div>
+  
       <button (click)="styleReset()">Reset style</button>
   </div>
 </form>
 
 <!-- [ngStyle]="{'background-image': 'url(' + photo + ')'}" -->
+<!-- [ngStyle]="{'background-image': 'url(' + bgSelected.filelink + ')', 'background-size':'cover','background-repeat':'no-repeat;'}" -->

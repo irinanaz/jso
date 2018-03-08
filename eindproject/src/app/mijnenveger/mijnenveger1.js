@@ -31,7 +31,7 @@
         var m=6,step=4;//instellingen slider grid (m=min)
         
         function reset(){
-        
+        $('#bommen').html('');
         ci();//clear alle intervals
         x=8;y=8;
         sec=0;min=0;
@@ -95,8 +95,11 @@
             if($.inArray(xy, bom) !== -1){
                 $('#'+xy).removeClass().addClass('leeg explo');
                 showBom();$('#tekst').text('VERLOREN!').css('margin-left',(-95+(x*16))+'px');
+                $('#bommen').html("<p>Helaas!</p>");
             }
-            else{geenBom(xy)}
+            else{
+                checkmark();
+                geenBom(xy)}
         }
 
         function klikRechts(event,xy){
@@ -104,8 +107,13 @@
             event.preventDefault();
             if(sec==0 && min==0){tijd=setInterval(klok,1000);alert(tijd);}
             if($('#'+xy).hasClass('blokje')){
-            $('#'+xy).removeClass('r'+p[xy]).addClass('r'+(p[xy]>2?p[xy]=0:p[xy]+=1)).text(p[xy]==1?"v":p[xy]==2?"?":"");
+            $('#'+xy).removeClass('r'+p[xy]).addClass('r'+(p[xy]>2?p[xy]=0:p[xy]+=1)).html(p[xy]==1?'<i class="fas fa-flag r1"></i>':p[xy]==2?'<i class="fas fa-question"></i>':"");
+            checkmark();
             }
+
+        }
+        function checkmark(){
+            let aantal=(b-$('.r1').length)+2;$('#bommen').html(aantal==0?'<p>Mischien zijn nu alle bommen gemarkeert!</p>':aantal<0?'<p>Er zijn nu meer markeringen dan er bommen kunnen zijn!</p>':'<p>Er zijn misschien nog '+aantal+' bommen te markeren.</p>');
         }
 
         function geenBom(xy){
@@ -123,7 +131,11 @@
             $('#'+xy).text(""+a==0?"":a).css("color", "rgb("+(0+(60*(a==0?1:a>4?4.2:a)))+","+(255-(60*(a==0?1:a>4?4.2:a)))+",0)");
             if(a>0){for(var i=0;i<aa;i++){gb.pop();}};
             if(gb.length>0){let next=gb[0];gb.splice(0,1);geenBom(next);}
-            if(totaal==(x*y)-b){$.when( showBom() ).done(function() {$('#tekst').text('GEWONNEN!').css('margin-left',(-95+(x*16))+'px');gewonnen();});}
+            checkmark();
+            if(totaal==(x*y)-b){$.when( showBom() ).done(function() {$('#tekst').text('GEWONNEN!').css('margin-left',(-95+(x*16))+'px');
+            $('#bommen').html('<p>Het is je gelukt om alle bommen op te sporen!</p>');
+            gewonnen();});}
+            
         }
 
         function bommen(b){
@@ -137,7 +149,7 @@
         function showBom(){
             
             ci();
-            for(bb in bom){$('#'+bom[bb]).addClass("r3").text("x");}
+            for(bb in bom){$('#'+bom[bb]).addClass("r3").html('<i class="fas fa-bomb"></i>');}
             $('#bericht').removeClass().addClass('win');
         }
 
@@ -207,6 +219,7 @@ function initMG(){
         frame(x,y);
         eigenrecords();
         records();
+        $(".slide").click(function(){ $('#infotext').slideToggle();});
         
 
     });

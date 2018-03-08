@@ -33,6 +33,7 @@ export class OpmaakFnt {
 
 
 export const bgKAART = new Array <Opmaakbg> ( 
+    // new Opmaakbg( 'Sfeer0','bgdefault.png','http://localhost:4200/bgdefault.png'),
     new Opmaakbg( 'Sfeer1','bg-k1.jpg','http://localhost:4200/bg-k1.0ae403290c5930a158a4.jpg'),
     new Opmaakbg( 'Sfeer2', 'bg-k2.jpg','http://localhost:4200/bg-k2.73c2509267d777d15121.jpg'),
     new Opmaakbg( 'Sfeer3',  'bg-k3.jpg','http://localhost:4200/bg-k3.3a08f7a40d2d3de5706b.jpg'),
@@ -40,11 +41,13 @@ export const bgKAART = new Array <Opmaakbg> (
     new Opmaakbg( 'Sfeer5',  'bg-k5.jpg','http://localhost:4200/bg-k5.29c9349b02c7b50a55cf.jpg'));
 
 export const fontKAART = new Array <OpmaakFnt> ( 
-    new OpmaakFnt( 'Times New Roman','"Times New Roman", Times, serif'),
-    new OpmaakFnt( 'Arial/Helvetica', 'Helvetica, sans-serif'),
-    new OpmaakFnt( 'Palantino',  '"Palatino Linotype", "Book Antiqua", Palatino, serif'),
-    // new OpmaakFnt( 'Sfeer4', 'bg-k4.jpg'),
-    // new OpmaakFnt( 'Sfeer5',  'bg-k5.jpg')
+    new OpmaakFnt( 'Times New Roman',"'Times New Roman', Times, serif"),
+    new OpmaakFnt( 'Arial/Helvetica', '"Helvetica", sans-serif'),
+    new OpmaakFnt( 'Palantino',  '"Roboto", sans-serif'),
+    new OpmaakFnt( 'Roboto', '"Roboto", sans-serif'),
+    new OpmaakFnt( 'Coiny',  '"Coiny", cursive'),
+    new OpmaakFnt( 'Indie Flower', '"Indie Flower", cursive'),
+    new OpmaakFnt( 'Bowlby One SC',  '"Bowlby One SC", cursive'),
 );
 
       

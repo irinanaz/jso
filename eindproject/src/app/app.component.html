@@ -2,7 +2,8 @@
 
  <mymenu></mymenu>  
 
-<div   [style.background]="achtergrondkleur">
+<div id="appContainter" [ngStyle]="{'height':'100vh','background-image': 'url(' + appBGimage + ')', '-webkit-background-size': 'cover','-moz-background-size': 'cover','-o-background-size': 'cover','background-attachment': 'fixed', 'background-size': 'cover','background-repeat':'no-repeat;' }" > 
+ 
     <div class="container">
            
         <div class="mainwrapper">
@@ -17,3 +18,6 @@
 <div class="text-center">
     
 </div>
+
+
+<!-- "style="height:100vh; background-size:cover;background-repeat:no-repeat;"  [style.background]="appBG" [ngStyle]="{'background-image': 'url(' + appBGimage + ')', 'background-size':'cover','background-repeat':'no-repeat;'}" -->

@@ -1,47 +1,55 @@
 <!-- <p>
   takenlijst works!
 </p> -->
-<div class="mainwrapper">
-<div >
-  <h1>Taken invoeren</h1>
-  <img src="https://tpc.googlesyndication.com/simgad/977311001918050084" onload="initTL()" width="100" height="132">
-  <form  action="addCat" id="addCat" name="addCat" onsubmit="return false;">
-                <fieldset>
-                    <legend>Nieuwe categorie aanmaken</legend>
-                    <label>Selecteer een categorie of subcategorie:</label>
-                    <select id="catLijst1" name="catLijst1" >
-                    </select>
-                    <br/>
-                    <label>Naam van de categorie:
-                        <input type="text" id="catTitel" name="catTitel" />
-                    </label>
-                    <br/>
-                    
-                    <input type="button" value="categorie aanmaken" id="catMaken" onclick="initCat()"/>
-                    <p id="opslCat" class="opslCat">De categorie werd opgeslagen.</p>
-                </fieldset>
-            </form>
-            <form action="addTaak" id="addTaak" name="addTaak" onsubmit="return false;">
-                <fieldset>
-                    <legend>Taak ingeven</legend>
-                    <label>Selecteer een categorie of subcategorie:</label>
-                    <select id="catLijst2" name="catLijst2">
-                    </select>
-                    <br/>
-                    <label>Titel van de taak:
-                        <input type="text" name="taakTitel" />
-                    </label>
-                    <br/>
-                    <label>Beschrijving van de taak:
-                        <textarea name="taakOmschr" id="taakOmschr" cols="60" rows="4"></textarea>
-                    </label>
-                    <br/>
-                    <input type="submit" value="taak aanmaken" id="taakMaken" onclick="initTaak()"/>
-                    <p id="opslTaak" class="opslTaak">De taak werd opgeslagen.</p>
-                </fieldset>
-            </form>
+<img src="https://tpc.googlesyndication.com/simgad/977311001918050084" onload="initTL()" width="1" height="1">
+<div id="mainwrapper">
+<div id="wrapper">
+ <div>
+    <h1>Taken invoeren</h1>
+  <!-- <img src="https://tpc.googlesyndication.com/simgad/977311001918050084" onload="initTL()" width="100" height="132"> -->
+    <form action="addCat" id="addCat" name="addCat" onsubmit="return false;">
+    <fieldset>
+        <legend>Nieuwe categorie aanmaken</legend>
+        <label>Selecteer een categorie of subcategorie:</label>
+        <select id="catLijst1" name="catLijst1">
+        </select>
+        <br/>
+        <label>Naam van de categorie:
+            <input type="text" id="catTitel" name="catTitel" />
+        </label>
+        <br/>
+        <input class="btnLarge" type="button" value="categorie aanmaken" id="catMaken" onclick="initCat()" />
+        <p id="opslCat" class="opslCat">De categorie werd opgeslagen.</p>
+    </fieldset>
+    </form>
+    <form action="addTaak" id="addTaak" name="addTaak" onsubmit="return false;">
+    <fieldset>
+        <legend>Taak ingeven</legend>
+        <label>Selecteer een categorie of subcategorie:</label>
+        <select id="catLijst2" name="catLijst2">
+        </select>
+        <br/>
+        <label>Titel van de taak:
+            <input type="text" id="taakTitel" name="taakTitel" />
+        </label>
+        <br/>
+        <label>Start:
+            <input type="date" id="startdat" name="startdat" />
+        </label>
+        <label>Einde:
+            <input type="date" id="einddat" name="einddat" />
+        </label>
+        <br/>
+        <label>Beschrijving van de taak:
+            <textarea name="taakOmschr" id="taakOmschr" cols="40" rows="5"></textarea>
+        </label>
+        <br/>
+        <input class="btnLarge" type="submit" value="taak aanmaken" id="taakMaken" disabled=true onclick="initTaak()"/>
+        <p id="opslTaak" class="opslTaak">De taak werd opgeslagen.</p>
+    </fieldset>
+    </form>
 </div>
-<div>
+<div class="myColLijst">  
         <h1>Taken Lijst</h1>
         <div id="takenLijst">
             
@@ -49,4 +57,6 @@
 
 </div>
 </div>
+</div>
+
 

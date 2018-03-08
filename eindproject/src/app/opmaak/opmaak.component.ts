@@ -4,9 +4,9 @@ import { AppComponent } from '../app.component';
 
 // import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
-let defColor = '#333';
-let defBGColor = '#ccc';
-let defFont = 'Arial,Helvetica, sans-serif';
+let defColor = 'rgba(0,0,0,.7)';
+let defBGColor = 'rgba(0,0,0,.)';  //#66cc00 , color:rgba(0,0,0,.7);
+let defFont = '"Roboto", sans-serif';
 
 @Component({
   selector: 'opmaak',
@@ -48,7 +48,16 @@ export class OpmaakComponent implements OnInit {
       myFont : this.myFont
     }
     localStorage.setItem('currentStyle', JSON.stringify(currentStyle));
-    this.parentComponent.achtergrondkleur = this.colorBG;
+    this.parentComponent.appBG = this.colorBG;
+    this.parentComponent.appBGimage = this.bgSelected.filelink;
+  }
+  setPreview(){
+    // this.parentComponent.appSfeer = this.bgSelected.sfeername;
+    // this.parentComponent.appBG = this.colorBG;
+    this.parentComponent.appBGimage = this.bgSelected.filelink;
+    // this.parentComponent.appFont = this.myFont;
+    // this.parentComponent.appColor = this.colorBG;
+    this.parentComponent.appGetBG();
   }
   styleHalen(){
     let currentStyle = JSON.parse(localStorage.getItem('currentStyle'));
@@ -57,10 +66,33 @@ export class OpmaakComponent implements OnInit {
       this.colorBG = currentStyle.colorBG;
       this.myColor = currentStyle.myColor;
       this.myFont = currentStyle.myFont;
+      // doorgeven aan app:
+      this.parentComponent.appSfeer = this.bgSelected.sfeername;
+      this.parentComponent.appBG = this.colorBG;
+      this.parentComponent.appBGimage = this.bgSelected.filelink;
+      this.parentComponent.appFont = this.myFont;
+      this.parentComponent.appColor = this.colorBG;
     }else {
       //set default styles:
       this.styleReset();
     }
+  }
+  imageReset(){
+    this.bgSelected = new Opmaakbg ('','','');
+    this.parentComponent.appBGimage = this.bgSelected.filelink;
+  }
+  bgcolorReset(){
+    this.colorBG = defBGColor;
+    this.parentComponent.appBG = this.colorBG;
+  }
+  colorReset(){
+    this.myColor = defColor;
+    this.parentComponent.appColor = this.colorBG;
+  }
+  fontReset(){
+    this.myFont= defFont;
+    this.parentComponent.appColor = this.colorBG;
+    this.parentComponent.appFont = this.myFont;
   }
   styleReset(){
     // this.photo = 'http://localhost:4200/bg-k1.0ae403290c5930a158a4.jpg';
@@ -68,6 +100,11 @@ export class OpmaakComponent implements OnInit {
     this.colorBG = defBGColor;
     this.myColor = defColor;
     this.myFont= defFont;
+    this.parentComponent.appSfeer = this.bgSelected.sfeername;
+    this.parentComponent.appBG = this.colorBG;
+    this.parentComponent.appBGimage = this.bgSelected.filelink;
+    this.parentComponent.appFont = this.myFont;
+    this.parentComponent.appColor = this.colorBG;
     localStorage.removeItem('currentStyle');
   }
 
