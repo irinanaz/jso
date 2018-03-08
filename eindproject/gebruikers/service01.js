@@ -278,7 +278,7 @@ app.get(['/categorienamen'], function (req, res) {
 
 app.post('/addCat/:userid', function (req, res) {
     var identifiers = [];
-    identifiers.push('req.params.userid');            // ID van IRINA ipv 1 OK
+    identifiers.push(req.params.userid);            // ID van IRINA ipv 1 OK
     identifiers.push(req.body.catTitel);
     identifiers.push(req.body.catLijst1);
 
@@ -296,7 +296,7 @@ app.post('/addCat/:userid', function (req, res) {
             if (!err) {
                 connection.query(
                     "SELECT CATNAME, CATID FROM CATEGORIE WHERE ID = ? ORDER BY CATNAME ;",
-                    [1],            // ID van IRINA ipv 1
+                    [req.params.userid],            // ID van IRINA ipv 1
                     function (err, rows, fields) {
                         if (!err) {
                             var result = [];

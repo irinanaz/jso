@@ -19,22 +19,23 @@
 
 //versie 2 ---------------------------------------------------------
 function optionsVullen() {
-	let logedInUser=JSON.parse(localStorage.getItem("currentUser"));
+	
 	$.ajax({
 		url: 'http://localhost:1337/categorienamen',
 		type: 'GET',
 		data: $('#addCat').serialize(),
 		success: function (data) {
+			let logedInUser=JSON.parse(localStorage.getItem("currentUser"));
 			$("#catLijst1").empty();
 			$("#catLijst1").append("<option>Hoofdcategorie</option>");
 			for (var i = 0; i < data.result.length; i++) {
-				if (data.result[i].ID == 1) { 			// ID van IRINA ipv 1
+				if (data.result[i].ID == logedInUser.id) { 			// ID van IRINA ipv 1
 					$("#catLijst1").append("<option value='" + data.result[i].CATID + "'>" + data.result[i].CATNAME + "</option>");
 				};
 			}
 			$("#catLijst2").empty();
 			for (var i = 0; i < data.result.length; i++) {
-				if (data.result[i].ID == 1) { 			// ID van IRINA ipv 1
+				if (data.result[i].ID == logedInUser.id) { 			// ID van IRINA ipv 1
 					$("#catLijst2").append("<option value='" + data.result[i].CATID + "'>" + data.result[i].CATNAME + "</option>");
 				};
 			}
@@ -99,7 +100,8 @@ function lijstVullen() {
 		dataType: 'json',
 		success: function (data) {
 			$("#takenLijst").empty();
-			var hoofdcats = data.result.filter(cat => cat.PARENTCATIDC == undefined && cat.ID == 1);	// ID van IRINA ipv 1
+			let logedInUser=JSON.parse(localStorage.getItem("currentUser"));
+			var hoofdcats = data.result.filter(cat => cat.PARENTCATIDC == undefined && cat.ID == logedInUser.id);	// ID van IRINA ipv 1
 			var unic_hoofdcats = [];
 			for (var i = 0; i < hoofdcats.length; i++) {
 				if (!unic_hoofdcats.find(cat => cat.CATID == hoofdcats[i].CATID)) { unic_hoofdcats.push(hoofdcats[i]); }
@@ -116,7 +118,8 @@ function lijstVullen() {
 }
 
 function verwerksubcat(parentid, data) {
-	var subcats = data.filter(cat => cat.PARENTCATIDC == parentid && cat.ID == 1);	// ID van IRINA ipv 1
+	let logedInUser=JSON.parse(localStorage.getItem("currentUser"));
+	var subcats = data.filter(cat => cat.PARENTCATIDC == parentid && cat.ID == logedInUser.id);	// ID van IRINA ipv 1
 	var unic_subcats = [];
 	for (var i = 0; i < subcats.length; i++) {
 		if (!unic_subcats.find(cat => cat.CATID == subcats[i].CATID)) { unic_subcats.push(subcats[i]); }
@@ -130,7 +133,8 @@ function verwerksubcat(parentid, data) {
 }
 
 function verwerkTaken(result) {
-	var taken = result.filter(t => t.PARENTCATIDT != undefined && t.ID == 1);	// ID van IRINA ipv 1
+	let logedInUser=JSON.parse(localStorage.getItem("currentUser"));
+	var taken = result.filter(t => t.PARENTCATIDT != undefined && t.ID == logedInUser.id);	// ID van IRINA ipv 1
 	for (var i = 0; i < taken.length; i++) {
 		var datumvraag = taken[i].STARTDAT == "" ? "" : "<sub>Start:" + (new Date(taken[i].STARTDAT)).toLocaleDateString("nl-BE") + " - Einde:" + (new Date(taken[i].EINDDAT)).toLocaleDateString("nl-BE") + "</sub>";
 		$("#C" + taken[i].CATID).append("<fieldset class='t' id=T" + taken[i].TAAKID + " ><legend><i class='fas fa-clipboard'></i> " + taken[i].TITEL + "</legend><div class='edit fas fa-pencil-alt' onmouseenter='gaint(" + taken[i].TAAKID + ")' onmouseleave='gauitt(" + taken[i].TAAKID + ")'></div>" + datumvraag + "<p>" + taken[i].TAAKOMSCHR + "</p>" + "</fieldset>");
